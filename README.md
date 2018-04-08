@@ -1,4 +1,0 @@
-# goodsmile
-
-
-goodsmile for everyone!
