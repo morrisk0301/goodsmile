@@ -139,8 +139,23 @@ ul, li {
 
 /* ------------------------------------ */
 input {
-	outline: none;
-	border: none !important;
+    border-style: inset;
+    border-width: 2px;
+    font-size: 12px;
+    font-family: monospace;
+    width: 15em;
+    padding: 1px 0px 1px 0px;
+    background-color: white;
+}
+input[type=submit] {
+    padding:5px 15px;
+    background:#ccc;
+    font-size: 12px;
+    font-family: Montserrat-Regular;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 
 textarea {
@@ -1107,7 +1122,7 @@ li.sale-noti > a {
 
 .side-menu .sub-menu > li {
   padding-left: 12px;
-  padding-top: 
+  padding-top: 12px;
 }
 
 .side-menu .sub-menu a:hover {
