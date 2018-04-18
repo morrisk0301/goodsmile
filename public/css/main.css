@@ -773,6 +773,17 @@ li.sale-noti > a {
   transform: translateY(-50%);
 }
 
+.header-icons > li:hover > .sub_menu {
+    visibility: visible;
+    opacity: 1;
+}
+
+.header-icons > li > .sub_menu {
+    top:120%;
+    left: -100px;
+    position: absolute;
+}
+
 .header-wrapicon1,
 .header-wrapicon2 {
   height: 27px;
