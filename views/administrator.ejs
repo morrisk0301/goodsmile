@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Profile Edit</title>
+	<title>Product Administrator</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -390,45 +390,22 @@
 <!-- content page -->
 <section class="bgwhite p-t-66 p-b-38">
 	<div class="container">
-		<h3 class="m-text26 p-t-15 p-b-16">
-			Profile Edit
-		</h3>
 		<div class="row">
-			<form method="post" action="/profile_edit2">
+			<div class="col-md-8 p-b-30">
+				<h3 class="m-text26 p-t-15 p-b-16">
+					Product Overview
+				</h3>
 				<table>
 					<tr>
-						<td><label>Address</label></td>
-						<td><input type="text" name="address" /></td>
+						<label>Product Name</label>
+						<div class="bo4 of-hidden size15 m-b-20">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="pd_name" placeholder="Product Name">
+						</div>
 					</tr>
-                    <tr>
-                        <td><label>Address2</label></td>
-                        <td><input type="text" name="address2" /></td>
-                    </tr>
-                    <tr>
-                        <td><label>City</label></td>
-                        <td><input type="text" name="city" /></td>
-                    </tr>
-                    <tr>
-                        <td><label>State/Province</label></td>
-                        <td><input type="text" name="state" /></td>
-                    </tr>
-                    <tr>
-                        <td><label>Zip/Postal Code</label></td>
-                        <td><input type="text" name="zip" /></td>
-                    </tr>
-                    <tr>
-                        <td><label>Country</label></td>
-                        <td><input type="text" name="country" /></td>
-                    </tr>
-                    <tr>
-                        <td><label>Phone Number</label></td>
-                        <td><input type="text" name="cellnum" /></td>
-                    </tr>
 				</table>
-				<br>
-				<input type="submit" value="Submit" name="" />
-			</form>
-
+				<a href="#">View Products</a>
+				<a href="/register">Produce Register</a>
+			</div>
 		</div>
 	</div>
 </section>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Product Registration</title>
+	<title>Product Register</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -112,7 +112,7 @@
 					<ul class="sub_menu">
 						<% if (login_success) { %>
 						<% if (user.auth == 0){ %>
-						<li><a href="/register">Registration</a></li>
+						<li><a href="/administrator">Administrator</a></li>
 						<% } %>
 						<li><a>Welcome <%= user.name %>!</a></li>
 						<li></li>
@@ -393,8 +393,87 @@
 		<div class="row">
 			<div class="col-md-8 p-b-30">
 				<h3 class="m-text26 p-t-15 p-b-16">
-					Product Registration
+					Product Register
 				</h3>
+				<form method="post" action="/register">
+					<table>
+						<tr>
+							<label>Product Name</label>
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="pd_name" placeholder="Product Name">
+							</div>
+						</tr>
+						<tr>
+							<label>Price</label>
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="number" name="pd_price" placeholder="Product Price">
+							</div>
+						</tr>
+						<tr>
+							<label>Category 1</label>
+							<div class="bo4 of-hidden size19 m-b-20">
+								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_ct1" name="pd_ct1">
+									<option disabled selected value> -- select an option -- </option>
+									<%for(var i=0;i<category.length;i++){
+									%><option value="<%=category[i]%>"><%=category[i]%></option><%
+									}%>
+								</select>
+							</div>
+						</tr>
+						<tr>
+							<label>Category 2</label>
+							<div class="bo4 of-hidden size19 m-b-20">
+								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_ct2" name="pd_ct2">
+									<option disabled selected value> -- select an option -- </option>
+								</select>
+							</div>
+						</tr>
+						<tr>
+							<label>Related Products 1</label>
+							<div class="bo4 of-hidden size19 m-b-20">
+								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_rel1" name="pd_rel1">
+									<option disabled selected value> -- select an option -- </option>
+								</select>
+							</div>
+						</tr>
+						<tr>
+							<label>Related Products 2</label>
+							<div class="bo4 of-hidden size19 m-b-20">
+								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_rel2" name="pd_rel2">
+									<option disabled selected value> -- select an option -- </option>
+								</select>
+							</div>
+						</tr>
+						<tr>
+							<label>Related Products 3</label>
+							<div class="bo4 of-hidden size19 m-b-20">
+								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_rel3" name="pd_rel3">
+									<option disabled selected value> -- select an option -- </option>
+								</select>
+							</div>
+						</tr>
+						<tr>
+							<label>Product Detail</label>
+							<div class="bo4 of-hidden size20 m-b-20">
+								<textarea class="size20 s-text7 p-l-22 p-r-22" name="pd_detail" placeholder="Product Detail"></textarea>
+							</div>
+						</tr>
+						<tr>
+							<label>Description</label>
+							<div class="bo4 of-hidden size20 m-b-20">
+								<textarea class="size20 s-text7 p-l-22 p-r-22" name="pd_des" placeholder="Product Description"></textarea>
+							</div>
+						</tr>
+						<tr>
+							<label>Additional Information</label>
+							<div class="bo4 of-hidden size20 m-b-20">
+								<textarea class="size20 s-text7 p-l-22 p-r-22" name="pd_addin" placeholder="Additional Information"></textarea>
+							</div>
+						</tr>
+					</table>
+				<br>
+				<input type="submit" value="Register" name=""/>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -602,6 +681,39 @@
     $(".selection-2").select2({
         minimumResultsForSearch: 20,
         dropdownParent: $('#dropDownSelect2')
+    });
+</script>
+<script type="text/javascript">
+    $(function(){
+        $("#pd_ct1").change(function(){
+            if($("#pd_ct1 option:selected").val()=="SNSD"){
+                $("#pd_ct2").empty();
+                $("#pd_ct2").append("<option disabled selected value> -- select an option -- </option>");
+				<%for(var i=0;i<ct_1.length;i++){
+				%>
+                $("#pd_ct2").append("<option value='2'><%=ct_1[i]%></option>");<%
+				}%>
+			}
+			else if($("#pd_ct1 option:selected").val()=="Twice"){
+                $("#pd_ct2").empty();
+                $("#pd_ct2").append("<option disabled selected value> -- select an option -- </option>");
+				<%for(var i=0;i<ct_1.length;i++){
+				%>
+                $("#pd_ct2").append("<option value='2'><%=ct_2[i]%></option>");<%
+				}%>
+			}
+			else if($("#pd_ct1 option:selected").val()=="Girlsday"){
+                $("#pd_ct2").empty();
+                $("#pd_ct2").append("<option disabled selected value> -- select an option -- </option>");
+				<%for(var i=0;i<ct_1.length;i++){
+				%>
+                $("#pd_ct2").append("<option value='2'><%=ct_3[i]%></option>");<%
+				}%>
+			}
+			else {
+
+            }
+        });
     });
 </script>
 <!--===============================================================================================-->
