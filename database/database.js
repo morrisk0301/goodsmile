@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var config = require('../config/config');
+var autoIncrement = require('mongoose-auto-increment');
 
 // database 객체에 db, schema, model 모두 추가
 var database = {};
@@ -27,7 +27,9 @@ function connect(app, config) {
     mongoose.Promise = global.Promise;  // mongoose의 Promise 객체는 global의 Promise 객체 사용하도록 함
 	mongoose.connect(config.dbUrl);
 	database.db = mongoose.connection;
-	
+
+    autoIncrement.initialize(database.db);
+
 	database.db.on('error', console.error.bind(console, 'mongoose connection error.'));	
 	database.db.on('open', function () {
 		console.log('데이터베이스에 연결되었습니다. : ' + config.db_url);
@@ -51,7 +53,10 @@ function createSchema(app, config) {
 		// 모듈 파일에서 모듈 불러온 후 createSchema() 함수 호출하기
 		var curSchema = require(curItem.file).createSchema(mongoose);
 		console.log('%s 모듈을 불러들인 후 스키마 정의함.', curItem.file);
-		
+
+		if(i==1){
+		    curSchema.plugin(autoIncrement.plugin, {model: 'GoodsModel', field: 'pd_id'});
+        }
 		// User 모델 정의
 		var curModel = mongoose.model(curItem.collection, curSchema);
 		console.log('%s 컬렉션을 위해 모델 정의함.', curItem.collection);

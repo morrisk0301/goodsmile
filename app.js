@@ -23,8 +23,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 console.log('뷰 엔진이 ejs로 설정되었습니다.');
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -48,8 +48,14 @@ var configPassport = require('./config/passport');
 configPassport(app, passport);
 
 // 패스포트 라우팅 설정
-var userPassport = require('./routes/user_passport');
-userPassport(router, passport);
+var userRouter = require('./routes/route_user');
+userRouter(router, passport);
+
+var productRouter = require('./routes/route_product');
+productRouter(router);
+
+var pageRouter = require('./routes/route_page');
+pageRouter(router);
 
 //===== 404 에러 페이지 처리 =====//
 var errorHandler = expressErrorHandler({

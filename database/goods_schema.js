@@ -23,8 +23,12 @@ Schema.createSchema = function(mongoose) {
         , pd_detail: {type: String, 'default':''}
         , pd_description: {type: String, 'default':''}
         , pd_additionalinfo: {type: String, 'default':''}
+        , pd_image1: {data: Buffer, contentType: String}
+        , pd_image2: {data: Buffer, contentType: String}
+        , pd_image3: {data: Buffer, contentType: String}
+        , pd_image4: {data: Buffer, contentType: String}
+        , created_by: {type: String, 'default':''}
         , created_at: {type: Date, index: {unique: false}, 'default': Date.now}
-        , updated_at: {type: Date, index: {unique: false}, 'default': Date.now}
     });
 
     // 모델 객체에서 사용할 수 있는 메소드 정의

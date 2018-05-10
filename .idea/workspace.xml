@@ -13,7 +13,62 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="www" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/www">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="route_product.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/route_product.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="route_page.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/route_page.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="72" column="13" lean-forward="true" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register_view.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/register_view.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="128">
+              <caret line="455" column="37" lean-forward="true" selection-start-line="455" selection-start-column="37" selection-end-line="455" selection-end-column="67" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="product.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/product.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="503" column="63" selection-start-line="503" selection-start-column="63" selection-end-line="503" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ejs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/index.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="128">
+              <caret line="387" column="92" selection-start-line="387" selection-start-column="92" selection-end-line="387" selection-end-column="92" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -25,36 +80,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>regist</find>
+      <find>findon</find>
+      <find>submi</find>
+      <find>view</find>
+      <find>View</find>
+      <find>hidden</find>
       <find>input</find>
-      <find>text</find>
-      <find>full name</find>
-      <find>&lt;%</find>
-      <find>req.body</find>
       <find>body</find>
-      <find>registration</find>
-      <find>min.js</find>
-      <find>javas</find>
-      <find>pd_ct2</find>
-      <find>option valu</find>
-      <find>&lt;option value=&quot;&lt;%=category[i]%&gt;&quot;&gt;&lt;%=category[i]%&gt;&lt;/option&gt;&lt;%</find>
-      <find>pd</find>
-      <find>option</find>
-      <find>&lt;option disabled selected value&gt; -- select an option -- &lt;/option&gt;</find>
-      <find>pd_ct1</find>
-      <find>pd_ct</find>
-      <find>submit</find>
-      <find>/register</find>
-      <find>fac</find>
-      <find>admini</find>
-      <find>pd_</find>
-      <find>cat</find>
-      <find>ct</find>
-      <find>user</find>
-      <find>signup</find>
+      <find>register_v</find>
       <find>register</find>
+      <find>upload</find>
+      <find>uploads</find>
+      <find>req</find>
+      <find>image1</find>
+      <find>pd_image</find>
+      <find>호출</find>
+      <find>prod</find>
+      <find>product n</find>
+      <find>thum</find>
+      <find>src</find>
+      <find>revie</find>
+      <find>price</find>
+      <find>new</find>
+      <find>hersc</find>
+      <find>2</find>
+      <find>page</find>
+      <find>item</find>
+      <find>&lt;%</find>
       <find>goods</find>
-      <find>data</find>
+      <find>getim</find>
+      <find>master</find>
     </findStrings>
     <replaceStrings>
       <replace>/product</replace>
@@ -67,16 +122,12 @@
       <replace>/product-detail</replace>
       <replace>Administrator</replace>
       <replace>/administrator</replace>
+      <replace>image</replace>
     </replaceStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/routes/adduser.js" />
-        <option value="$PROJECT_DIR$/database/userSchema.js" />
-        <option value="$PROJECT_DIR$/app2.js" />
-        <option value="$PROJECT_DIR$/views/signup2.ejs" />
-        <option value="$PROJECT_DIR$/public/about.html" />
         <option value="$PROJECT_DIR$/public/blog.html" />
         <option value="$PROJECT_DIR$/public/blog-detail.html" />
         <option value="$PROJECT_DIR$/public/cart.html" />
@@ -84,15 +135,12 @@
         <option value="$PROJECT_DIR$/public/product.html" />
         <option value="$PROJECT_DIR$/public/product-detail.html" />
         <option value="$PROJECT_DIR$/routes/login.js" />
-        <option value="$PROJECT_DIR$/database/database.js" />
         <option value="$PROJECT_DIR$/config/passport/local_login.js" />
-        <option value="$PROJECT_DIR$/public/css/main.css" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/views/index2.ejs" />
         <option value="$PROJECT_DIR$/config/passport/facebook.js" />
         <option value="$PROJECT_DIR$/config/passport/local_signup.js" />
         <option value="$PROJECT_DIR$/config/passport/local_signup_fb.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/database/user_schema.js" />
         <option value="$PROJECT_DIR$/config/passport/twitter.js" />
         <option value="$PROJECT_DIR$/config/passport.js" />
@@ -108,8 +156,6 @@
         <option value="$PROJECT_DIR$/views/contact.ejs" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
         <option value="$PROJECT_DIR$/views/login.ejs" />
-        <option value="$PROJECT_DIR$/views/product.ejs" />
-        <option value="$PROJECT_DIR$/views/product-detail.ejs" />
         <option value="$PROJECT_DIR$/views/profile.ejs" />
         <option value="$PROJECT_DIR$/views/profile_edit.ejs" />
         <option value="$PROJECT_DIR$/views/profile_edit2.ejs" />
@@ -117,12 +163,22 @@
         <option value="$PROJECT_DIR$/views/signup_fb.ejs" />
         <option value="$PROJECT_DIR$/views/signup_tw.ejs" />
         <option value="$PROJECT_DIR$/views/welcome.ejs" />
-        <option value="$PROJECT_DIR$/views/administrator.ejs" />
         <option value="$PROJECT_DIR$/database/goodsSchema.js" />
-        <option value="$PROJECT_DIR$/views/register.ejs" />
         <option value="$PROJECT_DIR$/config/config.js" />
-        <option value="$PROJECT_DIR$/database/goods_schema.js" />
+        <option value="$PROJECT_DIR$/database/database.js" />
         <option value="$PROJECT_DIR$/routes/user_passport.js" />
+        <option value="$PROJECT_DIR$/public/css/main.css" />
+        <option value="$PROJECT_DIR$/views/administrator.ejs" />
+        <option value="$PROJECT_DIR$/routes/route_user.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/database/goods_schema.js" />
+        <option value="$PROJECT_DIR$/views/register_view.ejs" />
+        <option value="$PROJECT_DIR$/views/register.ejs" />
+        <option value="$PROJECT_DIR$/views/register_edit.ejs" />
+        <option value="$PROJECT_DIR$/views/product-detail.ejs" />
+        <option value="$PROJECT_DIR$/routes/route_page.js" />
+        <option value="$PROJECT_DIR$/routes/route_product.js" />
+        <option value="$PROJECT_DIR$/views/product.ejs" />
       </list>
     </option>
   </component>
@@ -132,17 +188,21 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="432" />
-    <option name="y" value="-12" />
-    <option name="width" value="981" />
-    <option name="height" value="1032" />
+    <option name="x" value="15" />
+    <option name="y" value="30" />
+    <option name="width" value="1890" />
+    <option name="height" value="930" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -155,18 +215,32 @@
               <item name="goodsmile" type="462c0819:PsiDirectoryNode" />
               <item name="bin" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="goodsmile" type="b2602c69:ProjectViewProjectNode" />
+              <item name="goodsmile" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="goodsmile" type="b2602c69:ProjectViewProjectNode" />
+              <item name="goodsmile" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="goodsmile" type="b2602c69:ProjectViewProjectNode" />
+              <item name="goodsmile" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="8.11.1" />
-    <property name="last_opened_file_path" value="C:/PassportExample2" />
+    <property name="last_opened_file_path" value="C:/ALOM_test2" />
     <property name="node.js.detected.package.prettier" value="true" />
     <property name="node.js.path.for.package.prettier" value="project" />
     <property name="node.js.selected.package.prettier" value="" />
@@ -213,27 +287,37 @@
       <workItem from="1524128969625" duration="2276000" />
       <workItem from="1525072196962" duration="14494000" />
       <workItem from="1525236958430" duration="1926000" />
+      <workItem from="1525239828973" duration="9899000" />
+      <workItem from="1525262552559" duration="118000" />
+      <workItem from="1525265331200" duration="79000" />
+      <workItem from="1525342408430" duration="1948000" />
+      <workItem from="1525424379676" duration="4570000" />
+      <workItem from="1525676690615" duration="464000" />
+      <workItem from="1525690431533" duration="2263000" />
+      <workItem from="1525839759445" duration="24798000" />
+      <workItem from="1525942507540" duration="7498000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89385000" />
+    <option name="totallyTimeSpent" value="141022000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49866667" visible="true" weight="0.24483307" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49866667" visible="true" weight="0.24483307" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info id="npm" order="2" sideWeight="0.50133336" side_tool="true" weight="0.24960254" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.34347048" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32737032" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="npm" order="2" sideWeight="0.50133336" side_tool="true" weight="0.24960254" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -249,36 +333,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/routes/user_passport.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8094">
-          <caret line="426" column="16" selection-start-line="426" selection-start-column="16" selection-end-line="426" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/passport/local_signup_fb.js" />
-    <entry file="file://$PROJECT_DIR$/views/login_success.ejs" />
-    <entry file="file://$PROJECT_DIR$/public/about.html" />
-    <entry file="file://$PROJECT_DIR$/public/blog.html" />
-    <entry file="file://$PROJECT_DIR$/public/blog-detail.html" />
-    <entry file="file://$PROJECT_DIR$/public/cart.html" />
-    <entry file="file://$PROJECT_DIR$/public/contact.html" />
-    <entry file="file://$PROJECT_DIR$/public/product.html" />
     <entry file="file://$PROJECT_DIR$/public/product-detail.html" />
-    <entry file="file://$PROJECT_DIR$/config/passport/twitter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/passport/local_login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/config/passport/twitter.js" />
+    <entry file="file://$PROJECT_DIR$/config/passport/local_login.js" />
     <entry file="file://$PROJECT_DIR$/node_modules/passport-local/lib/strategy.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1653" />
@@ -298,243 +355,188 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/passport/local_signup_re.js">
+    <entry file="file://$PROJECT_DIR$/config/passport/local_signup_re.js" />
+    <entry file="file://$PROJECT_DIR$/config/passport.js" />
+    <entry file="file://$PROJECT_DIR$/public/css/util.min.css" />
+    <entry file="file://$PROJECT_DIR$/public/vendor/select2/select2.js" />
+    <entry file="file://$PROJECT_DIR$/public/javascripts/ct_select.js" />
+    <entry file="file://$PROJECT_DIR$/views/blog.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/blog-detail.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/cart.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/contact.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/login.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/profile.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/profile_edit.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/profile_edit2.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/profile_re.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/signup_fb.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/signup_tw.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/welcome.ejs" />
+    <entry file="file://$PROJECT_DIR$/views/signup.ejs" />
+    <entry file="file://$PROJECT_DIR$/database/goodsSchema.js" />
+    <entry file="file://$PROJECT_DIR$/config/passport/local_signup.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="31" column="92" selection-start-line="31" selection-start-column="92" selection-end-line="31" selection-end-column="92" />
+        <state relative-caret-position="113">
+          <caret line="452" selection-start-line="452" selection-end-line="452" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/passport.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mongodb/lib/utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="49" column="2" lean-forward="true" selection-start-line="49" selection-start-column="2" selection-end-line="49" selection-end-column="2" />
+        <state relative-caret-position="113">
+          <caret line="127" column="54" selection-start-line="127" selection-start-column="54" selection-end-line="127" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/user_schema.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/passport/facebook.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret lean-forward="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/route_loader.js">
+    <entry file="file://$PROJECT_DIR$/routes/user_passport.js" />
+    <entry file="file://$PROJECT_DIR$/bin/www">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        <state relative-caret-position="133">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/web-forms2.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
-          <caret line="650" column="7" lean-forward="true" selection-start-line="650" selection-start-column="7" selection-end-line="650" selection-end-column="7" />
+          <caret line="604" column="16" selection-start-line="604" selection-start-column="16" selection-end-line="604" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/util.min.css">
+    <entry file="file://$PROJECT_DIR$/public/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret column="19631" selection-start-column="19631" selection-end-column="19631" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/vendor/select2/select2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="696" column="9" lean-forward="true" selection-start-line="696" selection-start-column="9" selection-end-line="696" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/ct_select.js" />
-    <entry file="file://$PROJECT_DIR$/views/about.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/blog.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/blog-detail.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/cart.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/contact.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="118" column="46" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/login.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/product.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="116" column="46" selection-start-line="116" selection-start-column="46" selection-end-line="116" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/product-detail.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/profile.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/profile_edit.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/profile_edit2.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/profile_re.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/signup_fb.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-24">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/signup_tw.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/welcome.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/signup.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="446" column="12" selection-start-line="446" selection-start-column="12" selection-end-line="446" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/goodsSchema.js" />
-    <entry file="file://$PROJECT_DIR$/views/administrator.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="399" column="43" selection-start-line="399" selection-start-column="43" selection-end-line="399" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/register.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="456" selection-start-line="456" selection-end-line="456" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/passport/local_signup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/www">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="39" column="8" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/user_schema.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/goods_schema.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="45353">
+          <caret line="2387" selection-start-line="2387" selection-end-line="2387" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        <state relative-caret-position="190">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/user_passport.js">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/web-forms.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="558" column="22" selection-start-line="558" selection-start-column="22" selection-end-line="558" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/route_loader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
-          <caret line="421" column="19" lean-forward="true" selection-start-line="421" selection-start-column="19" selection-end-line="421" selection-end-column="19" />
+          <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/multer/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="103" lean-forward="true" selection-start-line="103" selection-end-line="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/goods_schema.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/register.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="402" column="104" selection-start-line="402" selection-start-column="104" selection-end-line="402" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/register_edit.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="402" column="102" selection-start-line="402" selection-start-column="102" selection-end-line="402" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/about.ejs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/route_user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="53" column="10" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/product-detail.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="656" column="42" lean-forward="true" selection-start-line="656" selection-start-column="42" selection-end-line="656" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/route_product.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/administrator.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="422" column="24" lean-forward="true" selection-start-line="422" selection-start-column="24" selection-end-line="422" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/route_page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="72" column="13" lean-forward="true" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/register_view.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="455" column="37" lean-forward="true" selection-start-line="455" selection-start-column="37" selection-end-line="455" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/product.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="503" column="63" selection-start-line="503" selection-start-column="63" selection-end-line="503" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="387" column="92" selection-start-line="387" selection-start-column="92" selection-end-line="387" selection-end-column="92" />
         </state>
       </provider>
     </entry>

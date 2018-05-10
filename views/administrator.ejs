@@ -395,16 +395,41 @@
 				<h3 class="m-text26 p-t-15 p-b-16">
 					Product Overview
 				</h3>
-				<table>
+				<table class="sub_news" border="1" cellspacing="0">
+					<caption>Product List</caption>
+					<colgroup>
+						<col>
+						<col width="110">
+						<col width="100">
+						<col width="80">
+					</colgroup>
+					<thead>
 					<tr>
-						<label>Product Name</label>
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="pd_name" placeholder="Product Name">
-						</div>
+						<th scope="col">Product Name</th>
+						<th scope="col">Product ID</th>
+						<th scope="col">Created By</th>
+						<th scope="col">Created At</th>
 					</tr>
+					</thead>
+					<tbody>
+					<%for(var i=0;i<itemcount;i++){
+						%>
+					<tr>
+						<form method="get" name="pd_submitform" action="/register_view">
+							<td class="title">
+                                <input type="submit" value = "<%=goods[i].pd_name%>"/>
+                            </td>
+							<td class="number"><%=goods[i].pd_id%></td>
+							<td class="name"><%=goods[i].created_by%></td>
+							<td class="date"><%=goods[i].created_at%></td>
+							<input type="hidden" name="pd_postname" value="<%=goods[i].pd_name%>"/>
+						</form>
+					</tr>
+					<%}%>
+					</tbody>
 				</table>
-				<a href="#">View Products</a>
-				<a href="/register">Produce Register</a>
+				<br><br>
+				<a href="/register">Product Register</a>
 			</div>
 		</div>
 	</div>
@@ -612,6 +637,11 @@
     $(".selection-2").select2({
         minimumResultsForSearch: 20,
         dropdownParent: $('#dropDownSelect2')
+    });
+    $('#[pd_submit]').click(function(e) {
+        e.preventDefault();
+        $('#[pd_submitform]').attr('action', '/register_view');
+        $('#[pd_submitform]').submit();
     });
 </script>
 <!--===============================================================================================-->
