@@ -14,38 +14,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="www" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/www">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="route_product.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/route_product.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="route_page.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="route_page.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/route_page.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="72" column="13" lean-forward="true" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+            <state relative-caret-position="190">
+              <caret line="69" column="40" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register_view.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/register_view.ejs">
+      <file leaf-file-name="register.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/register.ejs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="128">
-              <caret line="455" column="37" lean-forward="true" selection-start-line="455" selection-start-column="37" selection-end-line="455" selection-end-column="67" />
+              <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -53,17 +35,17 @@
       <file leaf-file-name="product.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/product.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="503" column="63" selection-start-line="503" selection-start-column="63" selection-end-line="503" selection-end-column="63" />
+            <state relative-caret-position="109">
+              <caret line="497" column="82" selection-start-line="497" selection-start-column="82" selection-end-line="497" selection-end-column="82" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.ejs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <file leaf-file-name="register_edit.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/register_edit.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="387" column="92" selection-start-line="387" selection-start-column="92" selection-end-line="387" selection-end-column="92" />
+            <state relative-caret-position="152">
+              <caret line="686" column="7" lean-forward="true" selection-start-line="686" selection-start-column="7" selection-end-line="686" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -80,36 +62,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>findon</find>
-      <find>submi</find>
-      <find>view</find>
-      <find>View</find>
-      <find>hidden</find>
-      <find>input</find>
-      <find>body</find>
-      <find>register_v</find>
+      <find>heading</find>
+      <find>pd_</find>
       <find>register</find>
-      <find>upload</find>
-      <find>uploads</find>
-      <find>req</find>
-      <find>image1</find>
-      <find>pd_image</find>
-      <find>호출</find>
+      <find>product</find>
       <find>prod</find>
-      <find>product n</find>
-      <find>thum</find>
-      <find>src</find>
-      <find>revie</find>
-      <find>price</find>
-      <find>new</find>
-      <find>hersc</find>
-      <find>2</find>
+      <find>produ</find>
+      <find>if</find>
+      <find>pagecn</find>
+      <find>pagecnt</find>
       <find>page</find>
-      <find>item</find>
+      <find>pagi</find>
+      <find>break</find>
       <find>&lt;%</find>
-      <find>goods</find>
-      <find>getim</find>
-      <find>master</find>
+      <find>sal</find>
+      <find>Sal</find>
+      <find>momo</find>
+      <find>pd_ct</find>
+      <find>ct1</find>
+      <find>conso</find>
+      <find>pd+c</find>
+      <find>w</find>
+      <find>wa</find>
+      <find>wann</find>
+      <find>wannn</find>
+      <find>category</find>
+      <find>cate</find>
+      <find>wanna</find>
+      <find>cons</find>
+      <find>console</find>
+      <find>findon</find>
     </findStrings>
     <replaceStrings>
       <replace>/product</replace>
@@ -149,12 +131,10 @@
         <option value="$PROJECT_DIR$/views/signup.ejs" />
         <option value="$PROJECT_DIR$/public/javascripts/search.js" />
         <option value="$PROJECT_DIR$/public/javascripts/ct_select.js" />
-        <option value="$PROJECT_DIR$/views/about.ejs" />
         <option value="$PROJECT_DIR$/views/blog.ejs" />
         <option value="$PROJECT_DIR$/views/blog-detail.ejs" />
         <option value="$PROJECT_DIR$/views/cart.ejs" />
         <option value="$PROJECT_DIR$/views/contact.ejs" />
-        <option value="$PROJECT_DIR$/views/index.ejs" />
         <option value="$PROJECT_DIR$/views/login.ejs" />
         <option value="$PROJECT_DIR$/views/profile.ejs" />
         <option value="$PROJECT_DIR$/views/profile_edit.ejs" />
@@ -171,14 +151,16 @@
         <option value="$PROJECT_DIR$/views/administrator.ejs" />
         <option value="$PROJECT_DIR$/routes/route_user.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/database/goods_schema.js" />
         <option value="$PROJECT_DIR$/views/register_view.ejs" />
-        <option value="$PROJECT_DIR$/views/register.ejs" />
-        <option value="$PROJECT_DIR$/views/register_edit.ejs" />
         <option value="$PROJECT_DIR$/views/product-detail.ejs" />
-        <option value="$PROJECT_DIR$/routes/route_page.js" />
+        <option value="$PROJECT_DIR$/views/about.ejs" />
+        <option value="$PROJECT_DIR$/database/goods_schema.js" />
+        <option value="$PROJECT_DIR$/views/index.ejs" />
         <option value="$PROJECT_DIR$/routes/route_product.js" />
+        <option value="$PROJECT_DIR$/views/register_edit.ejs" />
+        <option value="$PROJECT_DIR$/views/register.ejs" />
         <option value="$PROJECT_DIR$/views/product.ejs" />
+        <option value="$PROJECT_DIR$/routes/route_page.js" />
       </list>
     </option>
   </component>
@@ -295,25 +277,24 @@
       <workItem from="1525676690615" duration="464000" />
       <workItem from="1525690431533" duration="2263000" />
       <workItem from="1525839759445" duration="24798000" />
-      <workItem from="1525942507540" duration="7498000" />
+      <workItem from="1525942507540" duration="19950000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141022000" />
+    <option name="totallyTimeSpent" value="153474000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49866667" visible="true" weight="0.24483307" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4867021" visible="true" weight="0.24483307" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32737032" />
+      <window_info id="Structure" order="1" sideWeight="0.51329786" side_tool="true" weight="0.24483307" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32737032" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -404,13 +385,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/user_passport.js" />
-    <entry file="file://$PROJECT_DIR$/bin/www">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/web-forms2.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -460,48 +434,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/goods_schema.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/register.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="402" column="104" selection-start-line="402" selection-start-column="104" selection-end-line="402" selection-end-column="104" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/register_edit.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="402" column="102" selection-start-line="402" selection-start-column="102" selection-end-line="402" selection-end-column="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/about.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/route_user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="53" column="10" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/product-detail.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="656" column="42" lean-forward="true" selection-start-line="656" selection-start-column="42" selection-end-line="656" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/route_product.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -512,13 +448,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/route_page.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="72" column="13" lean-forward="true" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/register_view.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -526,17 +455,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/product.ejs">
+    <entry file="file://$PROJECT_DIR$/views/about.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="503" column="63" selection-start-line="503" selection-start-column="63" selection-end-line="503" selection-end-column="63" />
+        <state relative-caret-position="128">
+          <caret line="379" column="110" selection-start-line="379" selection-start-column="110" selection-end-line="379" selection-end-column="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/route_user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="195" column="14" selection-start-line="195" selection-start-column="14" selection-end-line="195" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/goods_schema.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="538" column="33" lean-forward="true" selection-start-line="538" selection-start-column="33" selection-end-line="538" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/route_product.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="82" lean-forward="true" selection-start-line="14" selection-start-column="82" selection-end-line="14" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/register_edit.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="686" column="7" lean-forward="true" selection-start-line="686" selection-start-column="7" selection-end-line="686" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/product.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="497" column="82" selection-start-line="497" selection-start-column="82" selection-end-line="497" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/register.ejs">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
-          <caret line="387" column="92" selection-start-line="387" selection-start-column="92" selection-end-line="387" selection-end-column="92" />
+          <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/route_page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="69" column="40" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
         </state>
       </provider>
     </entry>

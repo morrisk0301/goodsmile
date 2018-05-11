@@ -12,10 +12,8 @@ module.exports = function(router) {
     var upload = multer({
         storage: storage
     });
-    var category = ["SNSD", "Twice", "Girlsday"];
-    var ct_1 = ["Taeyeon", "Yoona", "Sunny"];
-    var ct_2 = ["MOMO", "Dahyeon", "Nayeon"];
-    var ct_3 = ["SoJIn", "Yoora", "MinA"];
+    var category = ["wannaone", "nuest", "twice", "gfriend", "momoland", "cheongha"];
+
     //관리자페이지
     router.route('/administrator').get(function(req, res) {
         console.log('/administrator 패스 요청됨.');
@@ -58,9 +56,9 @@ module.exports = function(router) {
             else{
                 console.log('사용자 인증된 상태임.');
                 if (Array.isArray(req.user)) {
-                    res.render('register.ejs', {login_success:true, user: req.user[0]._doc, category:category, ct_1:ct_1, ct_2:ct_2, ct_3:ct_3});
+                    res.render('register.ejs', {login_success:true, user: req.user[0]._doc, category:category});
                 } else {
-                    res.render('register.ejs', {login_success:true, user: req.user, category:category, ct_1:ct_1, ct_2:ct_2, ct_3:ct_3});
+                    res.render('register.ejs', {login_success:true, user: req.user, category:category});
                 }
             }
         }
@@ -133,9 +131,9 @@ module.exports = function(router) {
                 else{
                     console.log('사용자 인증된 상태임.');
                     if (Array.isArray(req.user)) {
-                        res.render('register_edit.ejs', {login_success:true, user: req.user[0]._doc, goods:results, category:category, ct_1:ct_1, ct_2:ct_2, ct_3:ct_3});
+                        res.render('register_edit.ejs', {login_success:true, user: req.user[0]._doc, goods:results, category:category});
                     } else {
-                        res.render('register_edit.ejs', {login_success:true, user: req.user, goods:results, category:category, ct_1:ct_1, ct_2:ct_2, ct_3:ct_3});
+                        res.render('register_edit.ejs', {login_success:true, user: req.user, goods:results, category:category});
                     }
                 }
             }
@@ -147,12 +145,20 @@ module.exports = function(router) {
         upload.array('pd_image', 4)(req, res, function(err){
             var paramImage = [null, null, null, null];
             var paramImageType = [null, null, null, null];
+            var paramPD_viewPd = false;
+            var paramPD_viewFPd = false;
+            var paramPD_viewNew = false;
+            var paramPD_viewSale = false;
             if(req.files.length!==0){
                 for(var i=0;i<req.files.length;i++){
                     paramImage[i] = req.files[i].filename;
                     paramImageType[i] = req.files[i].mimetype;
                 }
             }
+            if(req.body.pd_viewPd!=undefined) paramPD_viewPd = true;
+            if(req.body.pd_viewFPd!=undefined) paramPD_viewFPd = true;
+            if(req.body.pd_viewNew!=undefined) paramPD_viewNew = true;
+            if(req.body.pd_viewSale!=undefined) paramPD_viewSale = true;
             var paramPD_name = req.body.pd_name;
             var paramPD_price = req.body.pd_price;
             var paramPD_cate1 = req.body.pd_ct1;
@@ -181,7 +187,10 @@ module.exports = function(router) {
                     var newgoods = new database.GoodsModel({'pd_name':paramPD_name, 'pd_price':paramPD_price,
                         'pd_category1':paramPD_cate1, 'pd_category2':paramPD_cate2, 'pd_relatedpd1':paramPD_rel1,
                         'pd_relatedpd2':paramPD_rel2, 'pd_realtedpd3':paramPD_rel3, 'pd_detail':paramPD_detail,
-                        'pd_description':paramPD_des, 'pd_additionalinfo':paramPD_addin, 'created_by':paramUser});
+                        'pd_description':paramPD_des, 'pd_additionalinfo':paramPD_addin, 'created_by':paramUser,
+                        'pd_viewPd':paramPD_viewPd, 'pd_viewFPd':paramPD_viewFPd, 'pd_viewNew':paramPD_viewNew,
+                        'pd_viewSale':paramPD_viewSale
+                    });
                     for(var i=0;i<4;i++){
                         if(paramImage[i]==null){
                             if(i===0){
@@ -238,12 +247,20 @@ module.exports = function(router) {
         upload.array('pd_image', 4)(req, res, function(err) {
             var paramImage = [null, null, null, null];
             var paramImageType = [null, null, null, null];
+            var paramPD_viewPd = false;
+            var paramPD_viewFPd = false;
+            var paramPD_viewNew = false;
+            var paramPD_viewSale = false;
             if (req.files.length !== 0) {
                 for (var i = 0; i < req.files.length; i++) {
                     paramImage[i] = req.files[i].filename;
                     paramImageType[i] = req.files[i].mimetype;
                 }
             }
+            if(req.body.pd_viewPd!=undefined) paramPD_viewPd = true;
+            if(req.body.pd_viewFPd!=undefined) paramPD_viewFPd = true;
+            if(req.body.pd_viewNew!=undefined) paramPD_viewNew = true;
+            if(req.body.pd_viewSale!=undefined) paramPD_viewSale = true;
             var paramPD_name = req.body.pd_postname;
             var paramPD_price = req.body.pd_price;
             var paramPD_cate1 = req.body.pd_ct1;
@@ -277,6 +294,8 @@ module.exports = function(router) {
                     'pd_image2.data': editImg[1], 'pd_image2.contentType': editImgCT[1],
                     'pd_image3.data': editImg[2], 'pd_image3.contentType': editImgCT[2],
                     'pd_image4.data': editImg[3], 'pd_image4.contentType': editImgCT[3],
+                    'pd_viewPd':paramPD_viewPd, 'pd_viewFPd':paramPD_viewFPd, 'pd_viewNew':paramPD_viewNew,
+                    'pd_viewSale':paramPD_viewSale
                 }
             }, {new: true}, function (err, goods) {
 

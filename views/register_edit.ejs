@@ -400,7 +400,7 @@
 						<tr>
 							<label>Price</label>
 							<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="number" step="0.01" name="pd_price" placeholder="Product Price">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="number" step="0.01" name="pd_price" value="<%=goods.pd_price%>">
 							</div>
 						</tr>
 						<tr>
@@ -417,8 +417,8 @@
 						<tr>
 							<label>Category 2</label>
 							<div class="bo4 of-hidden size19 m-b-20">
-								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_ct2" name="pd_ct2">
-									<option disabled selected value> -- select an option -- </option>
+								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_ct2" name="pd_ct2" disabled>
+									<option disabled selected value> -- No Use -- </option>
 								</select>
 							</div>
 						</tr>
@@ -449,19 +449,19 @@
 						<tr>
 							<label>Product Detail</label>
 							<div class="bo4 of-hidden size20 m-b-20">
-								<textarea class="size20 s-text7 p-l-22 p-r-22" name="pd_detail" placeholder="Product Detail"></textarea>
+								<textarea class="size20 s-text7 p-l-22 p-r-22" name="pd_detail"><%=goods.pd_detail%></textarea>
 							</div>
 						</tr>
 						<tr>
 							<label>Description</label>
 							<div class="bo4 of-hidden size20 m-b-20">
-								<textarea class="size20 s-text7 p-l-22 p-r-22" name="pd_des" placeholder="Product Description"></textarea>
+								<textarea class="size20 s-text7 p-l-22 p-r-22" name="pd_des"><%=goods.pd_description%></textarea>
 							</div>
 						</tr>
 						<tr>
 							<label>Additional Information</label>
 							<div class="bo4 of-hidden size20 m-b-20">
-								<textarea class="size20 s-text7 p-l-22 p-r-22" name="pd_addin" placeholder="Additional Information"></textarea>
+								<textarea class="size20 s-text7 p-l-22 p-r-22" name="pd_addin"><%=goods.pd_additionalinfo%></textarea>
 							</div>
 						</tr>
 						<tr>
@@ -470,6 +470,25 @@
 								<input class="size15 s-text7 p-l-22 p-r-22" type="file" name="pd_image" id="pd_image" accept="image/*" multiple="multiple"/>
 							</div>
 						</tr>
+                        <tr>
+                            <label>View in Products</label>
+                            <input type="checkbox" name="pd_viewPd"/>
+                        </tr>
+                        <br>
+                        <tr>
+                            <label>View in Featured Products</label>
+                            <input type="checkbox" name="pd_viewFPd"/>
+                        </tr>
+                        <br>
+                        <tr>
+                            <label>New</label>
+                            <input type="checkbox" name="pd_viewNew"/>
+                        </tr>
+                        <br>
+                        <tr>
+                            <label>Sale</label>
+                            <input type="checkbox" name="pd_viewSale"/>
+                        </tr>
 					</table>
 				<br>
 				<input type="hidden" name="pd_postname" value="<%=goods.pd_name%>"/>
@@ -657,39 +676,6 @@
     $(".selection-2").select2({
         minimumResultsForSearch: 20,
         dropdownParent: $('#dropDownSelect2')
-    });
-</script>
-<script type="text/javascript">
-    $(function(){
-        $("#pd_ct1").change(function(){
-            if($("#pd_ct1 option:selected").val()=="SNSD"){
-                $("#pd_ct2").empty();
-                $("#pd_ct2").append("<option disabled selected value> -- select an option -- </option>");
-				<%for(var i=0;i<ct_1.length;i++){
-				%>
-                $("#pd_ct2").append("<option value='2'><%=ct_1[i]%></option>");<%
-				}%>
-			}
-			else if($("#pd_ct1 option:selected").val()=="Twice"){
-                $("#pd_ct2").empty();
-                $("#pd_ct2").append("<option disabled selected value> -- select an option -- </option>");
-				<%for(var i=0;i<ct_1.length;i++){
-				%>
-                $("#pd_ct2").append("<option value='2'><%=ct_2[i]%></option>");<%
-				}%>
-			}
-			else if($("#pd_ct1 option:selected").val()=="Girlsday"){
-                $("#pd_ct2").empty();
-                $("#pd_ct2").append("<option disabled selected value> -- select an option -- </option>");
-				<%for(var i=0;i<ct_1.length;i++){
-				%>
-                $("#pd_ct2").append("<option value='2'><%=ct_3[i]%></option>");<%
-				}%>
-			}
-			else {
-
-            }
-        });
     });
 </script>
 <script type="text/javascript">

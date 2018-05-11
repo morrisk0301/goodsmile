@@ -27,19 +27,23 @@ module.exports = function(router) {
     //index화면
     router.route('/').get(function(req, res) {
         console.log('/ 패스 요청됨.');
-
-        // 인증 안된 경우
-        if (!req.user) {
-            console.log('사용자 인증 안된 상태임.');
-            res.render('index.ejs', {login_success:false});
-        } else {
-            console.log('사용자 인증된 상태임.');
-            if (Array.isArray(req.user)) {
-                res.render('index.ejs', {login_success:true, user: req.user[0]._doc});
+        var database = req.app.get('database');
+        database.GoodsModel.find().exec(function (err, results) {
+            var itemcount = results.length;
+            // 인증 안된 경우
+            if (!req.user) {
+                console.log('사용자 인증 안된 상태임.');
+                res.render('index.ejs', {login_success: false, itemcount: itemcount, goods: results});
             } else {
-                res.render('index.ejs', {login_success:true, user: req.user});
+                console.log('사용자 인증된 상태임.');
+                res.render('index.ejs', {
+                    login_success: true,
+                    user: req.user,
+                    itemcount: itemcount,
+                    goods: results
+                });
             }
-        }
+        });
     });
 
     router.route('/product-detail').get(function(req, res) {
@@ -61,15 +65,20 @@ module.exports = function(router) {
     router.route('/product').get(function(req, res) {
         console.log('/product 패스 요청됨.');
         var database = req.app.get('database');
+        var pagecount = req.query.page-1;
+        var category = req.query.category;
+        if(isNaN(category)) category= 0;
         database.GoodsModel.find().exec(function (err, results) {
             var itemcount = results.length;
+            var totalcount = itemcount/9;
+            if(pagecount>totalcount || isNaN(pagecount)) pagecount = 0;
             // 인증 안된 경우
             if (!req.user) {
                 console.log('사용자 인증 안된 상태임.');
-                res.render('product.ejs', {login_success: false, itemcount:itemcount, goods:results});
+                res.render('product.ejs', {login_success: false, itemcount:itemcount, goods:results, pagecount:pagecount, totalcount:totalcount, category:category});
             } else {
                 console.log('사용자 인증된 상태임.');
-                res.render('product.ejs', {login_success: true, user: req.user, itemcount:itemcount, goods:results});
+                res.render('product.ejs', {login_success: true, user: req.user, itemcount:itemcount, goods:results, pagecount:pagecount, totalcount:totalcount, category:category});
             }
         });
     });

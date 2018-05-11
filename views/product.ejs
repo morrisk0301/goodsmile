@@ -403,45 +403,39 @@
 
                     <ul class="p-b-54">
                         <li class="p-t-4">
-                            <a href="#" class="s-text13 active1">
+                            <a href="/product" class="s-text13 active1">
                                Show All
                             </a>
                         </li>
 
                         <li class="p-t-4">
-                            <a href="#" class="s-text13">
+                            <a href="/product?category=1" class="s-text13">
                                 Wanna one
                             </a>
                         </li>
                         <li class="p-t-4">
-                            <a href="#" class="s-text13">
+                            <a href="/product?category=2" class="s-text13">
                                 Nu'est W
                             </a>
                         </li>
                         <li class="p-t-4">
-                            <a href="#" class="s-text13">
+                            <a href="/product?category=3" class="s-text13">
                                 Twice
                             </a>
                         </li>
                         <li class="p-t-4">
-                            <a href="#" class="s-text13">
+                            <a href="/product?category=4" class="s-text13">
                                GFRIEND
                             </a>
                         </li>
                         <li class="p-t-4">
-                            <a href="#" class="s-text13">
+                            <a href="/product?category=5" class="s-text13">
                                 MOMOLAND
                             </a>
                         </li>
                         <li class="p-t-4">
-                            <a href="#" class="s-text13">
+                            <a href="/product?category=6" class="s-text13">
                                 CHEONGHA
-                            </a>
-                        </li>
-
-                        <li class="p-t-4">
-                            <a href="#" class="s-text13">
-                               Sale
                             </a>
                         </li>
 
@@ -495,12 +489,49 @@
                 -->
                 <!-- Product -->
                 <div class="row">
-                    <%for(var i=0;i<itemcount;i++){
+                    <%
+                    var loopcnt = 0;
+                    var i=itemcount-1-pagecount*9
+                    while(true){
+                        if(loopcnt>8 || i<0) break;
+                        if(goods[i].pd_viewPd) {
+                            if(category==1 && goods[i].pd_category1 !="wannaone"){
+                                i--;
+                                continue;
+                            }
+                            if(category==2 && goods[i].pd_category1 !="nuest"){
+                                i--;
+                                continue;
+                            }
+                            if(category==3 && goods[i].pd_category1 !="twice"){
+                                i--;
+                                continue;
+                            }
+                            if(category==4 && goods[i].pd_category1 !="gfriend"){
+                                i--;
+                                continue;
+                            }
+                            if(category==5 && goods[i].pd_category1 !="momoland"){
+                                i--;
+                                continue;
+                            }
+                            if(category==6 && goods[i].pd_category1 !="cheongha"){
+                                i--;
+                                continue;
+                            }
                     %>
                     <div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
                         <!-- Block2 -->
                         <div class="block2">
+                            <%if(goods[i].pd_viewNew){%>
                             <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+                                <%}
+                            else if(goods[i].pd_viewSale){%>
+                            <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
+                                <%}
+                            else{%>
+                            <div class="block2-img wrap-pic-w of-hidden pos-relative">
+                                <%}%>
                                 <img src="/getimage/<%=goods[i].pd_id%>/1" alt="IMG-PRODUCT">
 
                                 <div class="block2-overlay trans-0-4">
@@ -529,13 +560,23 @@
                             </div>
                         </div>
                     </div>
-                    <%}%>
+                    <%
+                            loopcnt++;
+                            i--;
+                        }
+                    }%>
                 </div>
 
                 <!-- Pagination -->
                 <div class="pagination flex-m flex-w p-t-26">
-                    <a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
-                    <a href="#" class="item-pagination flex-c-m trans-0-4">2</a>
+                    <%for(var i=0;i<totalcount;i++){
+                        if(i==pagecount){ %>
+                    <a href="/product?page=<%=i+1%>" class="item-pagination flex-c-m trans-0-4 active-pagination"><%=i+1%></a>
+                    <%}
+                    else{%>
+                    <a href="/product?page=<%=i+1%>" class="item-pagination flex-c-m trans-0-4"><%=i+1%></a>
+                    <%}
+                    }%>
                 </div>
             </div>
         </div>

@@ -27,6 +27,10 @@ Schema.createSchema = function(mongoose) {
         , pd_image2: {data: Buffer, contentType: String}
         , pd_image3: {data: Buffer, contentType: String}
         , pd_image4: {data: Buffer, contentType: String}
+        , pd_viewPd: {type: Boolean, 'default':false}
+        , pd_viewFPd: {type: Boolean, 'default':false}
+        , pd_viewNew: {type: Boolean, 'default':false}
+        , pd_viewSale: {type: Boolean, 'default':false}
         , created_by: {type: String, 'default':''}
         , created_at: {type: Date, index: {unique: false}, 'default': Date.now}
     });

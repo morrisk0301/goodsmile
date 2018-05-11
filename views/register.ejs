@@ -417,8 +417,8 @@
 						<tr>
 							<label>Category 2</label>
 							<div class="bo4 of-hidden size19 m-b-20">
-								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_ct2" name="pd_ct2">
-									<option disabled selected value> -- select an option -- </option>
+								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_ct2" name="pd_ct2" disabled>
+									<option disabled selected value> -- No Use -- </option>
 								</select>
 							</div>
 						</tr>
@@ -469,6 +469,25 @@
                             <div class="bo4 of-hidden size15 m-b-20">
                                 <input class="size15 s-text7 p-l-22 p-r-22" type="file" name="pd_image" id="pd_image" accept="image/*" multiple="multiple"/>
                             </div>
+                        </tr>
+						<tr>
+							<label>View in Products</label>
+                            <input type="checkbox" name="pd_viewPd"/>
+						</tr>
+                        <br>
+                        <tr>
+                            <label>View in Featured Products</label>
+                            <input type="checkbox" name="pd_viewFPd"/>
+                        </tr>
+                        <br>
+                        <tr>
+                            <label>New</label>
+                            <input type="checkbox" name="pd_viewNew"/>
+                        </tr>
+                        <br>
+                        <tr>
+                            <label>Sale</label>
+                            <input type="checkbox" name="pd_viewSale"/>
                         </tr>
 					</table>
 				<br>
@@ -658,40 +677,6 @@
         dropdownParent: $('#dropDownSelect2')
     });
 </script>
-<script type="text/javascript">
-    $(function(){
-        $("#pd_ct1").change(function(){
-            if($("#pd_ct1 option:selected").val()=="SNSD"){
-                $("#pd_ct2").empty();
-                $("#pd_ct2").append("<option disabled selected value> -- select an option -- </option>");
-				<%for(var i=0;i<ct_1.length;i++){
-				%>
-                $("#pd_ct2").append("<option value='2'><%=ct_1[i]%></option>");<%
-				}%>
-			}
-			else if($("#pd_ct1 option:selected").val()=="Twice"){
-                $("#pd_ct2").empty();
-                $("#pd_ct2").append("<option disabled selected value> -- select an option -- </option>");
-				<%for(var i=0;i<ct_1.length;i++){
-				%>
-                $("#pd_ct2").append("<option value='2'><%=ct_2[i]%></option>");<%
-				}%>
-			}
-			else if($("#pd_ct1 option:selected").val()=="Girlsday"){
-                $("#pd_ct2").empty();
-                $("#pd_ct2").append("<option disabled selected value> -- select an option -- </option>");
-				<%for(var i=0;i<ct_1.length;i++){
-				%>
-                $("#pd_ct2").append("<option value='2'><%=ct_3[i]%></option>");<%
-				}%>
-			}
-			else {
-
-            }
-        });
-    });
-</script>
-
 <script type="text/javascript">
     $("#form_register").submit(function(event) {
         if ($('#pd_image')[0].files.length > 4) {
