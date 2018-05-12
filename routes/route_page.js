@@ -67,19 +67,136 @@ module.exports = function(router) {
         var database = req.app.get('database');
         var pagecount = req.query.page-1;
         var category = req.query.category;
-        if(isNaN(category)) category= 0;
-        database.GoodsModel.find().exec(function (err, results) {
-            var itemcount = results.length;
-            var totalcount = itemcount/9;
-            if(pagecount>totalcount || isNaN(pagecount)) pagecount = 0;
-            // 인증 안된 경우
-            if (!req.user) {
-                console.log('사용자 인증 안된 상태임.');
-                res.render('product.ejs', {login_success: false, itemcount:itemcount, goods:results, pagecount:pagecount, totalcount:totalcount, category:category});
-            } else {
-                console.log('사용자 인증된 상태임.');
-                res.render('product.ejs', {login_success: true, user: req.user, itemcount:itemcount, goods:results, pagecount:pagecount, totalcount:totalcount, category:category});
-            }
-        });
+        if(category==undefined) {
+            category = '';
+            database.GoodsModel.find().exec(function (err, results) {
+                var itemcount = results.length;
+                var totalcount = itemcount / 9;
+                if (pagecount > totalcount || isNaN(pagecount)) pagecount = 0;
+                // 인증 안된 경우
+                if (!req.user) {
+                    console.log('사용자 인증 안된 상태임.');
+                    res.render('product.ejs', {
+                        login_success: false,
+                        itemcount: itemcount,
+                        goods: results,
+                        pagecount: pagecount,
+                        totalcount: totalcount,
+                        category: category
+                    });
+                } else {
+                    console.log('사용자 인증된 상태임.');
+                    res.render('product.ejs', {
+                        login_success: true,
+                        user: req.user,
+                        itemcount: itemcount,
+                        goods: results,
+                        pagecount: pagecount,
+                        totalcount: totalcount,
+                        category: category
+                    });
+                }
+
+            });
+        } else{
+            database.GoodsModel.find({'pd_category1': category}).exec(function (err, results) {
+                var itemcount = results.length;
+                var totalcount = itemcount / 9;
+                if (pagecount > totalcount || isNaN(pagecount)) pagecount = 0;
+                // 인증 안된 경우
+                if (!req.user) {
+                    console.log('사용자 인증 안된 상태임.');
+                    res.render('product.ejs', {
+                        login_success: false,
+                        itemcount: itemcount,
+                        goods: results,
+                        pagecount: pagecount,
+                        totalcount: totalcount,
+                        category: category
+                    });
+                } else {
+                    console.log('사용자 인증된 상태임.');
+                    res.render('product.ejs', {
+                        login_success: true,
+                        user: req.user,
+                        itemcount: itemcount,
+                        goods: results,
+                        pagecount: pagecount,
+                        totalcount: totalcount,
+                        category: category
+                    });
+                }
+
+            });
+        }
+    });
+
+    router.route('/addcart').get(function(req, res) {
+        console.log('/addcart 패스 요청됨.');
+        var paramId = req.query.pd_id;
+        var paramNum = req.query.pd_num;
+        var paramName = '';
+        var paramPrice = 0;
+        var database = req.app.get('database');
+        if(paramNum==undefined) paramNum=1;
+
+        if (!req.user) {
+            console.log('사용자 인증 안된 상태임.');
+            res.write('<script type="text/javascript">alert("Please Sign In!");window.location="/login";</script>');
+        }
+        else {
+            database.GoodsModel.findOne({'pd_id':paramId}, function(err, goods){
+                paramName = goods.pd_name;
+                paramPrice = goods.pd_price;
+                database.UserModel.find({"cart.cart_id":paramId}, function (err, user2){
+                    if(user2.length>0){
+                        console.log('카트 있음');
+                        database.UserModel.findOneAndUpdate({'email' :  req.user.email, "cart.cart_id":paramId}, {$inc:{'cart.$.cart_num':1}}, {new: true}, function(err, user_e){
+                            req.session.regenerate(function(err){
+                                req.logIn(user_e, function(error) {
+                                    req.session.save(function (err) {
+                                        res.end();
+                                    });
+                                });
+                            });
+                        });
+                    }
+                    else{
+                        console.log('카트 없음');
+                        database.UserModel.findOneAndUpdate({'email' :  req.user.email}, {$push : {'cart':{'cart_id': paramId, 'cart_name': paramName, 'cart_price': paramPrice}}}, {new: true}, function(err, user_e){
+                            req.session.regenerate(function(err){
+                                req.logIn(user_e, function(error) {
+                                    req.session.save(function (err) {
+                                        res.end();
+                                    });
+                                });
+                            });
+                        });
+                    }
+                });
+            });
+        }
+    });
+
+    router.route('/delcart').get(function(req, res) {
+        console.log('/delcart 패스 요청됨.');
+        var paramId = req.query.pd_id;
+        var database = req.app.get('database');
+        if (!req.user) {
+            console.log('사용자 인증 안된 상태임.');
+            res.write('<script type="text/javascript">alert("Please Sign In!");window.location="/login";</script>');
+        }
+        else {
+            database.UserModel.findOneAndUpdate({'email' :  req.user.email, "cart.cart_id":paramId}, {$pull : {'cart':{'cart_id': paramId}}}, {new: true}, function(err, user_e){
+                console.log('카트 있음');
+                req.session.regenerate(function(err){
+                    req.logIn(user_e, function(error) {
+                        req.session.save(function (err) {
+                            res.end();
+                        });
+                    });
+                });
+            });
+        }
     });
 };

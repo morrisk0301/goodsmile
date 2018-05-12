@@ -109,9 +109,7 @@ module.exports = function(router, passport) {
         } else {
             console.log('사용자 인증된 상태임.');
             console.log('/welcome 패스 요청됨.');
-            //console.dir(req.user);
             var name = req.user.name;
-
             req.logout();
             res.render('welcome.ejs', {login_success:false, username:name});
         }
@@ -127,7 +125,6 @@ module.exports = function(router, passport) {
             console.log('사용자 인증된 상태임.');
             console.log('/profile_re 패스 요청됨.');
             var name = req.user.name;
-
             req.logout();
             res.render('profile_re.ejs', {login_success:false, username:name});
         }
@@ -236,11 +233,11 @@ module.exports = function(router, passport) {
                 res.redirect('/');
             }
             if(user){
-                console.log('user 있음')
+                console.log('user 있음');
                 res.redirect('/welcome');
             }
             else{
-                console.log('user없음')
+                console.log('user없음');
                 res.redirect('/');
             }
 

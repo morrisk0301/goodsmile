@@ -111,7 +111,6 @@
 						<li><a>Welcome <%= user.name %>!</a></li>
 						<li></li>
 						<li><a href="/profile">View Profile</a></li>
-						<li><a href="#">My Cart</a></li>
 						<li><a href="/logout">Sign Out</a></li>
 						<% } else { %>
 						<li><a href="/login">Sign In</a></li>
@@ -126,62 +125,37 @@
 
 				<div class="header-wrapicon2">
 					<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-					<span class="header-icons-noti">0</span>
+					<% if (login_success) { %>
+					<span class="header-icons-noti"><%=user.cart.length%></span>
 
-					<!-- Header cart -->
+					<!-- Header cart noti -->
 					<div class="header-cart header-dropdown">
 						<ul class="header-cart-wrapitem">
+							<%
+								var total = 0;
+							for(var i=0;i<user.cart.length;i++){
+							%>
 							<li class="header-cart-item">
 								<div class="header-cart-item-img">
-									<img src="images/item-cart-01.jpg" alt="IMG">
+									<img src="/getimage/<%=user.cart[i].cart_id%>/1" alt="IMG">
 								</div>
 
 								<div class="header-cart-item-txt">
-									<a href="#" class="header-cart-item-name">
-										White Shirt With Pleat Detail Back
-									</a>
+									<a href="#" class="header-cart-item-name"><%=user.cart[i].cart_name%></a>
+									<a style="visibility: hidden" class="header-cart-item-id"><%=user.cart[i].cart_id%></a>
 
 									<span class="header-cart-item-info">
-											1 x $19.00
+											<%=user.cart[i].cart_num%> x $<%=user.cart[i].cart_price%>
 										</span>
 								</div>
 							</li>
-
-							<li class="header-cart-item">
-								<div class="header-cart-item-img">
-									<img src="images/item-cart-02.jpg" alt="IMG">
-								</div>
-
-								<div class="header-cart-item-txt">
-									<a href="#" class="header-cart-item-name">
-										Converse All Star Hi Black Canvas
-									</a>
-
-									<span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-								</div>
-							</li>
-
-							<li class="header-cart-item">
-								<div class="header-cart-item-img">
-									<img src="images/item-cart-03.jpg" alt="IMG">
-								</div>
-
-								<div class="header-cart-item-txt">
-									<a href="#" class="header-cart-item-name">
-										Nixon Porter Leather Watch In Tan
-									</a>
-
-									<span class="header-cart-item-info">
-											1 x $17.00
-										</span>
-								</div>
-							</li>
+							<%
+								total += user.cart[i].cart_num * user.cart[i].cart_price;
+							}%>
 						</ul>
 
 						<div class="header-cart-total">
-							Total: $75.00
+							Total: $<%=total%>
 						</div>
 
 						<div class="header-cart-buttons">
@@ -200,6 +174,7 @@
 							</div>
 						</div>
 					</div>
+					<%}%>
 				</div>
 			</div>
 		</div>
@@ -216,7 +191,7 @@
 		<div class="btn-show-menu">
 			<!-- Header Icon mobile -->
 			<div class="header-icons-mobile">
-				<a href="#" class="header-wrapicon1 dis-block">
+				<a href="/login" class="header-wrapicon1 dis-block">
 					<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
 				</a>
 
@@ -459,6 +434,30 @@
                             <img src='/getimage/<%=goods.pd_id%>/4' width="150" height="150"/>
 						</div>
 					</tr>
+					<tr>
+						<label>View in Products</label>
+                        <div class="bo4 of-hidden size19 m-b-20">
+                            <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=goods.pd_viewPd%></a>
+                        </div>
+					</tr>
+					<tr>
+						<label>View in Featured Products</label>
+                        <div class="bo4 of-hidden size19 m-b-20">
+                            <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=goods.pd_viewFPd%></a>
+                        </div>
+					</tr>
+					<tr>
+						<label>New</label>
+                        <div class="bo4 of-hidden size19 m-b-20">
+                            <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=goods.pd_viewNew%></a>
+                        </div>
+					</tr>
+					<tr>
+						<label>Sale</label>
+                        <div class="bo4 of-hidden size19 m-b-20">
+                            <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=goods.pd_viewSale%></a>
+                        </div>
+					</tr>
 				</table>
 				<br>
 				<form method="get" action="/register_edit">
@@ -638,6 +637,25 @@
 <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 <script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+<script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $('.header-cart-item-img').each(function(){
+        var idCart = $(this).parent().find('.header-cart-item-id').html();
+        var nameCart = $(this).parent().find('.header-cart-item-name').html();
+        $(this).on('click', function(){
+            $.get("/delcart?pd_id="+idCart, function(data, status){
+            });
+            swal({
+                title:nameCart,
+                text:"is removed from cart",
+                icon:"success",
+                buttons:"OK"
+            }).then(function(){
+                location.reload();
+            });
+        });
+    });
+</script>
 <script type="text/javascript">
     $(".selection-1").select2({
         minimumResultsForSearch: 20,

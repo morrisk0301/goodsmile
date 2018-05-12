@@ -38,14 +38,21 @@
     <!-- Header desktop -->
     <div class="container-menu-header">
         <div class="topbar">
+            <div class="topbar-social">
+                <a href="#" class="topbar-social-item fa fa-facebook"></a>
+                <a href="#" class="topbar-social-item fa fa-instagram"></a>
+                <a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
+                <a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
+                <a href="#" class="topbar-social-item fa fa-youtube-play"></a>
+            </div>
 
-			<span class="topbar-child1">
-					Welcome to Goodsmile!
+            <span class="topbar-child1">
+					Free shipping for standard order over $100
 				</span>
 
             <div class="topbar-child2">
-					<span class="topbar-child1">
-						Shipping Worldwide!
+					<span class="topbar-email">
+						fashe@example.com
 					</span>
 
                 <div class="topbar-language rs1-select2">
@@ -73,11 +80,6 @@
 
                         <li>
                             <a href="/product">Shop</a>
-                            <ul class="sub_menu">
-                                <li><a href="product">Show all</a></li>
-                                <li><a href="product">Artist</a></li>
-                                <li><a href="product">Sale</a></li>
-                            </ul>
                         </li>
 
                         <li class="sale-noti">
@@ -85,20 +87,23 @@
                         </li>
 
                         <li>
-                            <a href="/about">About</a>
-                            <ul class="sub_menu">
-                                <li><a href="about">Our Story</a></li>
-                                <li><a href="contact">Contact Us</a></li>
-                            </ul>
+                            <a href="/cart">Features</a>
                         </li>
 
                         <li>
-                            <a href="/contact">Contact Us</a>
+                            <a href="/blog">Blog</a>
+                        </li>
+
+                        <li>
+                            <a href="/about">About</a>
+                        </li>
+
+                        <li>
+                            <a href="/contact">Contact</a>
                         </li>
                     </ul>
                 </nav>
             </div>
-
 
             <!-- Header Icon -->
             <div class="header-icons">
@@ -127,62 +132,37 @@
 
                 <div class="header-wrapicon2">
                     <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-                    <span class="header-icons-noti">0</span>
+                    <% if (login_success) { %>
+                    <span class="header-icons-noti"><%=user.cart.length%></span>
 
-                    <!-- Header cart -->
+                    <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
                         <ul class="header-cart-wrapitem">
+                            <%
+                                var total = 0;
+                            for(var i=0;i<user.cart.length;i++){
+                            %>
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
-                                    <img src="images/item-cart-01.jpg" alt="IMG">
+                                    <img src="/getimage/<%=user.cart[i].cart_id%>/1" alt="IMG">
                                 </div>
 
                                 <div class="header-cart-item-txt">
-                                    <a href="#" class="header-cart-item-name">
-                                        White Shirt With Pleat Detail Back
-                                    </a>
+                                    <a href="#" class="header-cart-item-name"><%=user.cart[i].cart_name%></a>
+                                    <a style="visibility: hidden" class="header-cart-item-id"><%=user.cart[i].cart_id%></a>
 
                                     <span class="header-cart-item-info">
-											1 x $19.00
+											<%=user.cart[i].cart_num%> x $<%=user.cart[i].cart_price%>
 										</span>
                                 </div>
                             </li>
-
-                            <li class="header-cart-item">
-                                <div class="header-cart-item-img">
-                                    <img src="images/item-cart-02.jpg" alt="IMG">
-                                </div>
-
-                                <div class="header-cart-item-txt">
-                                    <a href="#" class="header-cart-item-name">
-                                        Converse All Star Hi Black Canvas
-                                    </a>
-
-                                    <span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-                                </div>
-                            </li>
-
-                            <li class="header-cart-item">
-                                <div class="header-cart-item-img">
-                                    <img src="images/item-cart-03.jpg" alt="IMG">
-                                </div>
-
-                                <div class="header-cart-item-txt">
-                                    <a href="#" class="header-cart-item-name">
-                                        Nixon Porter Leather Watch In Tan
-                                    </a>
-
-                                    <span class="header-cart-item-info">
-											1 x $17.00
-										</span>
-                                </div>
-                            </li>
+                            <%
+                                total += user.cart[i].cart_num * user.cart[i].cart_price;
+                            }%>
                         </ul>
 
                         <div class="header-cart-total">
-                            Total: $75.00
+                            Total: $<%=total%>
                         </div>
 
                         <div class="header-cart-buttons">
@@ -201,6 +181,7 @@
                             </div>
                         </div>
                     </div>
+                    <%}%>
                 </div>
             </div>
         </div>
@@ -411,10 +392,17 @@
             </h4>
 
             <div>
-                <p>Address: Sejong University 209 Neungdong-ro, Gunja-dong, Gwangjin-gu, Seoul</p>
-                <p>Tel. +82-0000-0000</p>
-                <p>Email: admin1@goodsmile.com</p>
+                <p class="s-text7 w-size27">
+                    Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+                </p>
 
+                <div class="flex-m p-t-30">
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-pinterest-p"></a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-snapchat-ghost"></a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-youtube-play"></a>
+                </div>
             </div>
         </div>
 
@@ -426,19 +414,25 @@
             <ul>
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Shop
+                        Men
                     </a>
                 </li>
 
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Artist
+                        Women
                     </a>
                 </li>
 
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Sale
+                        Dresses
+                    </a>
+                </li>
+
+                <li class="p-b-9">
+                    <a href="#" class="s-text7">
+                        Sunglasses
                     </a>
                 </li>
             </ul>
@@ -446,19 +440,31 @@
 
         <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
             <h4 class="s-text12 p-b-30">
-                About
+                Links
             </h4>
 
             <ul>
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Our story
+                        Search
+                    </a>
+                </li>
+
+                <li class="p-b-9">
+                    <a href="#" class="s-text7">
+                        About Us
                     </a>
                 </li>
 
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
                         Contact Us
+                    </a>
+                </li>
+
+                <li class="p-b-9">
+                    <a href="#" class="s-text7">
+                        Returns
                     </a>
                 </li>
             </ul>
@@ -518,7 +524,6 @@
         </div>
     </div>
 
-
     <div class="t-center p-l-15 p-r-15">
         <a href="#">
             <img class="h-size2" src="images/icons/paypal.png" alt="IMG-PAYPAL">
@@ -570,6 +575,25 @@
 <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 <script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+<script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $('.header-cart-item-img').each(function(){
+        var idCart = $(this).parent().find('.header-cart-item-id').html();
+        var nameCart = $(this).parent().find('.header-cart-item-name').html();
+        $(this).on('click', function(){
+            $.get("/delcart?pd_id="+idCart, function(data, status){
+            });
+            swal({
+                title:nameCart,
+                text:"is removed from cart",
+                icon:"success",
+                buttons:"OK"
+            }).then(function(){
+                location.reload();
+            });
+        });
+    });
+</script>
 <script type="text/javascript">
     $(".selection-1").select2({
         minimumResultsForSearch: 20,

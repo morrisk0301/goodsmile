@@ -24,6 +24,12 @@ Schema.createSchema = function(mongoose) {
         , zip: {type: String, 'default':''}
         , country: {type: String, 'default':''}
         , cellnum: {type: String, 'default':''}
+        , cart: [{
+			cart_id: {type:String, 'default':''},
+            cart_name: {type:String, 'default':''},
+            cart_num: {type:Number, 'default':1},
+            cart_price: {type:Number, 'default':0},
+		}]
 	    , created_at: {type: Date, index: {unique: false}, 'default': Date.now}
 	    , updated_at: {type: Date, index: {unique: false}, 'default': Date.now}
 	    , provider : {type: String, 'default':''}
@@ -77,7 +83,7 @@ Schema.createSchema = function(mongoose) {
 		
 	// 저장 시의 트리거 함수 정의 (password 필드가 유효하지 않으면 에러 발생)
 	UserSchema.pre('save', function(next) {
-		if (!this.isNew) return next();
+        if (!this.isNew) return next();
 		next();
 	})
 	
