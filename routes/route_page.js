@@ -21,7 +21,6 @@ module.exports = function(router) {
     commonpage('about');
     commonpage('blog');
     commonpage('blog-detail');
-    commonpage('cart');
     commonpage('contact');
 
     //index화면
@@ -161,7 +160,7 @@ module.exports = function(router) {
                     }
                     else{
                         console.log('카트 없음');
-                        database.UserModel.findOneAndUpdate({'email' :  req.user.email}, {$push : {'cart':{'cart_id': paramId, 'cart_name': paramName, 'cart_price': paramPrice}}}, {new: true}, function(err, user_e){
+                        database.UserModel.findOneAndUpdate({'email' :  req.user.email}, {$push : {'cart':{'cart_id': paramId, 'cart_num': paramNum, 'cart_name': paramName, 'cart_price': paramPrice}}}, {new: true}, function(err, user_e){
                             req.session.regenerate(function(err){
                                 req.logIn(user_e, function(error) {
                                     req.session.save(function (err) {
@@ -197,4 +196,18 @@ module.exports = function(router) {
             });
         }
     });
+
+    router.route('/cart').get(function(req, res) {
+        console.log('/cart 패스 요청됨.');
+
+        // 인증 안된 경우
+        if (!req.user) {
+            console.log('사용자 인증 안된 상태임.');
+            res.redirect('/login');
+        } else {
+            console.log('사용자 인증된 상태임.');
+            res.render('cart.ejs', {login_success:true, user: req.user});
+        }
+    });
+
 };

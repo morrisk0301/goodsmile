@@ -2102,9 +2102,14 @@ li.sale-noti > a {
   border-bottom: 1px solid #e6e6e6;
 }
 
+.table-shopping-cart .column-0 {
+    width: 20px;
+    padding-left: 50px;
+}
+
 .table-shopping-cart .column-1 {
   width: 225px;
-  padding-left: 50px;
+  padding-left: 30px;
 }
 .table-shopping-cart .column-2 {
   width: 330px;
@@ -2391,4 +2396,13 @@ input.num-product::-webkit-inner-spin-button {
     color: #0066ff;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.cart-checkbox{
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-2px 10px 0 0;
+    vertical-align:middle;
+    cursor:pointer;
 }

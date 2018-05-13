@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
 	<title>Sign Up</title>
 	<meta charset="UTF-8">
@@ -30,6 +30,40 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!--===============================================================================================-->
+	<style type="text/css">
+		#profile label{
+			display: inline-block;
+			width: 100px;
+			text-align: center;
+		}
+		#profile_submit{
+			padding-left: 100px;
+		}
+		#profile div{
+			margin-top: 1em;
+		}
+		textarea{
+			vertical-align: top;
+			height: 5em;
+		}
+		.error{
+			display: none;
+			margin-left: 10px;
+		}
+
+		.error_show{
+			color: red;
+			margin-left: 10px;
+		}
+
+		input.invalid, textarea.invalid{
+			border: 2px solid red;
+		}
+
+		input.valid, textarea.valid{
+			border: 2px solid green;
+		}
+	</style>
 </head>
 <body class="animsition">
 
@@ -142,7 +176,7 @@
 								</div>
 
 								<div class="header-cart-item-txt">
-									<a href="#" class="header-cart-item-name"><%=user.cart[i].cart_name%></a>
+									<a href="/product-detail?pd_id=<%=user.cart[i].cart_id%>" class="header-cart-item-name"><%=user.cart[i].cart_name%></a>
 									<a style="visibility: hidden" class="header-cart-item-id"><%=user.cart[i].cart_id%></a>
 
 									<span class="header-cart-item-info">
@@ -367,53 +401,62 @@
 			Sign Up
 		</h3>
 		<div class="row">
-			<form method="post" action="/signup">
-				<table>
-					<tr>
-						<td><label>Email</label></td>
-						<td><input type="text" name="email" /></td>
-					</tr>
-					<tr>
-						<td><label>Password</label></td>
-						<td><input type="password" name="password" /></td>
-					</tr>
-					<tr>
-						<td><label>Name</label></td>
-						<td><input type="text" name="name" /></td>
-					</tr>
-					<tr>
-						<td><label>Address</label></td>
-						<td><input type="text" name="address" /></td>
-					</tr>
-                    <tr>
-                        <td><label>Address2</label></td>
-                        <td><input type="text" name="address2" /></td>
-                    </tr>
-                    <tr>
-                        <td><label>City</label></td>
-                        <td><input type="text" name="city" /></td>
-                    </tr>
-                    <tr>
-                        <td><label>State/Province</label></td>
-                        <td><input type="text" name="state" /></td>
-                    </tr>
-                    <tr>
-                        <td><label>Zip/Postal Code</label></td>
-                        <td><input type="text" name="zip" /></td>
-                    </tr>
-                    <tr>
-                        <td><label>Country</label></td>
-                        <td><input type="text" name="country" /></td>
-                    </tr>
-                    <tr>
-                        <td><label>Phone Number</label></td>
-                        <td><input type="text" name="cellnum" /></td>
-                    </tr>
-				</table>
-				<br>
-				<input type="submit" value="Submit" name="" />
-                <br><br>
-                <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Sign Up with Facebook</a>
+			<form id="profile" method="post" action="/signup">
+				<div>
+					<label for="profile_email">Email</label>
+					<input type="text" id="profile_email" name="email"></input>
+					<span class="error">This field is required</span>
+				</div>
+				<div>
+					<label for="profile_password">Password</label>
+					<input type="password" id="profile_password" name="password"></input>
+					<span class="error">This field is required</span>
+				</div>
+				<div>
+					<label for="profile_name">Name</label>
+					<input type="text" id="profile_name" name="name"></input>
+					<span class="error">This field is required</span>
+				</div>
+				<div>
+					<label for="profile_address">Address</label>
+					<input type="text" id="profile_address" name="address"></input>
+					<span class="error">This field is required</span>
+				</div>
+				<div>
+					<label for="profile_address2">Address2</label>
+					<input type="text" id="profile_address2" name="address2"></input>
+					<span class="error">This field is required</span>
+				</div>
+				<div>
+					<label for="profile_city">City</label>
+					<input type="text" id="profile_city" name="city"></input>
+					<span class="error">This field is required</span>
+				</div>
+				<div>
+					<label for="profile_province">Province</label>
+					<input type="text" id="profile_province" name="state"></input>
+					<span class="error">This field is required</span>
+				</div>
+				<div>
+					<label for="profile_zip">Zip/Postal Code</label>
+					<input type="text" id="profile_zip" name="zip"></input>
+					<span class="error">This field is required</span>
+				</div>
+				<div>
+					<label for="profile_country">Country</label>
+					<input type="text" id="profile_country" name="country"></input>
+					<span class="error">This field is required</span>
+				</div>
+				<div>
+					<label for="profile_cellnum">Phone Number</label>
+					<input type="text" id="profile_cellnum" name="cellnum"></input>
+					<span class="error">This field is required</span>
+				</div>
+				<div id="profile_submit">
+					<input type="submit" value="Submit" name=""/>
+				</div>
+                <br>
+				<a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Sign Up with Facebook</a>
                 <a href="/auth/twitter" class="btn btn-primary"><span class="fa fa-twitter"></span> Sign Up with Twitter</a>
 			</form>
 
@@ -620,6 +663,98 @@
 </script>
 <!--===============================================================================================-->
 <script src="js/main.js"></script>
+<script type="text/javascript" src="jquery.min.js">
+    $(document).ready(function() {
+        //jQuery code goes here
+    });
 
+    $('#profile_name').on('input', function() {
+    });
+
+    // Name can't be blank
+    $('#profile_name').on('input', function() {
+        var input=$(this);
+        var is_name=input.val();
+        if(is_name){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+    });
+
+    // Email must be an email
+    $('#profile_email').on('input', function() {
+        var input=$(this);
+        var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        var is_email=re.test(input.val());
+        if(is_email){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+    });
+
+    // Address can't be blank
+    $('#profile_address').keyup(function(event) {
+        var input=$(this);
+        var message=$(this).val();
+        console.log(message);
+        if(message){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+    });
+
+    // City can't be blank
+    $('#profile_city').keyup(function(event) {
+        var input=$(this);
+        var message=$(this).val();
+        console.log(message);
+        if(message){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+    });
+
+    // zipcode can't be blank
+    $('#profile_zip).keyup(function(event) {
+        var input=$(this);
+        var message=$(this).val();
+        console.log(message);
+        if(message){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+    });
+
+    // Country can't be blank
+    $('#profile_country').keyup(function(event) {
+        var input=$(this);
+        var message=$(this).val();
+        console.log(message);
+        if(message){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+    });
+
+    // Cellnum can't be blank
+    $('#profile_cellnum').keyup(function(event) {
+        var input=$(this);
+        var message=$(this).val();
+        console.log(message);
+        if(message){input.removeClass("invalid").addClass("valid");}
+        else{input.removeClass("valid").addClass("invalid");}
+    });
+
+    $("#profile_submit input").click(function(event){
+    });
+
+    // After Form Submitted Validation
+    $("#profile_submit input").click(function(event){
+        var form_data=$("#profile").serializeArray();
+        var error_free=true;
+        for (var input in form_data){
+            var element=$("#profile_"+form_data[input]['name']);
+            var valid=element.hasClass("valid");
+            var error_element=$("span", element.parent());
+            if (!valid){error_element.removeClass("error").addClass("error_show"); error_free=false;}
+            else{error_element.removeClass("error_show").addClass("error");}
+        }
+        if (!error_free){
+            event.preventDefault();
+        }
+        else{
+            alert('No errors: Form will be submitted');
+        }
+    });
+
+</script>
 </body>
 </html>
