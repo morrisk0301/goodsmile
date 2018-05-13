@@ -754,7 +754,6 @@
         var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
         var idProduct = $(this).parent().parent().parent().find('.block2-id').html();
         $(this).on('click', function(){
-            console.log(idProduct);
             $.get("/addcart?pd_id="+idProduct, function(data, status){
             });
             <%if(login_success==false){%>

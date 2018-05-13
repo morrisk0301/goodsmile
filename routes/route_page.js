@@ -148,15 +148,13 @@ module.exports = function(router) {
             database.GoodsModel.findOne({'pd_id':paramId}, function(err, goods){
                 paramName = goods.pd_name;
                 paramPrice = goods.pd_price;
-                database.UserModel.find({"cart.cart_id":paramId}, function (err, user2){
-                    if(user2.length>0){
+                database.UserModel.findOneAndUpdate({'email' :  req.user.email, "cart.cart_id":paramId}, {$inc:{'cart.$.cart_num':paramNum}}, {new: true}, function(err, user_e) {
+                    if(user_e){
                         console.log('카트 있음');
-                        database.UserModel.findOneAndUpdate({'email' :  req.user.email, "cart.cart_id":paramId}, {$inc:{'cart.$.cart_num':1}}, {new: true}, function(err, user_e){
-                            req.session.regenerate(function(err){
-                                req.logIn(user_e, function(error) {
-                                    req.session.save(function (err) {
-                                        res.end();
-                                    });
+                        req.session.regenerate(function (err) {
+                            req.logIn(user_e, function (error) {
+                                req.session.save(function (err) {
+                                    res.end();
                                 });
                             });
                         });

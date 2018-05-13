@@ -17,9 +17,12 @@ Schema.createSchema = function(mongoose) {
         , pd_price: {type: Number, 'default':0}
         , pd_category1: {type: String, 'default':''}
         , pd_category2: {type: String, 'default':''}
-        , pd_relatedpd1: {type: String, 'default':''}
-        , pd_relatedpd2: {type: String, 'default':''}
-        , pd_relatedpd3: {type: String, 'default':''}
+        , pd_relatedpd: [{
+            rel_id: {type:String, 'default':''},
+            rel_name: {type:String, 'default':''},
+            cart_num: {type:Number, 'default':1},
+            cart_price: {type:Number, 'default':0},
+        }]
         , pd_detail: {type: String, 'default':''}
         , pd_description: {type: String, 'default':''}
         , pd_additionalinfo: {type: String, 'default':''}

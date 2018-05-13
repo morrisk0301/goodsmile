@@ -55,11 +55,10 @@ module.exports = function(router) {
             }
             else{
                 console.log('사용자 인증된 상태임.');
-                if (Array.isArray(req.user)) {
-                    res.render('register.ejs', {login_success:true, user: req.user[0]._doc, category:category});
-                } else {
-                    res.render('register.ejs', {login_success:true, user: req.user, category:category});
-                }
+                var database = req.app.get('database');
+                database.GoodsModel.find().exec(function (err, results) {
+                    res.render('register.ejs', {login_success: true, user: req.user, category: category, goods:results});
+                });
             }
         }
     });

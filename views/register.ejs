@@ -398,28 +398,14 @@
 							</div>
 						</tr>
 						<tr>
-							<label>Related Products 1</label>
-							<div class="bo4 of-hidden size19 m-b-20">
-								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_rel1" name="pd_rel1">
-									<option disabled selected value> -- select an option -- </option>
-								</select>
-							</div>
-						</tr>
-						<tr>
-							<label>Related Products 2</label>
-							<div class="bo4 of-hidden size19 m-b-20">
-								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_rel2" name="pd_rel2">
-									<option disabled selected value> -- select an option -- </option>
-								</select>
-							</div>
-						</tr>
-						<tr>
-							<label>Related Products 3</label>
-							<div class="bo4 of-hidden size19 m-b-20">
-								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_rel3" name="pd_rel3">
-									<option disabled selected value> -- select an option -- </option>
-								</select>
-							</div>
+							<label>Related Products</label>
+							<fieldset>
+								<% for(var i=0;i<goods.length;i++){%>
+								<input type="checkbox"  name="<%=goods[i].pd_id%>" value="<%=goods[i].pd_id%>">
+								<label><%=goods[i].pd_name%></label>
+								<br>
+								<%}%>
+							</fieldset>
 						</tr>
 						<tr>
 							<label>Product Detail</label>
