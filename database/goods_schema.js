@@ -20,8 +20,7 @@ Schema.createSchema = function(mongoose) {
         , pd_relatedpd: [{
             rel_id: {type:String, 'default':''},
             rel_name: {type:String, 'default':''},
-            cart_num: {type:Number, 'default':1},
-            cart_price: {type:Number, 'default':0},
+            rel_price: {type:Number, 'default':0},
         }]
         , pd_detail: {type: String, 'default':''}
         , pd_description: {type: String, 'default':''}

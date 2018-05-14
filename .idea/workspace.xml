@@ -14,29 +14,68 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cart.ejs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/cart.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="640" column="26" selection-start-line="640" selection-start-column="26" selection-end-line="640" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="product.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/product.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="775" selection-start-line="775" selection-end-line="775" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="route_page.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/route_page.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="143" column="82" selection-start-line="143" selection-start-column="79" selection-end-line="143" selection-end-column="82" />
+            <state relative-caret-position="57">
+              <caret line="3" column="36" lean-forward="true" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="768" column="4" selection-start-line="768" selection-start-column="4" selection-end-line="787" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="product-detail.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/product-detail.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="513" column="35" selection-start-line="513" selection-start-column="35" selection-end-line="513" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register_edit.ejs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/register_edit.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="421" column="35" selection-start-line="421" selection-start-column="35" selection-end-line="421" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register_view.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/register_view.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="392" column="47" lean-forward="true" selection-start-line="392" selection-start-column="47" selection-end-line="392" selection-end-column="47" />
+              <folding>
+                <element signature="e#12609#12615#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="route_product.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/route_product.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="227" column="20" lean-forward="true" selection-start-line="227" selection-start-column="20" selection-end-line="227" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="goods_schema.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/goods_schema.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -53,36 +92,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>detail-nam</find>
-      <find>style</find>
-      <find>a style=&quot;visibility: hidden&quot;</find>
-      <find>detail-name</find>
-      <find>detail-n</find>
-      <find>num-pro</find>
-      <find>num-pr</find>
-      <find>profile</find>
-      <find>profile_em</find>
-      <find>profile_email</find>
-      <find>profile_e</find>
-      <find>cart_i</find>
-      <find>c</find>
-      <find>cart_na</find>
-      <find>cart_n</find>
-      <find>Men sh</find>
-      <find>input</find>
+      <find>push</find>
+      <find>relat</find>
+      <find>view in</find>
       <find>check</find>
-      <find>선택</find>
-      <find>user.car</find>
-      <find>cart</find>
-      <find>Men t</find>
-      <find>cart[i]</find>
-      <find>men t</find>
-      <find>getim</find>
-      <find>get</find>
-      <find>continu</find>
-      <find>delc</find>
-      <find>win</find>
-      <find>checkbox</find>
+      <find>func</find>
+      <find>databas</find>
+      <find>database</find>
+      <find>geti</find>
+      <find>length</find>
+      <find>var</find>
+      <find>pd_ve</find>
+      <find>cb</find>
+      <find>name=&quot;0</find>
+      <find>Rela</find>
+      <find>p</find>
+      <find>rel</find>
+      <find>e</find>
+      <find>category2</find>
+      <find>register</find>
+      <find>re</find>
+      <find>register_e</find>
+      <find>editt</find>
+      <find>console</find>
+      <find>rela</find>
+      <find>goods</find>
+      <find>relate</find>
+      <find>featu</find>
+      <find>feature</find>
+      <find>block2-na</find>
+      <find>wish</find>
     </findStrings>
     <replaceStrings>
       <replace>/product</replace>
@@ -129,29 +168,29 @@
         <option value="$PROJECT_DIR$/public/vendor/sweetalert/sweetalert.min.js" />
         <option value="$PROJECT_DIR$/routes/route_user.js" />
         <option value="$PROJECT_DIR$/config/passport.js" />
-        <option value="$PROJECT_DIR$/routes/route_product.js" />
-        <option value="$PROJECT_DIR$/database/goods_schema.js" />
-        <option value="$PROJECT_DIR$/views/index.ejs" />
         <option value="$PROJECT_DIR$/views/about.ejs" />
         <option value="$PROJECT_DIR$/views/administrator.ejs" />
         <option value="$PROJECT_DIR$/views/contact.ejs" />
         <option value="$PROJECT_DIR$/views/login.ejs" />
-        <option value="$PROJECT_DIR$/views/product.ejs" />
-        <option value="$PROJECT_DIR$/views/product-detail.ejs" />
         <option value="$PROJECT_DIR$/views/profile_edit.ejs" />
         <option value="$PROJECT_DIR$/views/profile.ejs" />
         <option value="$PROJECT_DIR$/views/profile_edit2.ejs" />
         <option value="$PROJECT_DIR$/views/profile_re.ejs" />
-        <option value="$PROJECT_DIR$/views/register.ejs" />
-        <option value="$PROJECT_DIR$/views/register_edit.ejs" />
-        <option value="$PROJECT_DIR$/views/register_view.ejs" />
         <option value="$PROJECT_DIR$/views/signup.ejs" />
         <option value="$PROJECT_DIR$/views/signup_fb.ejs" />
         <option value="$PROJECT_DIR$/views/signup_tw.ejs" />
         <option value="$PROJECT_DIR$/views/welcome.ejs" />
         <option value="$PROJECT_DIR$/public/css/main.css" />
+        <option value="$PROJECT_DIR$/views/product.ejs" />
         <option value="$PROJECT_DIR$/routes/route_page.js" />
         <option value="$PROJECT_DIR$/views/cart.ejs" />
+        <option value="$PROJECT_DIR$/database/goods_schema.js" />
+        <option value="$PROJECT_DIR$/routes/route_product.js" />
+        <option value="$PROJECT_DIR$/views/register_view.ejs" />
+        <option value="$PROJECT_DIR$/views/register.ejs" />
+        <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/views/product-detail.ejs" />
+        <option value="$PROJECT_DIR$/views/register_edit.ejs" />
       </list>
     </option>
   </component>
@@ -175,7 +214,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -218,6 +256,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -283,25 +322,27 @@
       <workItem from="1526051070141" duration="11056000" />
       <workItem from="1526108349474" duration="23955000" />
       <workItem from="1526197079692" duration="1769000" />
-      <workItem from="1526205777402" duration="5840000" />
+      <workItem from="1526205777402" duration="6139000" />
+      <workItem from="1526285553941" duration="2118000" />
+      <workItem from="1526300057400" duration="12902000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196094000" />
+    <option name="totallyTimeSpent" value="211413000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4867021" visible="true" weight="0.24244833" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4867021" visible="true" weight="0.24244833" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" sideWeight="0.51329786" side_tool="true" weight="0.24483307" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.29874778" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.41323793" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -321,8 +362,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/vendor/select2/select2.js" />
-    <entry file="file://$PROJECT_DIR$/public/javascripts/ct_select.js" />
     <entry file="file://$PROJECT_DIR$/views/blog.ejs" />
     <entry file="file://$PROJECT_DIR$/views/blog-detail.ejs" />
     <entry file="file://$PROJECT_DIR$/database/goodsSchema.js" />
@@ -352,13 +391,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
           <caret line="103" lean-forward="true" selection-start-line="103" selection-end-line="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/www">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -418,13 +450,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="47" column="24" lean-forward="true" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/vendor/sweetalert/sweetalert.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -446,13 +471,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/route_user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/route_loader.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -467,13 +485,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/goods_schema.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="17" column="47" lean-forward="true" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/user_schema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -481,24 +492,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/route_product.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="207" column="20" selection-start-line="207" selection-start-column="20" selection-end-line="207" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/about.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="142" column="155" selection-start-line="142" selection-start-column="155" selection-end-line="142" selection-end-column="155" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/administrator.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="149" column="155" selection-start-line="149" selection-start-column="155" selection-end-line="149" selection-end-column="155" />
         </state>
       </provider>
     </entry>
@@ -513,23 +510,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="142" column="155" selection-start-line="142" selection-start-column="155" selection-end-line="142" selection-end-column="155" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="147" column="36" selection-start-line="147" selection-start-column="36" selection-end-line="147" selection-end-column="155" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/product-detail.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="142" column="155" selection-start-line="142" selection-start-column="155" selection-end-line="142" selection-end-column="155" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -558,27 +538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="150" column="155" selection-start-line="150" selection-start-column="155" selection-end-line="150" selection-end-column="155" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/register.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="143" column="155" selection-start-line="143" selection-start-column="155" selection-end-line="143" selection-end-column="155" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/register_edit.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="143" column="155" selection-start-line="143" selection-start-column="155" selection-end-line="143" selection-end-column="155" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/register_view.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="143" column="155" selection-start-line="143" selection-start-column="155" selection-end-line="143" selection-end-column="155" />
         </state>
       </provider>
     </entry>
@@ -624,24 +583,118 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/cart.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="694" column="4" selection-start-line="694" selection-start-column="4" selection-end-line="694" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/product.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="775" selection-start-line="775" selection-end-line="775" />
+        <state relative-caret-position="228">
+          <caret line="540" column="32" selection-start-line="540" selection-start-column="32" selection-end-line="540" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/route_user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/administrator.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="152" column="53" selection-start-line="152" selection-start-column="53" selection-end-line="152" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="53" column="8" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/route_page.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="143" column="82" selection-start-line="143" selection-start-column="79" selection-end-line="143" selection-end-column="82" />
+        <state relative-caret-position="57">
+          <caret line="3" column="36" lean-forward="true" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/cart.ejs">
+    <entry file="file://$PROJECT_DIR$/database/goods_schema.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="640" column="26" selection-start-line="640" selection-start-column="26" selection-end-line="640" selection-end-column="26" />
+        <state relative-caret-position="57">
+          <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/route_product.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="227" column="20" lean-forward="true" selection-start-line="227" selection-start-column="20" selection-end-line="227" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/register_view.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="392" column="47" lean-forward="true" selection-start-line="392" selection-start-column="47" selection-end-line="392" selection-end-column="47" />
+          <folding>
+            <element signature="e#12609#12615#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views_pre/product-detail.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="506" column="35" lean-forward="true" selection-start-line="506" selection-start-column="35" selection-end-line="506" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/register.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="412" column="24" selection-start-line="412" selection-start-column="24" selection-end-line="412" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="768" column="4" selection-start-line="768" selection-start-column="4" selection-end-line="787" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/product-detail.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="513" column="35" selection-start-line="513" selection-start-column="35" selection-end-line="513" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/register_edit.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="421" column="35" selection-start-line="421" selection-start-column="35" selection-end-line="421" selection-end-column="35" />
         </state>
       </provider>
     </entry>

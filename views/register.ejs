@@ -401,7 +401,7 @@
 							<label>Related Products</label>
 							<fieldset>
 								<% for(var i=0;i<goods.length;i++){%>
-								<input type="checkbox"  name="<%=goods[i].pd_id%>" value="<%=goods[i].pd_id%>">
+								<input type="checkbox" class="cart-checkbox"  name="<%=goods[i].pd_id%>">
 								<label><%=goods[i].pd_name%></label>
 								<br>
 								<%}%>

@@ -397,30 +397,32 @@
 								</select>
 							</div>
 						</tr>
-						<tr>
-							<label>Related Products 1</label>
-							<div class="bo4 of-hidden size19 m-b-20">
-								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_rel1" name="pd_rel1">
-									<option disabled selected value> -- select an option -- </option>
-								</select>
-							</div>
-						</tr>
-						<tr>
-							<label>Related Products 2</label>
-							<div class="bo4 of-hidden size19 m-b-20">
-								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_rel2" name="pd_rel2">
-									<option disabled selected value> -- select an option -- </option>
-								</select>
-							</div>
-						</tr>
-						<tr>
-							<label>Related Products 3</label>
-							<div class="bo4 of-hidden size19 m-b-20">
-								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_rel3" name="pd_rel3">
-									<option disabled selected value> -- select an option -- </option>
-								</select>
-							</div>
-						</tr>
+                        <tr>
+                            <label>Related Products</label>
+                            <fieldset>
+                                <% var check = 0;
+                                for(var i=0;i<allgoods.length;i++){
+                                    for(var j=0;j<goods.pd_relatedpd.length;j++){
+                                        if(allgoods[i].pd_id == goods.pd_relatedpd[j].rel_id){
+                                            check = 1;
+                                        }
+                                    }
+                                    if(check==1){
+                                    %>
+                                <input type="checkbox" class="cart-checkbox"  name="<%=allgoods[i].pd_id%>" checked>
+                                <label><%=allgoods[i].pd_name%></label>
+                                <br>
+                                <%
+                                    check = 0;
+                                    } else{%>
+                                <input type="checkbox" class="cart-checkbox"  name="<%=allgoods[i].pd_id%>">
+                                <label><%=allgoods[i].pd_name%></label>
+                                <br>
+                                    <%}
+                                }%>
+
+                            </fieldset>
+                        </tr>
 						<tr>
 							<label>Product Detail</label>
 							<div class="bo4 of-hidden size20 m-b-20">
@@ -447,22 +449,38 @@
 						</tr>
                         <tr>
                             <label>View in Products</label>
+							<%if(goods.pd_viewPd){%>
+                            <input type="checkbox" name="pd_viewPd" checked/>
+                            <%}else{%>
                             <input type="checkbox" name="pd_viewPd"/>
+                            <%}%>
                         </tr>
                         <br>
                         <tr>
                             <label>View in Featured Products</label>
+                            <%if(goods.pd_viewFPd){%>
+                            <input type="checkbox" name="pd_viewFPd" checked/>
+                            <%}else{%>
                             <input type="checkbox" name="pd_viewFPd"/>
+                            <%}%>
                         </tr>
                         <br>
                         <tr>
                             <label>New</label>
+                            <%if(goods.pd_viewNew){%>
+                            <input type="checkbox" name="pd_viewNew" checked/>
+                            <%}else{%>
                             <input type="checkbox" name="pd_viewNew"/>
+                            <%}%>
                         </tr>
                         <br>
                         <tr>
                             <label>Sale</label>
+                            <%if(goods.pd_viewSale){%>
+                            <input type="checkbox" name="pd_viewSale" checked/>
+                            <%}else{%>
                             <input type="checkbox" name="pd_viewSale"/>
+                            <%}%>
                         </tr>
 					</table>
 				<br>

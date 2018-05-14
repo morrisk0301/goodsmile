@@ -43,7 +43,6 @@ module.exports = function(router) {
 
     router.route('/register').get(function(req, res) {
         console.log('/register 패스 요청됨.');
-
         // 인증 안된 경우
         if (!req.user) {
             console.log('사용자 인증 안된 상태임.');
@@ -114,166 +113,176 @@ module.exports = function(router) {
 
     router.route('/register_edit').get(function(req, res) {
         console.log('/register_edit 패스 요청됨.');
-        var paramName = req.query.pd_postname;
         var database = req.app.get('database');
+        database.GoodsModel.find().exec(function (err, allgoods) {
+            var paramName = req.query.pd_postname;
+            database.GoodsModel.findOne({'pd_name':paramName}, function (err, results) {
 
-        database.GoodsModel.findOne({'pd_name':paramName}, function (err, results) {
-
-            if (!req.user) {
-                console.log('사용자 인증 안된 상태임.');
-                res.redirect('/');
-            } else {
-                if(req.user.auth !== 0){
-                    console.log('관리자아님');
+                if (!req.user) {
+                    console.log('사용자 인증 안된 상태임.');
                     res.redirect('/');
-                }
-                else{
-                    console.log('사용자 인증된 상태임.');
-                    if (Array.isArray(req.user)) {
-                        res.render('register_edit.ejs', {login_success:true, user: req.user[0]._doc, goods:results, category:category});
-                    } else {
-                        res.render('register_edit.ejs', {login_success:true, user: req.user, goods:results, category:category});
+                } else {
+                    if(req.user.auth !== 0){
+                        console.log('관리자아님');
+                        res.redirect('/');
                     }
-                }
-            }
-        });
-    });
-
-    //상품DB저장
-    router.route('/register').post(function(req, res){
-        upload.array('pd_image', 4)(req, res, function(err){
-            var paramImage = [null, null, null, null];
-            var paramImageType = [null, null, null, null];
-            var paramPD_viewPd = false;
-            var paramPD_viewFPd = false;
-            var paramPD_viewNew = false;
-            var paramPD_viewSale = false;
-            if(req.files.length!==0){
-                for(var i=0;i<req.files.length;i++){
-                    paramImage[i] = req.files[i].filename;
-                    paramImageType[i] = req.files[i].mimetype;
-                }
-            }
-            if(req.body.pd_viewPd!=undefined) paramPD_viewPd = true;
-            if(req.body.pd_viewFPd!=undefined) paramPD_viewFPd = true;
-            if(req.body.pd_viewNew!=undefined) paramPD_viewNew = true;
-            if(req.body.pd_viewSale!=undefined) paramPD_viewSale = true;
-            var paramPD_name = req.body.pd_name;
-            var paramPD_price = req.body.pd_price;
-            var paramPD_cate1 = req.body.pd_ct1;
-            var paramPD_cate2 = req.body.pd_ct2;
-            var paramPD_rel1 = req.body.pd_rel1;
-            var paramPD_rel2 = req.body.pd_rel2;
-            var paramPD_rel3 = req.body.pd_rel3;
-            var paramPD_detail = req.body.pd_detail;
-            var paramPD_des = req.body.pd_des;
-            var paramPD_addin = req.body.pd_addin;
-            var paramUser = req.user.name;
-            var database = req.app.get('database');
-            database.GoodsModel.findOne({ 'pd_name' :  paramPD_name }, function(err, goods) {
-                // 에러 발생 시
-                if (err) {
-                    return done(err);
-                }
-
-                // 기존에 사용자 정보가 있는 경우
-                if (goods) {
-                    console.log('기존에 상품이 있음');
-                    res.redirect('/register');
-                }
-                else {
-                    // 모델 인스턴스 객체 만들어 저장
-                    var newgoods = new database.GoodsModel({'pd_name':paramPD_name, 'pd_price':paramPD_price,
-                        'pd_category1':paramPD_cate1, 'pd_category2':paramPD_cate2, 'pd_relatedpd1':paramPD_rel1,
-                        'pd_relatedpd2':paramPD_rel2, 'pd_realtedpd3':paramPD_rel3, 'pd_detail':paramPD_detail,
-                        'pd_description':paramPD_des, 'pd_additionalinfo':paramPD_addin, 'created_by':paramUser,
-                        'pd_viewPd':paramPD_viewPd, 'pd_viewFPd':paramPD_viewFPd, 'pd_viewNew':paramPD_viewNew,
-                        'pd_viewSale':paramPD_viewSale
-                    });
-                    for(var i=0;i<4;i++){
-                        if(paramImage[i]==null){
-                            if(i===0){
-                                newgoods.pd_image1.data = fs.readFileSync('../public/images/default.jpg');
-                                newgoods.pd_image1.contentType = "image/jpeg";
-                            }
-                            else if(i===1){
-                                newgoods.pd_image2.data = fs.readFileSync('../public/images/default.jpg');
-                                newgoods.pd_image2.contentType = "image/jpeg";
-                            }
-                            else if(i===2){
-                                newgoods.pd_image3.data = fs.readFileSync('../public/images/default.jpg');
-                                newgoods.pd_image3.contentType = "image/jpeg";
-                            }
-                            else if(i===3){
-                                newgoods.pd_image4.data = fs.readFileSync('../public/images/default.jpg');
-                                newgoods.pd_image4.contentType = "image/jpeg";
-                            }
-                        }
-                        else{
-                            if(i===0){
-                                newgoods.pd_image1.data = fs.readFileSync('../uploads/'+paramImage[i]);
-                                newgoods.pd_image1.contentType = paramImageType[i];
-                            }
-                            else if(i===1){
-                                newgoods.pd_image2.data = fs.readFileSync('../uploads/'+paramImage[i]);
-                                newgoods.pd_image2.contentType = paramImageType[i];
-                            }
-                            else if(i===2){
-                                newgoods.pd_image3.data = fs.readFileSync('../uploads/'+paramImage[i]);
-                                newgoods.pd_image3.contentType = paramImageType[i];
-                            }
-                            else if(i===3){
-                                newgoods.pd_image4.data = fs.readFileSync('../uploads/'+paramImage[i]);
-                                newgoods.pd_image4.contentType = paramImageType[i];
-                            }
+                    else{
+                        console.log('사용자 인증된 상태임.');
+                        if (Array.isArray(req.user)) {
+                            res.render('register_edit.ejs', {login_success:true, user: req.user[0]._doc, goods:results, allgoods:allgoods, category:category});
+                        } else {
+                            res.render('register_edit.ejs', {login_success:true, user: req.user, goods:results, allgoods:allgoods, category:category});
                         }
                     }
-                    newgoods.save(function(err) {
-                        if (err) {
-                            throw err;
-                        }
-                        //console.log(paramImg);
-                        console.log("사용자 데이터 추가함.");
-                        res.write('<script type="text/javascript">alert("Product Added");window.location="/administrator";</script>');
-                        res.end();
-                    });
                 }
             });
         });
     });
 
-    router.route('/register_edit').post(function(req, res){
+    //상품DB저장
+    router.route('/register').post(function(req, res){
         upload.array('pd_image', 4)(req, res, function(err) {
+            var paramRel = [];
             var paramImage = [null, null, null, null];
             var paramImageType = [null, null, null, null];
             var paramPD_viewPd = false;
             var paramPD_viewFPd = false;
             var paramPD_viewNew = false;
             var paramPD_viewSale = false;
+            var paramPD_name = req.body.pd_name;
+            var paramPD_price = req.body.pd_price;
+            var paramPD_cate1 = req.body.pd_ct1;
+            var paramPD_cate2 = req.body.pd_ct2;
+            var paramPD_detail = req.body.pd_detail;
+            var paramPD_des = req.body.pd_des;
+            var paramPD_addin = req.body.pd_addin;
+            var paramUser = req.user.name;
+            var database = req.app.get('database');
+            //이미지 작업
             if (req.files.length !== 0) {
                 for (var i = 0; i < req.files.length; i++) {
                     paramImage[i] = req.files[i].filename;
                     paramImageType[i] = req.files[i].mimetype;
                 }
             }
-            if(req.body.pd_viewPd!=undefined) paramPD_viewPd = true;
-            if(req.body.pd_viewFPd!=undefined) paramPD_viewFPd = true;
-            if(req.body.pd_viewNew!=undefined) paramPD_viewNew = true;
-            if(req.body.pd_viewSale!=undefined) paramPD_viewSale = true;
+            //viewXXX 작업
+            if (req.body.pd_viewPd != undefined) paramPD_viewPd = true;
+            if (req.body.pd_viewFPd != undefined) paramPD_viewFPd = true;
+            if (req.body.pd_viewNew != undefined) paramPD_viewNew = true;
+            if (req.body.pd_viewSale != undefined) paramPD_viewSale = true;
+            //related Product 작업
+            for(var items in req.body){
+                if(items=="pd_viewPd" || items=="pd_viewFPd" || items=="pd_viewNew" || items=="pd_viewSale") continue;
+                else if(req.body[items]=='on'){
+                    database.GoodsModel.findOne({'pd_id': items}, function (err, goods) {
+                        if(err) console.log(err);
+                        paramRel.push({'rel_id': goods.pd_id, 'rel_name': goods.pd_name, 'rel_price': goods.pd_price});
+                        console.log(paramRel);
+                    });
+                }
+            }
+            setTimeout(function() {
+                database.GoodsModel.findOne({'pd_name': paramPD_name}, function (err, goods) {
+                    // 에러 발생 시
+                    if (err) {
+                        return done(err);
+                    }
+
+                    // 기존에 사용자 정보가 있는 경우
+                    if (goods) {
+                        console.log('기존에 상품이 있음');
+                        res.redirect('/register');
+                    }
+                    else {
+                        // 모델 인스턴스 객체 만들어 저장
+                        var newgoods = new database.GoodsModel({
+                            'pd_name': paramPD_name, 'pd_price': paramPD_price,
+                            'pd_category1': paramPD_cate1, 'pd_category2': paramPD_cate2, 'pd_detail': paramPD_detail,
+                            'pd_description': paramPD_des, 'pd_additionalinfo': paramPD_addin, 'created_by': paramUser,
+                            'pd_viewPd': paramPD_viewPd, 'pd_viewFPd': paramPD_viewFPd, 'pd_viewNew': paramPD_viewNew,
+                            'pd_viewSale': paramPD_viewSale, 'pd_relatedpd': paramRel
+                        });
+                        for (var i = 0; i < 4; i++) {
+                            if (paramImage[i] == null) {
+                                if (i === 0) {
+                                    newgoods.pd_image1.data = fs.readFileSync('../public/images/default.jpg');
+                                    newgoods.pd_image1.contentType = "image/jpeg";
+                                }
+                                else if (i === 1) {
+                                    newgoods.pd_image2.data = fs.readFileSync('../public/images/default.jpg');
+                                    newgoods.pd_image2.contentType = "image/jpeg";
+                                }
+                                else if (i === 2) {
+                                    newgoods.pd_image3.data = fs.readFileSync('../public/images/default.jpg');
+                                    newgoods.pd_image3.contentType = "image/jpeg";
+                                }
+                                else if (i === 3) {
+                                    newgoods.pd_image4.data = fs.readFileSync('../public/images/default.jpg');
+                                    newgoods.pd_image4.contentType = "image/jpeg";
+                                }
+                            }
+                            else {
+                                if (i === 0) {
+                                    newgoods.pd_image1.data = fs.readFileSync('../uploads/' + paramImage[i]);
+                                    newgoods.pd_image1.contentType = paramImageType[i];
+                                }
+                                else if (i === 1) {
+                                    newgoods.pd_image2.data = fs.readFileSync('../uploads/' + paramImage[i]);
+                                    newgoods.pd_image2.contentType = paramImageType[i];
+                                }
+                                else if (i === 2) {
+                                    newgoods.pd_image3.data = fs.readFileSync('../uploads/' + paramImage[i]);
+                                    newgoods.pd_image3.contentType = paramImageType[i];
+                                }
+                                else if (i === 3) {
+                                    newgoods.pd_image4.data = fs.readFileSync('../uploads/' + paramImage[i]);
+                                    newgoods.pd_image4.contentType = paramImageType[i];
+                                }
+                            }
+                        }
+                        newgoods.save(function (err) {
+                            if (err) {
+                                throw err;
+                            }
+                            //console.log(paramImg);
+                            console.log("사용자 데이터 추가함.");
+                            res.write('<script type="text/javascript">alert("Product Added");window.location="/administrator";</script>');
+                            res.end();
+                        });
+                    }
+                });
+            }, 100);
+        });
+    });
+
+    router.route('/register_edit').post(function(req, res){
+        upload.array('pd_image', 4)(req, res, function(err) {
+            var paramRel = [];
+            var paramImage = [null, null, null, null];
+            var paramImageType = [null, null, null, null];
+            var paramPD_viewPd = false;
+            var paramPD_viewFPd = false;
+            var paramPD_viewNew = false;
+            var paramPD_viewSale = false;
             var paramPD_name = req.body.pd_postname;
             var paramPD_price = req.body.pd_price;
             var paramPD_cate1 = req.body.pd_ct1;
             var paramPD_cate2 = req.body.pd_ct2;
-            var paramPD_rel1 = req.body.pd_rel1;
-            var paramPD_rel2 = req.body.pd_rel2;
-            var paramPD_rel3 = req.body.pd_rel3;
             var paramPD_detail = req.body.pd_detail;
             var paramPD_des = req.body.pd_des;
             var paramPD_addin = req.body.pd_addin;
             var paramUser = req.user.name;
-            var database = req.app.get('database');
             var editImg = new Array(4);
             var editImgCT = new Array(4);
+            var database = req.app.get('database');
+
+            //이미지 작업
+            if (req.files.length !== 0) {
+                for (var i = 0; i < req.files.length; i++) {
+                    paramImage[i] = req.files[i].filename;
+                    paramImageType[i] = req.files[i].mimetype;
+                }
+            }
             for(var i=0;i<4;i++){
                 if(paramImage[i]==null){
                     editImg[i] = fs.readFileSync('../public/images/default.jpg');
@@ -284,34 +293,51 @@ module.exports = function(router) {
                     editImgCT[i] = paramImageType[i];
                 }
             }
-            database.GoodsModel.findOneAndUpdate({'pd_name': paramPD_name}, {
-                $set: {
-                    'pd_price': paramPD_price, 'pd_category1': paramPD_cate1, 'pd_category2': paramPD_cate2,
-                    'pd_relatedpd1': paramPD_rel1, 'pd_relatedpd2': paramPD_rel2, 'pd_realtedpd3': paramPD_rel3,
-                    'pd_detail': paramPD_detail, 'pd_description': paramPD_des, 'pd_additionalinfo': paramPD_addin,
-                    'created_by': paramUser, 'pd_image1.data': editImg[0], 'pd_image1.contentType': editImgCT[0],
-                    'pd_image2.data': editImg[1], 'pd_image2.contentType': editImgCT[1],
-                    'pd_image3.data': editImg[2], 'pd_image3.contentType': editImgCT[2],
-                    'pd_image4.data': editImg[3], 'pd_image4.contentType': editImgCT[3],
-                    'pd_viewPd':paramPD_viewPd, 'pd_viewFPd':paramPD_viewFPd, 'pd_viewNew':paramPD_viewNew,
-                    'pd_viewSale':paramPD_viewSale
-                }
-            }, {new: true}, function (err, goods) {
+            //viewXX 작업
+            if(req.body.pd_viewPd!=undefined) paramPD_viewPd = true;
+            if(req.body.pd_viewFPd!=undefined) paramPD_viewFPd = true;
+            if(req.body.pd_viewNew!=undefined) paramPD_viewNew = true;
+            if(req.body.pd_viewSale!=undefined) paramPD_viewSale = true;
 
-                if (err) {
-                    console.log(err);
-                    res.redirect('/administrator');
+            //relProduct 작업
+            for(var items in req.body){
+                if(items=="pd_viewPd" || items=="pd_viewFPd" || items=="pd_viewNew" || items=="pd_viewSale") continue;
+                else if(req.body[items]=='on'){
+                    database.GoodsModel.findOne({'pd_id': items}, function (err, goods) {
+                        if(err) console.log(err);
+                        paramRel.push({'rel_id': goods.pd_id, 'rel_name': goods.pd_name, 'rel_price': goods.pd_price});
+                    });
                 }
-                if (goods) {
-                    console.log("상품 수정 완료.");
-                    res.write('<script type="text/javascript">alert("Product Editted");window.location="/administrator";</script>');
-                    res.end();
-                }
-                else {
-                    console.log('상품없음');
-                    res.redirect('/administrator');
-                }
-            });
+            }
+            setTimeout(function() {
+                database.GoodsModel.findOneAndUpdate({'pd_name': paramPD_name}, {
+                    $set: {
+                        'pd_price': paramPD_price, 'pd_category1': paramPD_cate1, 'pd_category2': paramPD_cate2,
+                        'pd_detail': paramPD_detail, 'pd_description': paramPD_des, 'pd_additionalinfo': paramPD_addin,
+                        'created_by': paramUser, 'pd_image1.data': editImg[0], 'pd_image1.contentType': editImgCT[0],
+                        'pd_image2.data': editImg[1], 'pd_image2.contentType': editImgCT[1],
+                        'pd_image3.data': editImg[2], 'pd_image3.contentType': editImgCT[2],
+                        'pd_image4.data': editImg[3], 'pd_image4.contentType': editImgCT[3],
+                        'pd_viewPd': paramPD_viewPd, 'pd_viewFPd': paramPD_viewFPd, 'pd_viewNew': paramPD_viewNew,
+                        'pd_viewSale': paramPD_viewSale, 'pd_relatedpd': paramRel
+                    }
+                }, {new: true}, function (err, goods) {
+
+                    if (err) {
+                        console.log(err);
+                        res.redirect('/administrator');
+                    }
+                    if (goods) {
+                        console.log("상품 수정 완료.");
+                        res.write('<script type="text/javascript">alert("Product Edited");window.location="/administrator";</script>');
+                        res.end();
+                    }
+                    else {
+                        console.log('상품없음');
+                        res.redirect('/administrator');
+                    }
+                });
+            }, 100);
         });
     });
 };

@@ -390,21 +390,13 @@
 						</div>
 					</tr>
 					<tr>
-						<label>Related Products 1</label>
-						<div class="bo4 of-hidden size19 m-b-20">
-							<a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=goods.pd_relatedpd1%></a>
-						</div>
-					</tr>
-					<tr>
-						<label>Related Products 2</label>
-						<div class="bo4 of-hidden size19 m-b-20">
-							<a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=goods.pd_relatedpd2%></a>
-						</div>
-					</tr>
-					<tr>
-						<label>Related Products 3</label>
-						<div class="bo4 of-hidden size19 m-b-20">
-							<a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=goods.pd_relatedpd3%></a>
+						<label>Related Products</label>
+						<div class="bo4 of-hidden size20 m-b-20">
+							<a class="sizefull s-text7 p-l-22 p-r-22" type="text">
+								<%for(var i=0;i<goods.pd_relatedpd.length;i++){%>
+                                    <%=goods.pd_relatedpd[i].rel_name%>&nbsp;
+                                <%}%>
+							</a>
 						</div>
 					</tr>
 					<tr>
