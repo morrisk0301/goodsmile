@@ -5,7 +5,8 @@ module.exports = {
     dbUrl: 'mongodb://localhost:27017/local',
     db_schemas: [
         {file:'./user_schema', collection:'users', schemaName:'UserSchema', modelName:'UserModel'},
-        {file:'./goods_schema', collection:'goods', schemaName:'GoodsSchema', modelName:'GoodsModel'}
+        {file:'./goods_schema', collection:'goods', schemaName:'GoodsSchema', modelName:'GoodsModel'},
+        {file:'./shippingfee_schema', collection:'shippingfee', schemaName:'ShippingfeeSchema', modelName:'ShippingfeeModel'}
     ],
     route_info: [
     ],
@@ -24,4 +25,4 @@ module.exports = {
         clientSecret: 'secret',
         callbackURL: '/auth/google/callback'
     }
-}
+};

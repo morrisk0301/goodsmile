@@ -3393,6 +3393,14 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 	text-transform: uppercase;
 }
 
+.l-text3 {
+    font-family: Montserrat-Bold;
+    font-size: 50px;
+    color: black;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
 /*[ XL-Text >= 51 ]
 ///////////////////////////////////////////////////////////
 */

@@ -388,7 +388,14 @@
                     </tr>
                     <tr>
                         <td><label>Country</label></td>
-                        <td><input type="text" name="country" /></td>
+						<td>
+							<select class="sizefull s-text7 p-l-22 p-r-22" id="profile_country" name="country">
+								<option disabled selected value> -- select a country -- </option>
+								<%for(var i=0;i<country.length;i++){
+								%><option value="<%=country[i].country%>"><%=country[i].country%></option><%
+								}%>
+							</select>
+						</td>
                     </tr>
                     <tr>
                         <td><label>Phone Number</label></td>

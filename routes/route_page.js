@@ -2,7 +2,6 @@ module.exports = function(router) {
     function commonpage(pagename) {
         router.route('/'+pagename).get(function(req, res) {
             console.log('/'+pagename+' 패스 요청됨.');
-
             // 인증 안된 경우
             if (!req.user) {
                 console.log('사용자 인증 안된 상태임.');

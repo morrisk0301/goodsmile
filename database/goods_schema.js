@@ -15,6 +15,7 @@ Schema.createSchema = function(mongoose) {
         pd_id: {type: String, unique:true}
         , pd_name: {type: String, unique:true}
         , pd_price: {type: Number, 'default':0}
+        , pd_weight: {type: Number, 'default':0}
         , pd_category1: {type: String, 'default':''}
         , pd_category2: {type: String, 'default':''}
         , pd_relatedpd: [{

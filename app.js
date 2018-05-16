@@ -57,6 +57,9 @@ productRouter(router);
 var pageRouter = require('./routes/route_page');
 pageRouter(router);
 
+var orderRouter = require('./routes/route_order');
+orderRouter(router);
+
 //===== 404 에러 페이지 처리 =====//
 var errorHandler = expressErrorHandler({
     static: {

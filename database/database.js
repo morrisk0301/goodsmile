@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var autoIncrement = require('mongoose-auto-increment');
+var addcountry = require('./addcountry');
 
 // database 객체에 db, schema, model 모두 추가
 var database = {};
@@ -65,6 +66,25 @@ function createSchema(app, config) {
 		database[curItem.schemaName] = curSchema;
 		database[curItem.modelName] = curModel;
 		console.log('스키마 이름 [%s], 모델 이름 [%s] 이 database 객체의 속성으로 추가됨.', curItem.schemaName, curItem.modelName);
+
+		if(curItem.collection=='shippingfee'){
+            database.ShippingfeeModel.find().exec(function (err, results) {
+            	if(results.length==0){
+            		console.log('countryDB 없음');
+                    for(var i=0;i<addcountry.countrynum;i++) {
+                        var newlist = new database.ShippingfeeModel({
+                            'country': addcountry.countrylist[i].country,
+                            'region': addcountry.countrylist[i].region,
+                            'fee': addcountry.countrylist[i].fee
+                        });
+                        newlist.save(function (err) {
+                            if (err) console.log(err);
+                        });
+                    }
+                    console.log('countryDB 저장됨');
+				}
+            });
+		}
 	}
 	
 	app.set('database', database);

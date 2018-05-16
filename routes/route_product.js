@@ -156,6 +156,7 @@ module.exports = function(router) {
             var paramPD_detail = req.body.pd_detail;
             var paramPD_des = req.body.pd_des;
             var paramPD_addin = req.body.pd_addin;
+            var paramPD_weight = req.body.pd_weight;
             var paramUser = req.user.name;
             var database = req.app.get('database');
             //이미지 작업
@@ -200,7 +201,7 @@ module.exports = function(router) {
                             'pd_category1': paramPD_cate1, 'pd_category2': paramPD_cate2, 'pd_detail': paramPD_detail,
                             'pd_description': paramPD_des, 'pd_additionalinfo': paramPD_addin, 'created_by': paramUser,
                             'pd_viewPd': paramPD_viewPd, 'pd_viewFPd': paramPD_viewFPd, 'pd_viewNew': paramPD_viewNew,
-                            'pd_viewSale': paramPD_viewSale, 'pd_relatedpd': paramRel
+                            'pd_viewSale': paramPD_viewSale, 'pd_relatedpd': paramRel, 'pd_weight': paramPD_weight
                         });
                         for (var i = 0; i < 4; i++) {
                             if (paramImage[i] == null) {
@@ -271,6 +272,7 @@ module.exports = function(router) {
             var paramPD_detail = req.body.pd_detail;
             var paramPD_des = req.body.pd_des;
             var paramPD_addin = req.body.pd_addin;
+            var paramPd_weight = req.body.pd_weight;
             var paramUser = req.user.name;
             var editImg = new Array(4);
             var editImgCT = new Array(4);
@@ -319,7 +321,7 @@ module.exports = function(router) {
                         'pd_image3.data': editImg[2], 'pd_image3.contentType': editImgCT[2],
                         'pd_image4.data': editImg[3], 'pd_image4.contentType': editImgCT[3],
                         'pd_viewPd': paramPD_viewPd, 'pd_viewFPd': paramPD_viewFPd, 'pd_viewNew': paramPD_viewNew,
-                        'pd_viewSale': paramPD_viewSale, 'pd_relatedpd': paramRel
+                        'pd_viewSale': paramPD_viewSale, 'pd_relatedpd': paramRel, 'pd_weight': paramPd_weight
                     }
                 }, {new: true}, function (err, goods) {
 
