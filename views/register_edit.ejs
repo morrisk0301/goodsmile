@@ -155,7 +155,7 @@
 						</ul>
 
 						<div class="header-cart-total">
-							Total: $<%=total%>
+							Total: $<%=Math.round((total) * 100) / 100%>
 						</div>
 
 						<div class="header-cart-buttons">
@@ -388,7 +388,7 @@
 							<label>Category 1</label>
 							<div class="bo4 of-hidden size19 m-b-20">
 								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_ct1" name="pd_ct1">
-									<option disabled selected value> -- select an option -- </option>
+									<option selected><%=goods.pd_category1%></option>
 									<%for(var i=0;i<category.length;i++){
 									%><option value="<%=category[i]%>"><%=category[i]%></option><%
 									}%>
@@ -668,6 +668,30 @@
 <script type="text/javascript" src="vendor/select2/select2.min.js"></script>
 <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }
+        }
+    }
+    $('.header-cart-wrapbtn').on('click', function(){
+		<%if(login_success){
+		for(var i=0;i<user.cart.length;i++){%>
+        $.post("/addorder", {
+            pd_id: "<%=user.cart[i].cart_id%>",
+            pd_name: "<%=user.cart[i].cart_name%>",
+            pd_num: parseInt("<%=user.cart[i].cart_num%>"),
+            pd_price: parseFloat("<%=user.cart[i].cart_price%>"),
+            pd_weight: parseFloat("<%=user.cart[i].cart_weight%>"),
+            isfirst: parseInt("<%=i==0?1:0%>")
+        }, function(data, status){});
+        sleep(500);
+		<%}
+		}%>
+        window.location='/order'
+    });
     $('.header-cart-item-img').each(function(){
         var idCart = $(this).parent().find('.header-cart-item-id').html();
         var nameCart = $(this).parent().find('.header-cart-item-name').html();

@@ -6,7 +6,8 @@ module.exports = {
     db_schemas: [
         {file:'./user_schema', collection:'users', schemaName:'UserSchema', modelName:'UserModel'},
         {file:'./goods_schema', collection:'goods', schemaName:'GoodsSchema', modelName:'GoodsModel'},
-        {file:'./shippingfee_schema', collection:'shippingfee', schemaName:'ShippingfeeSchema', modelName:'ShippingfeeModel'}
+        {file:'./shippingfee_schema', collection:'shippingfee', schemaName:'ShippingfeeSchema', modelName:'ShippingfeeModel'},
+        {file:'./order_schema', collection:'order', schemaName:'OrderSchema', modelName:'OrderModel'}
     ],
     route_info: [
     ],

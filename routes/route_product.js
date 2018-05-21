@@ -15,8 +15,8 @@ module.exports = function(router) {
     var category = ["wannaone", "nuest", "twice", "gfriend", "momoland", "cheongha"];
 
     //관리자페이지
-    router.route('/administrator').get(function(req, res) {
-        console.log('/administrator 패스 요청됨.');
+    router.route('/product_view').get(function(req, res) {
+        console.log('/product_view 패스 요청됨.');
         var database = req.app.get('database');
         database.GoodsModel.find().exec(function (err, results) {
             var itemcount = results.length;
@@ -31,11 +31,7 @@ module.exports = function(router) {
                 }
                 else{
                     console.log('사용자 인증된 상태임.');
-                    if (Array.isArray(req.user)) {
-                        res.render('administrator.ejs', {login_success:true, user: req.user[0]._doc, itemcount:itemcount, goods:results});
-                    } else {
-                        res.render('administrator.ejs', {login_success:true, user: req.user, itemcount:itemcount, goods:results});
-                    }
+                    res.render('product_view.ejs', {login_success:true, user: req.user, itemcount:itemcount, goods:results});
                 }
             }
         });
@@ -128,11 +124,7 @@ module.exports = function(router) {
                     }
                     else{
                         console.log('사용자 인증된 상태임.');
-                        if (Array.isArray(req.user)) {
-                            res.render('register_edit.ejs', {login_success:true, user: req.user[0]._doc, goods:results, allgoods:allgoods, category:category});
-                        } else {
-                            res.render('register_edit.ejs', {login_success:true, user: req.user, goods:results, allgoods:allgoods, category:category});
-                        }
+                        res.render('register_edit.ejs', {login_success:true, user: req.user, goods:results, allgoods:allgoods, category:category});
                     }
                 }
             });
@@ -178,7 +170,6 @@ module.exports = function(router) {
                     database.GoodsModel.findOne({'pd_id': items}, function (err, goods) {
                         if(err) console.log(err);
                         paramRel.push({'rel_id': goods.pd_id, 'rel_name': goods.pd_name, 'rel_price': goods.pd_price});
-                        console.log(paramRel);
                     });
                 }
             }
@@ -247,7 +238,7 @@ module.exports = function(router) {
                             }
                             //console.log(paramImg);
                             console.log("사용자 데이터 추가함.");
-                            res.write('<script type="text/javascript">alert("Product Added");window.location="/administrator";</script>');
+                            res.write('<script type="text/javascript">alert("Product Added");window.location="/product_view";</script>');
                             res.end();
                         });
                     }
@@ -327,16 +318,16 @@ module.exports = function(router) {
 
                     if (err) {
                         console.log(err);
-                        res.redirect('/administrator');
+                        res.redirect('/product_view');
                     }
                     if (goods) {
                         console.log("상품 수정 완료.");
-                        res.write('<script type="text/javascript">alert("Product Edited");window.location="/administrator";</script>');
+                        res.write('<script type="text/javascript">alert("Product Edited");window.location="/product_view";</script>');
                         res.end();
                     }
                     else {
                         console.log('상품없음');
-                        res.redirect('/administrator');
+                        res.redirect('/product_view');
                     }
                 });
             }, 100);

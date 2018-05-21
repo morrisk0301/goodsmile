@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Cart</title>
+    <title>Order Complete</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -38,14 +38,21 @@
     <!-- Header desktop -->
     <div class="container-menu-header">
         <div class="topbar">
+            <div class="topbar-social">
+                <a href="#" class="topbar-social-item fa fa-facebook"></a>
+                <a href="#" class="topbar-social-item fa fa-instagram"></a>
+                <a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
+                <a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
+                <a href="#" class="topbar-social-item fa fa-youtube-play"></a>
+            </div>
 
-			<span class="topbar-child1">
-					Welcome to Goodsmile!
+            <span class="topbar-child1">
+					Free shipping for standard order over $100
 				</span>
 
             <div class="topbar-child2">
-					<span class="topbar-child1">
-						Shipping Worldwide!
+					<span class="topbar-email">
+						fashe@example.com
 					</span>
 
                 <div class="topbar-language rs1-select2">
@@ -73,11 +80,6 @@
 
                         <li>
                             <a href="/product">Shop</a>
-                            <ul class="sub_menu">
-                                <li><a href="product">Show all</a></li>
-                                <li><a href="product">Artist</a></li>
-                                <li><a href="product">Sale</a></li>
-                            </ul>
                         </li>
 
                         <li class="sale-noti">
@@ -85,19 +87,24 @@
                         </li>
 
                         <li>
-                            <a href="/about">About</a>
-                            <ul class="sub_menu">
-                                <li><a href="about">Our Story</a></li>
-                                <li><a href="contact">Contact Us</a></li>
-                            </ul>
+                            <a href="/cart">Features</a>
                         </li>
 
                         <li>
-                            <a href="/contact">Contact Us</a>
+                            <a href="/blog">Blog</a>
+                        </li>
+
+                        <li>
+                            <a href="/about">About</a>
+                        </li>
+
+                        <li>
+                            <a href="/contact">Contact</a>
                         </li>
                     </ul>
                 </nav>
             </div>
+
             <!-- Header Icon -->
             <div class="header-icons">
                 <li>
@@ -175,7 +182,6 @@
                         </div>
                     </div>
                     <%}%>
-                    </div>
                 </div>
             </div>
         </div>
@@ -346,7 +352,7 @@
                 </li>
 
                 <li class="item-menu-mobile">
-                    <a href="contact.html">Contact</a>
+                    <a href="/contact">Contact</a>
                 </li>
             </ul>
         </nav>
@@ -354,94 +360,28 @@
 </header>
 
 <!-- Title Page -->
-<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-01.jpg);">
-    <h2 class="l-text2 t-center">
-        Cart
-    </h2>
+<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-06.jpg);">
 </section>
 
-<!-- Cart -->
-<div class="cart bgwhite p-t-70 p-b-100">
+<!-- content page -->
+<section class="bgwhite p-t-66 p-b-38">
     <div class="container">
-        <!-- Cart item -->
-        <div class="container-table-cart pos-relative">
-            <div class="wrap-table-shopping-cart bgwhite">
-                <table class="table-shopping-cart">
-                    <tr class="table-head">
-                        <th class="column-0"></th>
-                        <th class="column-1">Image</th>
-                        <th class="column-2">Product</th>
-                        <th class="column-3">Price</th>
-                        <th class="column-4 p-l-70">Quantity</th>
-                        <th class="column-5">Total</th>
-                    </tr>
-                    <%for(var i=0;i<user.cart.length;i++){%>
-                    <tr class="table-row">
-                        <td class="column-0">
-                            <input type="checkbox" class="cart-checkbox" id="cb_<%=user.cart[i].cart_id%>"/>
-                        </td>
-                        <td class="column-1">
-                            <div class="cart-img-product b-rad-4 o-f-hidden">
-                                <img src="/getimage/<%=user.cart[i].cart_id%>/1" alt="IMG-PRODUCT">
-                            </div>
-                        </td>
-                        <td class="column-2"><%=user.cart[i].cart_name%></td>
-                        <td class="column-3">$<%=user.cart[i].cart_price%></td>
-                        <td class="column-4">
-                            <div class="flex-w bo5 of-hidden w-size17">
-                                <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
-                                    <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-                                </button>
-
-                                <input class="size8 m-text18 t-center num-product" type="number" id="pdnum<%=i%>" name="num-product1" value="<%=user.cart[i].cart_num%>">
-
-                                <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
-                                    <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </td>
-                        <td class="column-5">$<%=user.cart[i].cart_price*user.cart[i].cart_num%></td>
-                    </tr>
-                    <%}%>
-                </table>
+        <div class="row">
+            <div class="col-md-8 p-b-30">
+                <h3 class="m-text26 p-t-15 p-b-16">
+                    <%= user.name %>!
+                </h3>
+                <p class="p-b-28">
+                    Your Order has been confirmed!
+                </p>
+                <p class="p-b-28">
+                    Please check your order status in your My Order page!
+                </p>
             </div>
         </div>
-
-     <div class="flex-w flex-sb-m p-t-25 p-b-25 bo8 p-l-35 p-r-60 p-lr-15-sm">
-                <div class="size12 trans-0-4 m-t-10 m-b-10 m-r-10">
-                    <!-- Button -->
-                    <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="bt_DC">
-                        Delete Checked
-                    </button>
-                </div>
-                <div class="size12 trans-0-4 m-t-10 m-b-10 m-r-10">
-                <!-- Button -->
-                <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="bt_DA">
-                    Delete ALL
-               </button>
-                </div>
-                <div class="size12 trans-0-4 m-t-10 m-b-10 m-r-10">
-                  <!-- Button -->
-                <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="bt_CS">
-                    Continue Shopping
-                  </button>
-                  </div>
-                <div class="size12 trans-0-4 m-t-10 m-b-10 m-r-10">
-                  <!-- Button -->
-                <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="bt_OC">
-                    Order Checked
-                  </button>
-                  </div>
-                 <div class="size12 trans-0-4 m-t-10 m-b-10 m-r-10">
-                 <!-- Button -->
-                <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="bt_OA">
-                        Order All
-                  </button>
-                </div>
-        </div>
     </div>
-</div>
 </section>
+
 
 <!-- Footer -->
 <footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
@@ -452,10 +392,17 @@
             </h4>
 
             <div>
-                <p>Address: Sejong University 209 Neungdong-ro, Gunja-dong, Gwangjin-gu, Seoul</p>
-                <p>Tel. +82-0000-0000</p>
-                <p>Email: admin1@goodsmile.com</p>
+                <p class="s-text7 w-size27">
+                    Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+                </p>
 
+                <div class="flex-m p-t-30">
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-pinterest-p"></a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-snapchat-ghost"></a>
+                    <a href="#" class="fs-18 color1 p-r-20 fa fa-youtube-play"></a>
+                </div>
             </div>
         </div>
 
@@ -467,19 +414,25 @@
             <ul>
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Shop
+                        Men
                     </a>
                 </li>
 
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Artist
+                        Women
                     </a>
                 </li>
 
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Sale
+                        Dresses
+                    </a>
+                </li>
+
+                <li class="p-b-9">
+                    <a href="#" class="s-text7">
+                        Sunglasses
                     </a>
                 </li>
             </ul>
@@ -487,19 +440,31 @@
 
         <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
             <h4 class="s-text12 p-b-30">
-                About
+                Links
             </h4>
 
             <ul>
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
-                        Our story
+                        Search
+                    </a>
+                </li>
+
+                <li class="p-b-9">
+                    <a href="#" class="s-text7">
+                        About Us
                     </a>
                 </li>
 
                 <li class="p-b-9">
                     <a href="#" class="s-text7">
                         Contact Us
+                    </a>
+                </li>
+
+                <li class="p-b-9">
+                    <a href="#" class="s-text7">
+                        Returns
                     </a>
                 </li>
             </ul>
@@ -581,7 +546,7 @@
         </a>
 
         <div class="t-center s-text8 p-t-20">
-            Copyright © 2018 All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+            Copyright © 2018. All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
         </div>
     </div>
 </footer>
@@ -651,75 +616,6 @@
                 location.reload();
             });
         });
-    });
-
-    //Button Clicked
-    $('#bt_DC').on('click', function(){
-        <%for(var i=0;i<user.cart.length;i++){%>
-        if($('#cb_<%=user.cart[i].cart_id%>').is(':checked')){
-            $.get("/delcart?pd_id=<%=user.cart[i].cart_id%>", function(data, status){
-            });
-        }
-        sleep(300);
-        <%}%>
-        swal({
-            title:"Checked Items",
-            text:"are removed from cart",
-            icon:"success",
-            buttons:"OK"
-        }).then(function(){
-            location.reload();
-        });
-    });
-    $('#bt_DA').click(function(event){
-        <%for(var i=0;i<user.cart.length;i++){%>
-        $.get("/delcart?pd_id=<%=user.cart[i].cart_id%>", function(data, status){
-        });
-        sleep(500);
-        <%}%>
-        swal({
-            title:"All Items",
-            text:"are removed from cart",
-            icon:"success",
-            buttons:"OK"
-        }).then(function(){
-            location.reload();
-        });
-    });
-    $('#bt_CS').on('click', function(){
-        window.location='/product'
-    });
-    $('#bt_OC').on('click', function(){
-        var check = 0;
-        <%for(var i=0;i<user.cart.length;i++){%>
-        if($('#cb_<%=user.cart[i].cart_id%>').is(':checked')){
-            ++check;
-            $.post("/addorder", {
-                pd_id: "<%=user.cart[i].cart_id%>",
-                pd_name: "<%=user.cart[i].cart_name%>",
-                pd_num: $('#pdnum<%=i%>').val(),
-                pd_price: parseFloat("<%=user.cart[i].cart_price%>"),
-                pd_weight: parseFloat("<%=user.cart[i].cart_weight%>"),
-                isfirst: check==1?'1':'0'
-            }, function(data, status){});
-        }
-        sleep(500);
-        <%}%>
-        window.location='/order'
-    });
-    $('#bt_OA').on('click', function(){
-        <%for(var i=0;i<user.cart.length;i++){%>
-        $.post("/addorder", {
-            pd_id: "<%=user.cart[i].cart_id%>",
-            pd_name: "<%=user.cart[i].cart_name%>",
-            pd_num: $('#pdnum<%=i%>').val(),
-            pd_price: parseFloat("<%=user.cart[i].cart_price%>"),
-            pd_weight: parseFloat("<%=user.cart[i].cart_weight%>"),
-            isfirst: parseInt("<%=i==0?1:0%>")
-        }, function(data, status){});
-        sleep(500);
-        <%}%>
-        window.location='/order'
     });
 </script>
 <script type="text/javascript">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Product Administrator</title>
+	<title>Administrator</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -161,7 +161,7 @@
 						</ul>
 
 						<div class="header-cart-total">
-							Total: $<%=total%>
+							Total: $<%=Math.round((total) * 100) / 100%>
 						</div>
 
 						<div class="header-cart-buttons">
@@ -368,40 +368,12 @@
 		<div class="row">
 			<div class="col-md-8 p-b-30">
 				<h3 class="m-text26 p-t-15 p-b-16">
-					Product Overview
+					Administrator
 				</h3>
-				<table class="sub_news" border="1" cellspacing="0">
-					<caption>Product List</caption>
-					<colgroup>
-						<col>
-						<col width="110">
-						<col width="100">
-						<col width="80">
-					</colgroup>
-					<thead>
-					<tr>
-						<th scope="col">Product Name</th>
-						<th scope="col">Product ID</th>
-						<th scope="col">Created By</th>
-						<th scope="col">Created At</th>
-					</tr>
-					</thead>
-					<tbody>
-					<%for(var i=0;i<itemcount;i++){
-						%>
-					<tr>
-						<td class="title">
-							<a href="/register_view?pd_postname=<%=goods[i].pd_name%>"><%=goods[i].pd_name%></a>
-						</td>
-						<td class="number"><%=goods[i].pd_id%></td>
-						<td class="name"><%=goods[i].created_by%></td>
-						<td class="date"><%=goods[i].created_at%></td>
-					</tr>
-					<%}%>
-					</tbody>
-				</table>
-				<br><br>
-				<a href="/register">Product Register</a>
+                <br>
+				<a href="/product_view">Product</a><br><br>
+				<a href="/order_view">Order</a><br><br>
+				<a href="/shipping">Shipping Method</a>
 			</div>
 		</div>
 	</div>
@@ -602,6 +574,30 @@
 <script type="text/javascript" src="vendor/select2/select2.min.js"></script>
 <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }
+        }
+    }
+    $('.header-cart-wrapbtn').on('click', function(){
+		<%if(login_success){
+		for(var i=0;i<user.cart.length;i++){%>
+        $.post("/addorder", {
+            pd_id: "<%=user.cart[i].cart_id%>",
+            pd_name: "<%=user.cart[i].cart_name%>",
+            pd_num: parseInt("<%=user.cart[i].cart_num%>"),
+            pd_price: parseFloat("<%=user.cart[i].cart_price%>"),
+            pd_weight: parseFloat("<%=user.cart[i].cart_weight%>"),
+            isfirst: parseInt("<%=i==0?1:0%>")
+        }, function(data, status){});
+        sleep(500);
+		<%}
+		}%>
+        window.location='/order'
+    });
     $('.header-cart-item-img').each(function(){
         var idCart = $(this).parent().find('.header-cart-item-id').html();
         var nameCart = $(this).parent().find('.header-cart-item-name').html();

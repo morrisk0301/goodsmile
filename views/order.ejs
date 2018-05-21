@@ -155,7 +155,7 @@
                         </ul>
 
                         <div class="header-cart-total">
-                            Total: $<%=total%>
+                            Total: $<%=Math.round((total) * 100) / 100%>
                         </div>
 
                         <div class="header-cart-buttons">
@@ -378,19 +378,24 @@
                         <th class="column-4 p-l-70">Quantity</th>
                         <th class="column-5">Total</th>
                     </tr>
-                    <%for(var i=0;i<user.cart.length;i++){%>
+                    <%
+                        var totalweight = 0;
+                        var totalprice = 0;
+                    for(var i=0;i<user.order.length;i++){%>
                     <tr class="table-row">
                         <td class="column-1">
                             <div class="cart-img-product b-rad-4 o-f-hidden">
-                                <img src="/getimage/<%=user.cart[i].cart_id%>/1" alt="IMG-PRODUCT">
+                                <img src="/getimage/<%=user.order[i].order_id%>/1" alt="IMG-PRODUCT">
                             </div>
                         </td>
-                        <td class="column-2"><%=user.cart[i].cart_name%></td>
-                        <td class="column-3">$<%=user.cart[i].cart_price%></td>
-                        <td class="column-4 p-l-100"><%=user.cart[i].cart_num%></td>
-                        <td class="column-5">$<%=user.cart[i].cart_price*user.cart[i].cart_num%></td>
+                        <td class="column-2"><%=user.order[i].order_name%></td>
+                        <td class="column-3">$<%=user.order[i].order_price%></td>
+                        <td class="column-4 p-l-100"><%=user.order[i].order_num%></td>
+                        <td class="column-5">$<%=user.order[i].order_price*user.order[i].order_num%></td>
                     </tr>
-                    <%}%>
+                    <%totalweight+=user.order[i].order_weight*user.order[i].order_num;
+                      totalprice+=user.order[i].order_price*user.order[i].order_num;
+                    }%>
                 </table>
             </div>
         </div>
@@ -428,11 +433,46 @@
         <!-- Cart item -->
         <div class="container-table-cart pos-relative">
             <div class="wrap-table-shopping-cart bgwhite">
+                <br><br>
+                <fieldset>
+                    <label>Available Shipping Method</label><br>
+                    <%var countrycontained;
+                      var countryindex = 0;
+                      var isokay = [];
+                      var orderpossible = 0;
+                    for(var i=0;i<shipping.length;i++){
+                        countrycontained = false;
+                        for(var j=0;j<shipping[i].method_detail.length;j++){
+                            if(shipping[i].method_detail[j].country==user.country){
+                                countrycontained = true;
+                                countryindex = j;
+                                break;
+                            }
+                        }
+                        if(totalweight<=(shipping[i].method_detail[0].fee.length/2) && countrycontained==true){
+                    %>
+                    <input type="checkbox" class="cart-checkbox" id="<%=shipping[i].method_name%>" name="<%=shipping[i].method_name%>"><%=shipping[i].method_name%>
+                    <%isokay.push(true);
+                        } else{
+                        isokay.push(false);
+                    }
+                    }
+                    for(var k=0;k<isokay.length;k++){
+                        if(isokay[k]){
+                            orderpossible = 1;
+                            break;
+                        }
+                        if(k=isokay.length-1){
+                            %><a>No Available Shipping Company. Please Contact Our Customer Service.</a><%
+                        }
+                    }
+                    %>
+                </fieldset>
                 <table class="table-shopping-cart">
-                    <br><br><br>
+                    <br><br>
                     <label>Country</label>: <%= user.country %><br><br>
-                    <lagel>Shipping Fee</lagel>: $<br><br>
-                    <lagel>Shipping Company</lagel>: EMS
+                    <lagel>Shipping Fee</lagel>: $<a id="shippingfee">0</a><br><br>
+                    <lagel>Shipping Company</lagel>: <a id="shippingcompany"></a>
                 </table>
             </div>
         </div>
@@ -448,12 +488,23 @@
                 <table class="table-shopping-cart">
                     <br><br><br>
                     <lagel>Total</lagel>:
-                    <label>Order Price</label>(<%= user.country %>) +
-                    <lagel>Shipping Fee</lagel>(3) = $4
+                    <label>Order Price</label>($<%=Math.round((totalprice) * 100) / 100%>) +
+                    <lagel>Shipping Fee</lagel>($<a id="revised_shippingfee">0</a>) = $<a id="totalfee"><%=Math.round((totalprice) * 100) / 100%> </a>
                 </table>
             </div>
         </div>
     </div>
+    <br><br>
+    <form method="post" action="/confirm" id="order_form">
+        <input type="hidden" name="totalweight" value="<%=totalweight%>"/>
+        <input type="hidden" name="totalprice" id="totalprice" value="<%=totalprice%>"/>
+        <input type="hidden" name="shippingmethod" id="shippingmethod" value=""/>
+        <%if(orderpossible){%>
+        <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="bt_DC">
+            Order
+        </button>
+        <%}%>
+    </form>
 </div>
 </section>
 
@@ -626,6 +677,30 @@
 <script type="text/javascript" src="vendor/select2/select2.min.js"></script>
 <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }
+        }
+    }
+    $('.header-cart-wrapbtn').on('click', function(){
+        <%if(login_success){
+        for(var i=0;i<user.cart.length;i++){%>
+        $.post("/addorder", {
+            pd_id: "<%=user.cart[i].cart_id%>",
+            pd_name: "<%=user.cart[i].cart_name%>",
+            pd_num: parseInt("<%=user.cart[i].cart_num%>"),
+            pd_price: parseFloat("<%=user.cart[i].cart_price%>"),
+            pd_weight: parseFloat("<%=user.cart[i].cart_weight%>"),
+            isfirst: parseInt("<%=i==0?1:0%>")
+        }, function(data, status){});
+        sleep(500);
+        <%}
+        }%>
+        window.location='/order'
+    });
     $('.header-cart-item-img').each(function(){
         var idCart = $(this).parent().find('.header-cart-item-id').html();
         var nameCart = $(this).parent().find('.header-cart-item-name').html();
@@ -641,6 +716,36 @@
                 location.reload();
             });
         });
+    });
+</script>
+<script type="text/javascript">
+    <%
+    for(var i=0;i<shipping.length;i++){
+        if(isokay[i]){
+        var weightindex = Math.ceil(totalweight*2);
+        var shippingfee = shipping[i].method_detail[countryindex].fee[weightindex-1].fee_num/currencyrate;
+    %>
+    $('#<%=shipping[i].method_name%>').on('change', function(){
+        $('.cart-checkbox').not(this).prop('checked', false);
+        $('#shippingfee').text(<%=Math.round(shippingfee * 100) / 100%>);
+        $('#shippingcompany').text("<%=shipping[i].method_name%>");
+        $('#revised_shippingfee').text(<%=Math.round(shippingfee * 100) / 100%>);
+        $('#totalfee').text(<%=Math.round((shippingfee+total) * 100) / 100%>);
+        $('#totalprice').val(<%=Math.round((shippingfee+total) * 100) / 100%>);
+        $('#shippingmethod').val("<%=shipping[i].method_name%>");
+    });
+    <%}
+        }%>
+</script>
+<script type="text/javascript">
+    var checked = false;
+    $("#order_form").submit(function(event) {
+        $('.cart-checkbox').each(function(){
+            if($(this).is(':checked')){
+                checked = true;
+            }
+        });
+        if(!checked) return false;
     });
 </script>
 <script type="text/javascript">

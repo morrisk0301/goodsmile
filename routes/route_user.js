@@ -17,57 +17,51 @@ module.exports = function(router, passport) {
 	 
     // 회원가입 화면
     router.route('/signup').get(function(req, res) {
-        var database = req.app.get('database');
-        database.ShippingfeeModel.find().exec(function (err, results) {
-            if (req.user) {
-                console.log('로그인 상태임');
-                res.redirect('/');
-            }
-            else{
-                console.log('/signup 패스 요청됨.');
-                res.render('signup.ejs', {login_success:false, message: req.flash('signupMessage'), country:results});
-            }
-        });
+    var countrylist = require('../database/countrylist');
+        if (req.user) {
+            console.log('로그인 상태임');
+            res.redirect('/');
+        }
+        else{
+            console.log('/signup 패스 요청됨.');
+            res.render('signup.ejs', {login_success:false, message: req.flash('signupMessage'), country:countrylist.country});
+        }
     });
 
     // 페이스북 회원가입
     router.route('/signup_fb').get(function(req, res) {
         console.log('/signup_fb 패스 요청됨.');
-        var database = req.app.get('database');
-        database.ShippingfeeModel.find().exec(function (err, results) {
-            if (!req.user) {
-                console.log('사용자 인증 안된 상태임.');
-                res.redirect('/');
-            }
-            else if (req.user.address !== '' && req.user.address !== null && req.user.country !== '' && req.user.country !== null) {
-                console.log('페이스북 회원가입 완료');
-                res.redirect('/');
-            }
-            else {
-                console.log('사용자 인증된 상태임.');
-                res.render('signup_fb.ejs', {login_success: true, user: req.user, country:results});
-            }
-        });
+        var countrylist = require('../database/countrylist');
+        if (!req.user) {
+            console.log('사용자 인증 안된 상태임.');
+            res.redirect('/');
+        }
+        else if (req.user.address !== '' && req.user.address !== null && req.user.country !== '' && req.user.country !== null) {
+            console.log('페이스북 회원가입 완료');
+            res.redirect('/');
+        }
+        else {
+            console.log('사용자 인증된 상태임.');
+            res.render('signup_fb.ejs', {login_success: true, user: req.user, country:countrylist.country});
+        }
     });
 
     //Twitter 회원가입
     router.route('/signup_tw').get(function(req, res) {
         console.log('/signup_tw 패스 요청됨.');
-        var database = req.app.get('database');
-        database.ShippingfeeModel.find().exec(function (err, results) {
-            if (!req.user) {
-                console.log('사용자 인증 안된 상태임.');
-                res.redirect('/');
-            }
-            else if (req.user.address !== '' && req.user.address !== null && req.user.country !== '' && req.user.country !== null) {
-                console.log('트위터 회원가입 완료');
-                res.redirect('/');
-            }
-            else {
-                console.log('사용자 인증된 상태임.');
-                res.render('signup_tw.ejs', {login_success: true, user: req.user, country:results});
-            }
-        });
+        var countrylist = require('../database/countrylist');
+        if (!req.user) {
+            console.log('사용자 인증 안된 상태임.');
+            res.redirect('/');
+        }
+        else if (req.user.address !== '' && req.user.address !== null && req.user.country !== '' && req.user.country !== null) {
+            console.log('트위터 회원가입 완료');
+            res.redirect('/');
+        }
+        else {
+            console.log('사용자 인증된 상태임.');
+            res.render('signup_tw.ejs', {login_success: true, user: req.user, country:countrylist.country});
+        }
     });
 	 
     // 프로필 화면
@@ -144,19 +138,17 @@ module.exports = function(router, passport) {
 
     //프로필수정2
     router.route('/profile_edit2').get(function(req, res) {
-        var database = req.app.get('database');
-        database.ShippingfeeModel.find().exec(function (err, results) {
+        var countrylist = require('../database/countrylist');
             // 인증 안된 경우
-            console.log('/profileedit2 패스 요청됨.');
-            if (!req.user) {
-                console.log('사용자 인증 안된 상태임.');
-                res.redirect('/');
-            } else {
-                console.log('사용자 인증된 상태임.');
+        console.log('/profileedit2 패스 요청됨.');
+        if (!req.user) {
+            console.log('사용자 인증 안된 상태임.');
+            res.redirect('/');
+        } else {
+            console.log('사용자 인증된 상태임.');
 
-                res.render('profile_edit2.ejs', {login_success: true, user: req.user, country:results});
-            }
-        });
+            res.render('profile_edit2.ejs', {login_success: true, user: req.user, country:countrylist.country});
+        }
     });
 	
     // 로그아웃
@@ -259,7 +251,7 @@ module.exports = function(router, passport) {
         var database = req.app.get('database');
         database.UserModel.findOneAndUpdate({ 'email' :  req.user.email }, { $set : {'address':paramAddress,
                 'address2':paramAddress2, 'city':paramCity, 'state':paramState, 'zip':paramZip,
-                'country':paramCountry, 'cellnum':paramCellnum}}, {new: true}, function (err, user){
+                'country':paramCountry, 'cellnum':paramCellnum, 'updated_at':Date.now()}}, {new: true}, function (err, user){
             if(err){
                 console.log(err);
                 res.redirect('/');

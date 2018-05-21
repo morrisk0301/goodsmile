@@ -8,11 +8,7 @@ module.exports = function(router) {
                 res.render(pagename+'.ejs', {login_success:false});
             } else {
                 console.log('사용자 인증된 상태임.');
-                if (Array.isArray(req.user)) {
-                    res.render(pagename+'.ejs', {login_success:true, user: req.user[0]._doc});
-                } else {
-                    res.render(pagename+'.ejs', {login_success:true, user: req.user});
-                }
+                res.render(pagename+'.ejs', {login_success:true, user: req.user});
             }
         });
     }
@@ -135,6 +131,7 @@ module.exports = function(router) {
         var paramNum = req.query.pd_num;
         var paramName = '';
         var paramPrice = 0;
+        var paramWeight = 0;
         var database = req.app.get('database');
         if(paramNum==undefined) paramNum=1;
 
@@ -146,6 +143,7 @@ module.exports = function(router) {
             database.GoodsModel.findOne({'pd_id':paramId}, function(err, goods){
                 paramName = goods.pd_name;
                 paramPrice = goods.pd_price;
+                paramWeight = goods.pd_weight;
                 database.UserModel.findOneAndUpdate({'email' :  req.user.email, "cart.cart_id":paramId}, {$inc:{'cart.$.cart_num':paramNum}}, {new: true}, function(err, user_e) {
                     if(user_e){
                         console.log('카트 있음');
@@ -159,7 +157,9 @@ module.exports = function(router) {
                     }
                     else{
                         console.log('카트 없음');
-                        database.UserModel.findOneAndUpdate({'email' :  req.user.email}, {$push : {'cart':{'cart_id': paramId, 'cart_num': paramNum, 'cart_name': paramName, 'cart_price': paramPrice}}}, {new: true}, function(err, user_e){
+                        database.UserModel.findOneAndUpdate({'email' :  req.user.email}, {$push : {'cart':{'cart_id': paramId,
+                                    'cart_num': paramNum, 'cart_name': paramName, 'cart_price': paramPrice,
+                                    'cart_weight': paramWeight}}}, {new: true}, function(err, user_e){
                             req.session.regenerate(function(err){
                                 req.logIn(user_e, function(error) {
                                     req.session.save(function (err) {

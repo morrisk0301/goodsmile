@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var autoIncrement = require('mongoose-auto-increment');
-var addcountry = require('./addcountry');
 
 // database 객체에 db, schema, model 모두 추가
 var database = {};
@@ -18,7 +17,7 @@ database.init = function(app, config) {
     }else{
         console.error.bind(console, '[error] application error\n');
     }
-}
+};
 
 //데이터베이스에 연결하고 응답 객체의 속성으로 db 객체 추가
 function connect(app, config) {
@@ -58,6 +57,10 @@ function createSchema(app, config) {
 		if(i==1){
 		    curSchema.plugin(autoIncrement.plugin, {model: 'GoodsModel', field: 'pd_id'});
         }
+        else if(i==3){
+            curSchema.plugin(autoIncrement.plugin, {model: 'OrderModel', field: 'order_id'});
+        }
+
 		// User 모델 정의
 		var curModel = mongoose.model(curItem.collection, curSchema);
 		console.log('%s 컬렉션을 위해 모델 정의함.', curItem.collection);
@@ -66,25 +69,6 @@ function createSchema(app, config) {
 		database[curItem.schemaName] = curSchema;
 		database[curItem.modelName] = curModel;
 		console.log('스키마 이름 [%s], 모델 이름 [%s] 이 database 객체의 속성으로 추가됨.', curItem.schemaName, curItem.modelName);
-
-		if(curItem.collection=='shippingfee'){
-            database.ShippingfeeModel.find().exec(function (err, results) {
-            	if(results.length==0){
-            		console.log('countryDB 없음');
-                    for(var i=0;i<addcountry.countrynum;i++) {
-                        var newlist = new database.ShippingfeeModel({
-                            'country': addcountry.countrylist[i].country,
-                            'region': addcountry.countrylist[i].region,
-                            'fee': addcountry.countrylist[i].fee
-                        });
-                        newlist.save(function (err) {
-                            if (err) console.log(err);
-                        });
-                    }
-                    console.log('countryDB 저장됨');
-				}
-            });
-		}
 	}
 	
 	app.set('database', database);

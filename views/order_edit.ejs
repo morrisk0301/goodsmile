@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Sign In</title>
+	<title>Order Edit</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -98,6 +98,7 @@
 					</ul>
 				</nav>
 			</div>
+
 			<!-- Header Icon -->
 			<div class="header-icons">
 				<li>
@@ -358,30 +359,117 @@
 <!-- content page -->
 <section class="bgwhite p-t-66 p-b-38">
 	<div class="container">
-		<% if (message.length > 0) { %>
-		<a><%= message %></a>
-		<% } %>
 		<div class="row">
-			<form method="post" action="/login">
-				<table>
-					<tr>
-						<td><label>Email</label></td>
-						<td><input type="text" name="email" /></td>
-					</tr>
-					<tr>
-						<td><label>Password</label></td>
-						<td><input type="password" name="password" /></td>
-					</tr>
-					<tr>
-						<td><input type="submit" value="Sign In" name="" /></td>
-					</tr>
-				</table>
-				<br><a href='/signup'>Sign Up</a>&nbsp&nbsp&nbsp&nbsp<a href='#'>Forgot Password?</a>
-			</form>
+			<div class="col-md-8 p-b-30">
+				<h3 class="m-text26 p-t-15 p-b-16">
+					Order Edit
+				</h3>
+				<form method="post" action="/order_edit" id="form_register">
+					<table>
+						<tr>
+							<label>Order ID</label>
+							<div class="bo4 of-hidden size15 m-b-20">
+								<a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=order.order_id%></a>
+							</div>
+						</tr>
+						<tr>
+							<label>User Name</label>
+							<div class="bo4 of-hidden size15 m-b-20">
+								<a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=order.name%></a>
+							</div>
+						</tr>
+						<tr>
+							<label>Address</label>
+							<div class="bo4 of-hidden size15 m-b-20">
+								<a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=order.address%></a>
+							</div>
+						</tr>
+                        <tr>
+                            <label>Address2</label>
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=order.address2%></a>
+                            </div>
+                        </tr>
+                        <tr>
+                            <label>City</label>
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=order.city%></a>
+                            </div>
+                        </tr>
+                        <tr>
+                            <label>State/Province</label>
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=order.state%></a>
+                            </div>
+                        </tr>
+                        <tr>
+                            <label>Zip Code</label>
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=order.zip%></a>
+                            </div>
+                        </tr>
+                        <tr>
+                            <label>Country</label>
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=order.country%></a>
+                            </div>
+                        </tr>
+                        <tr>
+                            <label>Cellphone Number</label>
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=order.cellnum%></a>
+                            </div>
+                        </tr>
+                        <tr>
+                            <label>Ordered At</label>
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=order.ordered_at%></a>
+                            </div>
+                        </tr>
+                        <tr>
+                            <label>Shipping Method</label>
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=order.shippingmethod%></a>
+                            </div>
+                        </tr>
+                        <tr>
+                            <label>Total Price</label>
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=order.totalprice%></a>
+                            </div>
+                        </tr>
+                        <tr>
+                            <label>Total Weight</label>
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                <a class="sizefull s-text7 p-l-22 p-r-22" type="text"><%=order.totalweight%></a>
+                            </div>
+                        </tr>
+						<tr>
+							<label>Order Status</label>
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                <select class="sizefull s-text7 p-l-22 p-r-22" id="status" name="status">
+                                    <option selected><%=order.status%></option>
+                                    <option value="Preparing Shipment">Checking Order</option>
+                                    <option value="Preparing Shipment">Preparing Shipment</option>
+                                    <option value="Shipping">Shipping</option>
+                                    <option value="Shipping Completed">Shipping Completed</option>
+                                    <option value="Order Completed">Order Completed</option>
+                                </select>
+							</div>
+						</tr>
+                        <tr>
+                            <label>Shipping Invoice</label>
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                <input type="text" class="sizefull s-text7 p-l-22 p-r-22" name="shipping_invoice" value="<%=order.shipping_invoice%>"/>
+                            </div>
+                        </tr>
+					</table>
+				<br>
+				<input type="hidden" name="order_id" value="<%=order.order_id%>"/>
+				<input type="submit" value="Edit Order" name=""/>
+				</form>
+			</div>
 		</div>
-		<br>
-		<a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Sign In with Facebook</a>
-		<a href="/auth/twitter" class="btn btn-primary"><span class="fa fa-twitter"></span> Sign In with Twitter</a>
 	</div>
 </section>
 
@@ -605,6 +693,11 @@
     $(".selection-2").select2({
         minimumResultsForSearch: 20,
         dropdownParent: $('#dropDownSelect2')
+    });
+</script>
+<script type="text/javascript">
+    $("#form_register").submit(function(event) {
+
     });
 </script>
 <!--===============================================================================================-->

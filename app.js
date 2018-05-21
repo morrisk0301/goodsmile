@@ -1,19 +1,11 @@
-var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var static = require('serve-static');
 var expressErrorHandler = require('express-error-handler');
 var expressSession = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
-
-//router
-var route_loader = require('./routes/route_loader');
-
-var app = express();
 
 // 익스프레스 객체 생성
 var app = express();
@@ -41,7 +33,7 @@ app.use(flash());
 
 //라우팅 정보를 읽어들여 라우팅 설정
 var router = express.Router();
-route_loader.init(app, router);
+app.use('/', router);
 
 // 패스포트 설정
 var configPassport = require('./config/passport');
@@ -59,6 +51,9 @@ pageRouter(router);
 
 var orderRouter = require('./routes/route_order');
 orderRouter(router);
+
+var adminRouter = require('./routes/route_admin');
+adminRouter(router);
 
 //===== 404 에러 페이지 처리 =====//
 var errorHandler = expressErrorHandler({
