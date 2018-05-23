@@ -400,67 +400,79 @@
 		<h3 class="m-text26 p-t-15 p-b-16">
 			Sign Up
 		</h3>
+        <a id="errortext"></a><br><br>
 		<div class="row">
-			<form id="profile" method="post" action="/signup">
-				<div>
-					<label for="profile_email">Email</label>
-					<input type="text" id="profile_email" name="email"></input>
-					<span class="error">This field is required</span>
-				</div>
-				<div>
-					<label for="profile_password">Password</label>
-					<input type="password" id="profile_password" name="password"></input>
-					<span class="error">This field is required</span>
-				</div>
-				<div>
-					<label for="profile_name">Name</label>
-					<input type="text" id="profile_name" name="name"></input>
-					<span class="error">This field is required</span>
-				</div>
-				<div>
-					<label for="profile_address">Address</label>
-					<input type="text" id="profile_address" name="address"></input>
-					<span class="error">This field is required</span>
-				</div>
-				<div>
-					<label for="profile_address2">Address2</label>
-					<input type="text" id="profile_address2" name="address2"></input>
-					<span class="error">This field is required</span>
-				</div>
-				<div>
-					<label for="profile_city">City</label>
-					<input type="text" id="profile_city" name="city"></input>
-					<span class="error">This field is required</span>
-				</div>
-				<div>
-					<label for="profile_province">Province</label>
-					<input type="text" id="profile_province" name="state"></input>
-					<span class="error">This field is required</span>
-				</div>
-				<div>
-					<label for="profile_zip">Zip/Postal Code</label>
-					<input type="text" id="profile_zip" name="zip"></input>
-					<span class="error">This field is required</span>
-				</div>
-				<div>
-					<label for="profile_country">Country</label>
-					<select class="sizefull s-text7 p-l-22 p-r-22" id="profile_country" name="country">
-						<option disabled selected value> -- select a country -- </option>
-						<%for(var i=0;i<country.length;i++){
-						%><option value="<%=country[i]%>"><%=country[i]%></option><%
-						}%>
-					</select>
-					<span class="error">This field is required</span>
-				</div>
-				<div>
-					<label for="profile_cellnum">Phone Number</label>
-					<input type="text" id="profile_cellnum" name="cellnum"></input>
-					<span class="error">This field is required</span>
-				</div>
-				<div id="profile_submit">
-					<input type="submit" value="Submit" name=""/>
-				</div>
-                <br>
+			<form id="form_profile" method="post" action="/signup">
+				<table>
+                    <tr>
+                        <label>(*)Email</label>
+                        <div class="bo4 of-hidden size15 m-b-20">
+                            <input type="text" class="sizefull s-text7 p-l-22 p-r-22" id="profile_email" name="email"/>
+                        </div>
+                    </tr>
+                    <tr>
+                        <label>(*)Password</label>
+                        <div class="bo4 of-hidden size15 m-b-20">
+                            <input type="password" class="sizefull s-text7 p-l-22 p-r-22" id="profile_password" name="password"/>
+                        </div>
+                    </tr>
+                    <tr>
+                        <label>(*)Name</label>
+                        <div class="bo4 of-hidden size15 m-b-20">
+                            <input type="text" class="sizefull s-text7 p-l-22 p-r-22" id="profile_name" name="name"/>
+                        </div>
+                    </tr>
+                    <tr>
+                        <label>(*)Address</label>
+                        <div class="bo4 of-hidden size15 m-b-20">
+                            <input type="text" class="sizefull s-text7 p-l-22 p-r-22" id="profile_address" name="address"/>
+                        </div>
+                    </tr>
+                    <tr>
+                        <label>Address2</label>
+                        <div class="bo4 of-hidden size15 m-b-20">
+                            <input type="text" class="sizefull s-text7 p-l-22 p-r-22" id="profile_address2" name="address2"/>
+                        </div>
+                    </tr>
+                    <tr>
+                        <label>(*)City</label>
+                        <div class="bo4 of-hidden size15 m-b-20">
+                            <input type="text" class="sizefull s-text7 p-l-22 p-r-22" id="profile_city" name="city"/>
+                        </div>
+                    </tr>
+                    <tr>
+                        <label>(*)Province/ State</label>
+                        <div class="bo4 of-hidden size15 m-b-20">
+                            <input type="text" class="sizefull s-text7 p-l-22 p-r-22" id="profile_province" name="state"/>
+                        </div>
+                    </tr>
+                    <tr>
+                        <label>(*)Zip/Postal Code</label>
+                        <div class="bo4 of-hidden size15 m-b-20">
+                            <input type="text" class="sizefull s-text7 p-l-22 p-r-22" id="profile_zip" name="zip"/>
+                        </div>
+                    </tr>
+                    <tr>
+                        <label>(*)Country</label>
+                        <div class="bo4 of-hidden size15 m-b-20">
+                            <select class="sizefull s-text7 p-l-22 p-r-22" id="profile_country" name="country">
+                                <option disabled selected value> -- select a country -- </option>
+                                <%for(var i=0;i<country.length;i++){
+                                %><option value="<%=country[i]%>"><%=country[i]%></option><%
+                                }%>
+                            </select>
+                        </div>
+                    </tr>
+                    <tr>
+                        <label>(*)Phone Number</label>
+                        <div class="bo4 of-hidden size15 m-b-20">
+                            <input type="text" class="sizefull s-text7 p-l-22 p-r-22" id="profile_cellnum" name="cellnum"/>
+                        </div>
+                    </tr>
+				</table>
+                <br><a>(*) is required field.</a><br><br>
+				<input type="submit" value="Submit" name=""/>
+                <br><br>
 				<a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Sign Up with Facebook</a>
                 <a href="/auth/twitter" class="btn btn-primary"><span class="fa fa-twitter"></span> Sign Up with Twitter</a>
 			</form>
@@ -690,98 +702,18 @@
         dropdownParent: $('#dropDownSelect2')
     });
 </script>
-<!--===============================================================================================-->
-<script src="js/main.js"></script>
-<script type="text/javascript" src="jquery.min.js">
-    $(document).ready(function() {
-        //jQuery code goes here
-        $('#profile_name').on('input', function() {
-            var input=$(this);
-            var is_name=input.val();
-            if(is_name){input.removeClass("invalid").addClass("valid");}
-            else{input.removeClass("valid").addClass("invalid");}
-        });
-    });
-
-    // Name can't be blank
-
-
-    // Email must be an email
-    $('#profile_email').on('input', function() {
-        var input=$(this);
-        var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        var is_email=re.test(input.val());
-        if(is_email){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-    });
-
-    // Address can't be blank
-    $('#profile_address').keyup(function(event) {
-        var input=$(this);
-        var message=$(this).val();
-        console.log(message);
-        if(message){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-    });
-
-    // City can't be blank
-    $('#profile_city').keyup(function(event) {
-        var input=$(this);
-        var message=$(this).val();
-        console.log(message);
-        if(message){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-    });
-
-    // zipcode can't be blank
-    $('#profile_zip).keyup(function(event) {
-        var input=$(this);
-        var message=$(this).val();
-        console.log(message);
-        if(message){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-    });
-
-    // Country can't be blank
-    $('#profile_country').keyup(function(event) {
-        var input=$(this);
-        var message=$(this).val();
-        console.log(message);
-        if(message){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-    });
-
-    // Cellnum can't be blank
-    $('#profile_cellnum').keyup(function(event) {
-        var input=$(this);
-        var message=$(this).val();
-        console.log(message);
-        if(message){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-    });
-
-    $("#profile_submit input").click(function(event){
-    });
-
-    // After Form Submitted Validation
-    $("#profile_submit input").click(function(event){
-        var form_data=$("#profile").serializeArray();
-        var error_free=true;
-        for (var input in form_data){
-            var element=$("#profile_"+form_data[input]['name']);
-            var valid=element.hasClass("valid");
-            var error_element=$("span", element.parent());
-            if (!valid){error_element.removeClass("error").addClass("error_show"); error_free=false;}
-            else{error_element.removeClass("error_show").addClass("error");}
-        }
-        if (!error_free){
-            event.preventDefault();
-        }
-        else{
-            alert('No errors: Form will be submitted');
+<script type="text/javascript">
+    $("#form_profile").submit(function(event) {
+        if ($('#profile_name').val().length == 0 || $('#profile_address').val().length == 0
+            || $('#profile_city').val().length == 0 || $('#profile_state').val().length == 0
+            || $('#profile_name').val().length == 0 || $('#profile_country').val().length == 0
+            || $('#profile_cellnum').val().length == 0 || $('#profile_password').val().length == 0){
+            $('#errortext').text('You must input all required fields.')
+            return false;
         }
     });
-
 </script>
+<!--================================s===============================================================-->
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -364,24 +364,25 @@
 				<h3 class="m-text26 p-t-15 p-b-16">
 					Product Register
 				</h3>
+                <a id="errortext"></a><br><br>
 				<form method="post" enctype="multipart/form-data" action="/register" id="form_register">
 					<table>
 						<tr>
-							<label>Product Name</label>
+							<label>(*)Product Name</label>
 							<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="pd_name" placeholder="Product Name">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="pd_name" id="pd_name" placeholder="Product Name">
 							</div>
 						</tr>
 						<tr>
-							<label>Price</label>
+							<label>(*)Price</label>
 							<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="number" step="0.01" name="pd_price" placeholder="Product Price">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="number" step="0.01" name="pd_price" id="pd_price" placeholder="Product Price">
 							</div>
 						</tr>
 						<tr>
-							<label>Weight(In Kilogram)</label>
+							<label>(*)Weight(In Kilogram)</label>
 							<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="number" step="0.01" name="pd_weight" placeholder="Product Weight">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="number" step="0.01" name="pd_weight" id="pd_weight" placeholder="Product Weight">
 							</div>
 						</tr>
 						<tr>
@@ -457,7 +458,7 @@
                             <input type="checkbox" name="pd_viewSale"/>
                         </tr>
 					</table>
-				<br>
+				<br><a>(*) is required field.</a><br><br><br>
 				<input type="submit" value="Register"/>
 				</form>
 			</div>
@@ -691,6 +692,11 @@
     $("#form_register").submit(function(event) {
         if ($('#pd_image')[0].files.length > 4) {
             alert("More than 4 Images!");
+            return false;
+        }
+        if ($('#pd_name').val().length == 0 || $('#pd_price').val().length == 0
+            || $('#pd_weight').val().length == 0){
+            $('#errortext').text('You must input all required fields.')
             return false;
         }
     });

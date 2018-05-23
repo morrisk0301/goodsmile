@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Cart</title>
+    <title>Order</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -434,7 +434,7 @@
         <div class="container-table-cart pos-relative">
             <div class="wrap-table-shopping-cart bgwhite">
                 <br><br>
-                <fieldset>
+                <fieldse>
                     <label>Available Shipping Method</label><br>
                     <%var countrycontained;
                       var countryindex = 0;
@@ -467,7 +467,7 @@
                         }
                     }
                     %>
-                </fieldset>
+                </fieldse>
                 <table class="table-shopping-cart">
                     <br><br>
                     <label>Country</label>: <%= user.country %><br><br>
@@ -730,8 +730,8 @@
         $('#shippingfee').text(<%=Math.round(shippingfee * 100) / 100%>);
         $('#shippingcompany').text("<%=shipping[i].method_name%>");
         $('#revised_shippingfee').text(<%=Math.round(shippingfee * 100) / 100%>);
-        $('#totalfee').text(<%=Math.round((shippingfee+total) * 100) / 100%>);
-        $('#totalprice').val(<%=Math.round((shippingfee+total) * 100) / 100%>);
+        $('#totalfee').text(<%=Math.round((shippingfee+totalprice) * 100) / 100%>);
+        $('#totalprice').val(<%=Math.round((shippingfee+totalprice) * 100) / 100%>);
         $('#shippingmethod').val("<%=shipping[i].method_name%>");
     });
     <%}

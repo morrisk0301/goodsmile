@@ -364,6 +364,34 @@
 				<h3 class="m-text26 p-t-15 p-b-16">
 					Order Edit
 				</h3>
+                <div class="container-table-cart pos-relative">
+                    <div class="wrap-table-shopping-cart bgwhite">
+                        <table class="table-shopping-cart">
+                            <tr class="table-head">
+                                <th class="column-1">Image</th>
+                                <th class="column-2">Product</th>
+                                <th class="column-3">Price</th>
+                                <th class="column-4 p-l-70">Quantity</th>
+                                <th class="column-5">Total</th>
+                            </tr>
+                            <%
+                            for(var i=0;i<order.order.length;i++){%>
+                            <tr class="table-row">
+                                <td class="column-1">
+                                    <div class="cart-img-product b-rad-4 o-f-hidden">
+                                        <img src="/getimage/<%=order.order[i].order_id%>/1" alt="IMG-PRODUCT">
+                                    </div>
+                                </td>
+                                <td class="column-2"><%=order.order[i].order_name%></td>
+                                <td class="column-3">$<%=order.order[i].order_price%></td>
+                                <td class="column-4 p-l-100"><%=order.order[i].order_num%></td>
+                                <td class="column-5">$<%=order.order[i].order_price*order.order[i].order_num%></td>
+                            </tr>
+                            <%
+                            }%>
+                        </table>
+                    </div>
+                </div>
 				<form method="post" action="/order_edit" id="form_register">
 					<table>
 						<tr>

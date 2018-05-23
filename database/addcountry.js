@@ -1,6 +1,5 @@
 //country list
 
-var method_detail=[];
 var Excel = require('exceljs');
 var workbook = new Excel.Workbook();
 
@@ -16,13 +15,8 @@ function getfee(worksheet, row, columncount){
     }
     return fee;
 }
-addcountry.init = function(xlsxname){
-  while(method_detail.length!=0) method_detail.pop();
-  console.log('method_detail 초기화 됨');
-  addcountry.set(xlsxname);
-};
-
-addcountry.set = function(xlsxname) {
+addcountry.set = function(xlsxname, callback) {
+    var method_detail = [];
     console.log(xlsxname+'shipping method 추가 요청');
     workbook.xlsx.readFile('../uploads/'+xlsxname+'.xlsx').then(function () {
         var worksheet = workbook.getWorksheet(1);
@@ -33,11 +27,9 @@ addcountry.set = function(xlsxname) {
                 fee: getfee(worksheet, i, worksheet.columnCount)
             });
         }
+        return callback(method_detail);
     });
 };
 
 
-module.exports={
-    addcountry,
-    method_detail: method_detail
-};
+module.exports = addcountry;

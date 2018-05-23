@@ -61,26 +61,25 @@ module.exports = function(router) {
                 console.log('사용자 인증 안된 상태임.');
                 res.redirect('/');
             } else {
-                if (!req.user.auth == 0) {
-                    console.log('관리자 아님');
-                    res.redirect('/');
-                }
-                else {
-                    console.log('사용자 인증된 상태임.');
-                    addcountry.addcountry.init(req.file.filename.slice(0, -5));
-                    var database = req.app.get('database');
-                    setTimeout(function() {
+                addcountry.addcountry.set(req.file.filename.slice(0, -5), function(result){
+                    if (!req.user.auth == 0) {
+                        console.log('관리자 아님');
+                        res.redirect('/');
+                    }
+                    else {
+                        console.log('사용자 인증된 상태임.');
+                        var database = req.app.get('database');
                         var newmethod = new database.ShippingfeeModel({
                             'method_name': req.file.filename.slice(0, -5),
                             'created_by': req.user.name,
-                            'method_detail': addcountry.method_detail
+                            'method_detail': result
                         });
                         newmethod.save(function (err) {
                             if (err) console.log(err);
                             res.redirect('/shipping');
                         });
-                    }, 500);
-                }
+                    }
+                });
             }
         });
     });
