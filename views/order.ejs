@@ -30,6 +30,7 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
+    <script src="https://js.braintreegateway.com/web/dropin/1.11.0/js/dropin.min.js"></script>
 </head>
 <body class="animsition">
 
@@ -354,7 +355,7 @@
 </header>
 
 <!-- Title Page -->
-<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-01.jpg);">
+<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages.jpg);">
     <h2 class="l-text2 t-center">
         Order
     </h2>
@@ -493,18 +494,32 @@
                 </table>
             </div>
         </div>
-    </div>
     <br><br>
     <form method="post" action="/confirm" id="order_form">
         <input type="hidden" name="totalweight" value="<%=totalweight%>"/>
         <input type="hidden" name="totalprice" id="totalprice" value="<%=totalprice%>"/>
         <input type="hidden" name="shippingmethod" id="shippingmethod" value=""/>
         <%if(orderpossible){%>
-        <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="bt_DC">
-            Order
-        </button>
-        <%}%>
+        <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="bt_DC">Order</button>
     </form>
+        <div id="dropin-container"></div>
+        <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="submit-button">Request payment method</button>
+        <script>
+            var button = document.querySelector('#submit-button');
+
+            braintree.dropin.create({
+                authorization: '<%=cltoken%>',
+                container: '#dropin-container'
+            }, function (createErr, instance) {
+                button.addEventListener('click', function () {
+                    instance.requestPaymentMethod(function (err, payload) {
+                        // Submit payload.nonce to your server
+                    });
+                });
+            });
+        </script>
+        <%}%>
+    </div>
 </div>
 </section>
 

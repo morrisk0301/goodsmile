@@ -61,7 +61,7 @@ module.exports = function(router) {
                 console.log('사용자 인증 안된 상태임.');
                 res.redirect('/');
             } else {
-                addcountry.addcountry.set(req.file.filename.slice(0, -5), function(result){
+                addcountry.set(req.file.filename.slice(0, -5), function(result){
                     if (!req.user.auth == 0) {
                         console.log('관리자 아님');
                         res.redirect('/');

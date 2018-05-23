@@ -1,19 +1,35 @@
 module.exports = function(router) {
     var currencyrate = 1028;
+    var braintree = require("braintree");
+    var gateway = braintree.connect({
+        environment: braintree.Environment.Sandbox,
+        merchantId: "gn68h5xvwfzrpb5n",
+        publicKey: "mvgq5rnf54dnbfgs",
+        privateKey: "dc88f545bfd447d12c69a357ba161a16"
+    });
     //order 화면
     router.route('/order').get(function(req, res) {
-        console.log('/order 패스 요청됨.');
-        // 인증 안된 경우
-        if (!req.user) {
-            console.log('사용자 인증 안된 상태임.');
-            res.redirect('/login');
-        } else {
-            var database = req.app.get('database');
-            database.ShippingfeeModel.find().exec(function(err, results){
-                console.log('사용자 인증된 상태임.');
-                res.render('order.ejs', {login_success:true, user: req.user, shipping:results, currencyrate:currencyrate});
-            });
-        }
+        gateway.clientToken.generate({customerId:req.user.email}, function (err, response) {
+            var token=response.clientToken;
+            console.log('/order 패스 요청됨.');
+            // 인증 안된 경우
+            if (!req.user) {
+                console.log('사용자 인증 안된 상태임.');
+                res.redirect('/login');
+            } else {
+                var database = req.app.get('database');
+                database.ShippingfeeModel.find().exec(function (err, results) {
+                    console.log('사용자 인증된 상태임.');
+                    res.render('order.ejs', {
+                        login_success: true,
+                        user: req.user,
+                        shipping: results,
+                        currencyrate: currencyrate,
+                        cltoken: token
+                    });
+                });
+            }
+        });
     });
 
     router.route('/addorder').post(function(req, res) {

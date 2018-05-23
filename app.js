@@ -55,6 +55,9 @@ orderRouter(router);
 var adminRouter = require('./routes/route_admin');
 adminRouter(router);
 
+var braintreeRouter = require('./routes/route_braintree');
+braintreeRouter(router);
+
 //===== 404 에러 페이지 처리 =====//
 var errorHandler = expressErrorHandler({
     static: {

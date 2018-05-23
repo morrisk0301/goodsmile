@@ -388,7 +388,7 @@
 </header>
 
 <!-- Title Page -->
-<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-06.jpg);">
+<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages.jpg);">
 </section>
 
 <!-- content page -->
@@ -414,6 +414,13 @@
                         <label>(*)Password</label>
                         <div class="bo4 of-hidden size15 m-b-20">
                             <input type="password" class="sizefull s-text7 p-l-22 p-r-22" id="profile_password" name="password"/>
+                        </div>
+                    </tr>
+                    <tr>
+                        <label>(*)Password Confirm</label>
+                        &nbsp&nbsp&nbsp&nbsp;<a id="pwerrortext"></a>
+                        <div class="bo4 of-hidden size15 m-b-20">
+                            <input type="password" class="sizefull s-text7 p-l-22 p-r-22" id="profile_passwordcf" name="password"/>
                         </div>
                     </tr>
                     <tr>
@@ -710,6 +717,14 @@
             || $('#profile_cellnum').val().length == 0 || $('#profile_password').val().length == 0){
             $('#errortext').text('You must input all required fields.')
             return false;
+        }
+    });
+    $('#profile_passwordcf').on('input', function(){
+        if($('#profile_password').val() != $('#profile_passwordcf').val()){
+            $('#pwerrortext').text('Password do not match.');
+        }
+        else {
+            $('#pwerrortext').text('');
         }
     });
 </script>
