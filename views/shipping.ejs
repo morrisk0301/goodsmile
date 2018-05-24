@@ -392,7 +392,7 @@
 						<td class="name">
 							<form action="/delshipping" method="post">
 								<input type="hidden" name="method_name" value="<%=shipping[i].method_name%>"/>
-								<input type="submit" value="delete"/>
+								<input type="submit" class="ship-delete" value="delete"/>
 							</form>
 						</td>
 					</tr>
@@ -647,6 +647,13 @@
             });
         });
     });
+    $('.ship-delete').each(function(){
+		$(this).click(function(){
+		    var result = confirm('Are you sure?');
+		    if(result) return true;
+		    else return false;
+		})
+	});
 </script>
 <script type="text/javascript">
     $(".selection-1").select2({

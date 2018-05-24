@@ -185,13 +185,18 @@ module.exports = function(router) {
         else {
             database.UserModel.findOneAndUpdate({'email' :  req.user.email, "cart.cart_id":paramId}, {$pull : {'cart':{'cart_id': paramId}}}, {new: true}, function(err, user_e){
                 console.log('카트 있음');
-                req.session.regenerate(function(err){
-                    req.logIn(user_e, function(error) {
-                        req.session.save(function (err) {
-                            res.end();
+                if(user_e){
+                    req.session.regenerate(function(err){
+                        req.logIn(user_e, function(error) {
+                            req.session.save(function (err) {
+                                res.end();
+                            });
                         });
                     });
-                });
+                }
+                else{
+                    res.redirect('/');
+                }
             });
         }
     });

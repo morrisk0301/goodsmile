@@ -373,10 +373,11 @@
 				<table class="sub_news" border="1" cellspacing="0">
 					<caption>Product List</caption>
 					<colgroup>
-						<col>
 						<col width="110">
 						<col width="100">
 						<col width="80">
+						<col width="80">
+						<col width="130">
 					</colgroup>
 					<thead>
 					<tr>
@@ -384,6 +385,7 @@
 						<th scope="col">Product ID</th>
 						<th scope="col">Created By</th>
 						<th scope="col">Created At</th>
+						<th scope="col">Delete</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -396,6 +398,12 @@
 						<td class="number"><%=goods[i].pd_id%></td>
 						<td class="name"><%=goods[i].created_by%></td>
 						<td class="date"><%=goods[i].created_at%></td>
+						<td class="name">
+							<form action="/delproduct" method="post">
+								<input type="hidden" name="pd_id" value="<%=goods[i].pd_id%>"/>
+								<input type="submit" class="order-delete" value="delete"/>
+							</form>
+						</td>
 					</tr>
 					<%}%>
 					</tbody>
@@ -641,6 +649,13 @@
                 location.reload();
             });
         });
+    });
+    $('.order-delete').each(function(){
+        $(this).click(function(){
+            var result = confirm('Are you sure?');
+            if(result) return true;
+            else return false;
+        })
     });
 </script>
 <script type="text/javascript">

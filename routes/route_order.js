@@ -9,32 +9,40 @@ module.exports = function(router) {
     });
     //order 화면
     router.route('/order').get(function(req, res) {
-        gateway.clientToken.generate({customerId:req.user.email}, function (err, response) {
-            var token=response.clientToken;
-            console.log('/order 패스 요청됨.');
-            // 인증 안된 경우
-            if (!req.user) {
-                console.log('사용자 인증 안된 상태임.');
-                res.redirect('/login');
-            } else {
-                var database = req.app.get('database');
-                database.ShippingfeeModel.find().exec(function (err, results) {
-                    console.log('사용자 인증된 상태임.');
-                    res.render('order.ejs', {
-                        login_success: true,
-                        user: req.user,
-                        shipping: results,
-                        currencyrate: currencyrate,
-                        cltoken: token
+        console.log('/order 패스 요청됨.');
+        // 인증 안된 경우
+        if (!req.user) {
+            console.log('사용자 인증 안된 상태임.');
+            res.redirect('/login');
+        } else {
+            if(req.user.order.length==0) res.redirect('/');
+            else {
+                gateway.customer.create({
+                    firstName: req.user.name,
+                    email: req.user.email,
+                    phone: req.user.cellnum
+                }, function(err, results){
+                    if(err) console.log(err);
+                    gateway.clientToken.generate({customerId: results.customer.id}, function (err, response) {
+                        var token = response.clientToken;
+                        var database = req.app.get('database');
+                        database.ShippingfeeModel.find().exec(function (err, results) {
+                            console.log('사용자 인증된 상태임.');
+                            res.render('order.ejs', {
+                                login_success: true,
+                                user: req.user,
+                                shipping: results,
+                                currencyrate: currencyrate,
+                                cltoken: token
+                            });
+                        });
                     });
                 });
             }
-        });
+        }
     });
-
     router.route('/addorder').post(function(req, res) {
         console.log('/addorder 패스 요청됨.');
-        console.log(req.body);
         var paramId = req.body.pd_id;
         var paramName = req.body.pd_name;
         var paramNum = parseInt(req.body.pd_num);
@@ -91,8 +99,30 @@ module.exports = function(router) {
         }
     });
 
+    router.route('/checkout').post(function(req, res){
+        console.log('/checkout 패스 요청됨.');
+        console.log(req.body);
+        var nonceFromTheClient = req.body.payment_method_nonce;
+        var price = req.body.totalprice;
+        gateway.transaction.sale({
+            amount: price,
+            paymentMethodNonce: nonceFromTheClient,
+            options: {
+                submitForSettlement: true
+            }
+        }, function (err, result) {
+            if(result){
+                console.log(result);
+                res.send(result);
+            } else {
+                res.status(500).send(error);
+            }
+        });
+
+    });
     router.route('/confirm').post(function(req, res) {
         console.log('/confirm 패스 요청됨.');
+        console.log(req.body);
         var paramTotalWeight = req.body.totalweight;
         var paramTotalPrice = req.body.totalprice;
         var paramShippingMethod = req.body.shippingmethod;

@@ -495,30 +495,8 @@
             </div>
         </div>
     <br><br>
-    <form method="post" action="/confirm" id="order_form">
-        <input type="hidden" name="totalweight" value="<%=totalweight%>"/>
-        <input type="hidden" name="totalprice" id="totalprice" value="<%=totalprice%>"/>
-        <input type="hidden" name="shippingmethod" id="shippingmethod" value=""/>
-        <%if(orderpossible){%>
-        <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="bt_DC">Order</button>
-    </form>
         <div id="dropin-container"></div>
         <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="submit-button">Request payment method</button>
-        <script>
-            var button = document.querySelector('#submit-button');
-
-            braintree.dropin.create({
-                authorization: '<%=cltoken%>',
-                container: '#dropin-container'
-            }, function (createErr, instance) {
-                button.addEventListener('click', function () {
-                    instance.requestPaymentMethod(function (err, payload) {
-                        // Submit payload.nonce to your server
-                    });
-                });
-            });
-        </script>
-        <%}%>
     </div>
 </div>
 </section>
@@ -735,19 +713,23 @@
 </script>
 <script type="text/javascript">
     <%
+        var shippingcompany;
     for(var i=0;i<shipping.length;i++){
         if(isokay[i]){
         var weightindex = Math.ceil(totalweight*2);
         var shippingfee = shipping[i].method_detail[countryindex].fee[weightindex-1].fee_num/currencyrate;
     %>
     $('#<%=shipping[i].method_name%>').on('change', function(){
+        <%
+            shippingcompany = shipping[i].method_name;
+            totalprice = Math.round((shippingfee+totalprice) * 100) / 100;
+        %>
         $('.cart-checkbox').not(this).prop('checked', false);
         $('#shippingfee').text(<%=Math.round(shippingfee * 100) / 100%>);
-        $('#shippingcompany').text("<%=shipping[i].method_name%>");
+        $('#shippingcompany').text("<%=shippingcompany%>");
         $('#revised_shippingfee').text(<%=Math.round(shippingfee * 100) / 100%>);
-        $('#totalfee').text(<%=Math.round((shippingfee+totalprice) * 100) / 100%>);
-        $('#totalprice').val(<%=Math.round((shippingfee+totalprice) * 100) / 100%>);
-        $('#shippingmethod').val("<%=shipping[i].method_name%>");
+        $('#totalfee').text(<%=totalprice%>);
+        $('#totalprice').val(<%=totalprice%>);
     });
     <%}
         }%>
@@ -760,7 +742,25 @@
                 checked = true;
             }
         });
-        if(!checked) return false;
+        if(!checked){
+            alert("Check Available Carrier!");
+            window.location='/order'
+            return false;
+        }
+    });
+    var button = document.querySelector('#submit-button');
+    braintree.dropin.create({
+        authorization: '<%=cltoken%>',
+        container: '#dropin-container',
+    }, function (createErr, instance) {
+        button.addEventListener('click', function () {
+            instance.requestPaymentMethod(function (err, payload) {
+                $.post("/checkout", {
+                    payment_method_nonce: payload.nonce,
+                    totalprice: '<%=totalprice%>'
+                }, function(data, status){});
+            });
+        });
     });
 </script>
 <script type="text/javascript">
