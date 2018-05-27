@@ -2407,8 +2407,16 @@ input.num-product::-webkit-inner-spin-button {
     cursor:pointer;
 }
 
-.pyo{
-
-    .conxxxxxxxx
-
-}
+.myorder-title{width: 900px; height:50px; font-size:30px;}
+.myorder-container{width: 900px; height: 450px;  }
+.myorder-date{width: 900px; height: 40px; font-size: 25px; background-color: #333;
+    color:white; border: 1px solid rgb(197,197,197);}
+.myorder-con1{width: 900px; height: 180px; border: 1px solid rgb(197,197,197);}
+.myorder-con2{width: 900px; height: 180px;border: 1px solid rgb(197,197,197);}
+.myorder-productname{width: 900px; height: 90px;float: left;}
+.myorder-Totalprice{width: 400px; height: 90px; float: left;}
+.myorder-Ordernumber{width: 150px; height: 90px; float: left;}
+.myorder-ShippedStatus{width: 300px; height: 90px;float: left;}
+.myorder-Carrier{width: 300px; height: 90px; float: left;}
+.myorder-TrackingCode{width: 150px; height: 90px; float: left;}
+.myorder-link{width: 300px; height: 90px;float: left;}

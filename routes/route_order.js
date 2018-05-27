@@ -126,6 +126,8 @@ module.exports = function(router) {
         var paramTotalWeight = req.body.totalweight;
         var paramTotalPrice = req.body.totalprice;
         var paramShippingMethod = req.body.shippingmethod;
+        var nonceFromTheClient = req.body.payment_method_nonce;
+        var price = req.body.totalprice;
         // 인증 안된 경우
         if (!req.user) {
             console.log('사용자 인증 안된 상태임.');
@@ -145,12 +147,24 @@ module.exports = function(router) {
                 console.log('Order Complete!');
                 database.UserModel.findOneAndUpdate({'email': req.user.email}, {$set: {'order': []}}, {new: true}, function (err, user_e) {
                     if(err) console.log(err);
-                    req.session.regenerate(function (err) {
-                        req.logIn(user_e, function (error) {
-                            req.session.save(function (err) {
-                                res.redirect('/complete');
+                    gateway.transaction.sale({
+                        amount: price,
+                        paymentMethodNonce: nonceFromTheClient,
+                        options: {
+                            submitForSettlement: true
+                        }
+                    }, function (err, result) {
+                        if(result){
+                            req.session.regenerate(function (err) {
+                                req.logIn(user_e, function (error) {
+                                    req.session.save(function (err) {
+                                        res.redirect('/complete');
+                                    });
+                                });
                             });
-                        });
+                        } else {
+                            res.status(500).send(error);
+                        }
                     });
                 });
             });
@@ -238,6 +252,18 @@ module.exports = function(router) {
                     res.end();
                 });
             }
+        }
+    });
+
+    router.route('/myorder').get(function(req, res) {
+        if (!req.user) {
+            console.log('사용자 인증 안된 상태임.');
+            res.redirect('/login');
+        } else{
+            var database = req.app.get('database');
+            database.OrderModel.find({'email':req.user.email}).exec(function(err, results){
+                res.render('myorder.ejs', {login_success:true, user: req.user, order:results});
+            });
         }
     });
 };

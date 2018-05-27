@@ -110,8 +110,8 @@
                         <% } %>
                         <li><a>Welcome <%= user.name %>!</a></li>
                         <li></li>
+                        <li><a href="/myorder">My Order</a></li>
                         <li><a href="/profile">View Profile</a></li>
-                        <li><a href="#">My Cart</a></li>
                         <li><a href="/logout">Sign Out</a></li>
                         <% } else { %>
                         <li><a href="/login">Sign In</a></li>
@@ -491,6 +491,8 @@
                     <lagel>Total</lagel>:
                     <label>Order Price</label>($<%=Math.round((totalprice) * 100) / 100%>) +
                     <lagel>Shipping Fee</lagel>($<a id="revised_shippingfee">0</a>) = $<a id="totalfee"><%=Math.round((totalprice) * 100) / 100%> </a>
+                    <br>
+                    <lagel>Total Weight</lagel>: <a id="totalweight"></a>Kg
                 </table>
             </div>
         </div>
@@ -722,44 +724,49 @@
     $('#<%=shipping[i].method_name%>').on('change', function(){
         <%
             shippingcompany = shipping[i].method_name;
-            totalprice = Math.round((shippingfee+totalprice) * 100) / 100;
+            var orderprice = Math.round((shippingfee+totalprice) * 100) / 100;
         %>
         $('.cart-checkbox').not(this).prop('checked', false);
         $('#shippingfee').text(<%=Math.round(shippingfee * 100) / 100%>);
         $('#shippingcompany').text("<%=shippingcompany%>");
         $('#revised_shippingfee').text(<%=Math.round(shippingfee * 100) / 100%>);
-        $('#totalfee').text(<%=totalprice%>);
-        $('#totalprice').val(<%=totalprice%>);
+        $('#totalfee').text(<%=orderprice%>);
+        $('#totalprice').val(<%=orderprice%>);
+        $('#totalweight').text(<%=totalweight%>);
     });
     <%}
         }%>
 </script>
 <script type="text/javascript">
     var checked = false;
-    $("#order_form").submit(function(event) {
-        $('.cart-checkbox').each(function(){
-            if($(this).is(':checked')){
-                checked = true;
-            }
-        });
-        if(!checked){
-            alert("Check Available Carrier!");
-            window.location='/order'
-            return false;
-        }
-    });
     var button = document.querySelector('#submit-button');
     braintree.dropin.create({
         authorization: '<%=cltoken%>',
         container: '#dropin-container',
     }, function (createErr, instance) {
         button.addEventListener('click', function () {
-            instance.requestPaymentMethod(function (err, payload) {
-                $.post("/checkout", {
-                    payment_method_nonce: payload.nonce,
-                    totalprice: '<%=totalprice%>'
-                }, function(data, status){});
+            $('.cart-checkbox').each(function(){
+                if($(this).is(':checked')){
+                    checked = true;
+                }
             });
+            if(!checked){
+                alert("Check Available Carrier!");
+                window.location='/order'
+                return false;
+            } else {
+
+                instance.requestPaymentMethod(function (err, payload) {
+                    $.post("/confirm", {
+                        payment_method_nonce: payload.nonce,
+                        totalprice: $('#totalfee').text(),
+                        totalweight:'<%= totalweight %>',
+                        shippingmethod: $('#shippingcompany').text()
+                    }, function (data, status) {
+                        window.location='/complete'
+                    });
+                })
+            };
         });
     });
 </script>

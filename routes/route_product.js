@@ -351,27 +351,13 @@ module.exports = function(router) {
                 var database = req.app.get('database');
                 database.GoodsModel.find({'pd_id' :  paramId}).remove(function(err){
                     if(err) console.log(err);
-                    database.GoodsModel.findOneAndUpdate({'pd_relatedpd.rel_id':paramId}, {$pull : {'pd_relatedpd':{'rel_id': paramId}}},
-                        {new: true}, function(err){
-                        if(err) console.log(err);
-                        database.UserModel.findOneAndUpdate({"cart.cart_id":paramId}, {$pull : {'cart':{'cart_id': paramId}}},
-                            {new: true}, function(err, user_e){
-                            if(err) console.log(err);
-                            if(user_e){
-                                req.session.regenerate(function(err){
-                                    req.logIn(user_e, function(error) {
-                                        if(error) console.log(error);
-                                        req.session.save(function (err) {
-                                            res.write('<script type="text/javascript">alert("Product Deleted");window.location="/product_view";</script>');
-                                            res.end();
-                                        });
-                                    });
-                                });
-                            }
-                            else{
+                    database.GoodsModel.update({'pd_relatedpd.rel_id':paramId},
+                        {$pull : {'pd_relatedpd':{'rel_id': paramId}}}, {multi: true, new: true}, function(err){
+                        database.UserModel.update({'cart.cart_id':paramId},
+                            {$pull : {'cart':{'cart': paramId}}}, {multi: true, new: true}, function(err) {
+                                if (err) console.log(err);
                                 res.write('<script type="text/javascript">alert("Product Deleted");window.location="/product_view";</script>');
                                 res.end();
-                            }
                         });
                     });
                 });
