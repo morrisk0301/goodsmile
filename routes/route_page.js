@@ -8,7 +8,10 @@ module.exports = function(router) {
                 res.render(pagename+'.ejs', {login_success:false});
             } else {
                 console.log('사용자 인증된 상태임.');
-                res.render(pagename+'.ejs', {login_success:true, user: req.user});
+                var database = req.app.get('database');
+                database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                    res.render(pagename+'.ejs', {login_success:true, user: req.user, cart:cart});
+                });
             }
         });
     }
@@ -29,12 +32,16 @@ module.exports = function(router) {
                 console.log('사용자 인증 안된 상태임.');
                 res.render('index.ejs', {login_success: false, itemcount: itemcount, goods: results});
             } else {
+                console.log(req.user);
                 console.log('사용자 인증된 상태임.');
-                res.render('index.ejs', {
-                    login_success: true,
-                    user: req.user,
-                    itemcount: itemcount,
-                    goods: results
+                database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                    res.render('index.ejs', {
+                        login_success: true,
+                        user: req.user,
+                        itemcount: itemcount,
+                        goods: results,
+                        cart: cart
+                    });
                 });
             }
         });
@@ -52,7 +59,9 @@ module.exports = function(router) {
                 res.render('product-detail.ejs', {login_success: false, goods: results});
             } else {
                 console.log('사용자 인증된 상태임.');
-                res.render('product-detail.ejs', {login_success: true, user: req.user, goods: results});
+                database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                    res.render('product-detail.ejs', {login_success: true, user: req.user, goods: results, cart:cart});
+                });
             }
         });
     });
@@ -80,14 +89,17 @@ module.exports = function(router) {
                     });
                 } else {
                     console.log('사용자 인증된 상태임.');
-                    res.render('product.ejs', {
-                        login_success: true,
-                        user: req.user,
-                        itemcount: itemcount,
-                        goods: results,
-                        pagecount: pagecount,
-                        totalcount: totalcount,
-                        category: category
+                    database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                        res.render('product.ejs', {
+                            login_success: true,
+                            user: req.user,
+                            itemcount: itemcount,
+                            goods: results,
+                            pagecount: pagecount,
+                            totalcount: totalcount,
+                            category: category,
+                            cart:cart
+                        });
                     });
                 }
 
@@ -109,15 +121,18 @@ module.exports = function(router) {
                         category: category
                     });
                 } else {
-                    console.log('사용자 인증된 상태임.');
-                    res.render('product.ejs', {
-                        login_success: true,
-                        user: req.user,
-                        itemcount: itemcount,
-                        goods: results,
-                        pagecount: pagecount,
-                        totalcount: totalcount,
-                        category: category
+                    database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                        console.log('사용자 인증된 상태임.');
+                        res.render('product.ejs', {
+                            login_success: true,
+                            user: req.user,
+                            itemcount: itemcount,
+                            goods: results,
+                            pagecount: pagecount,
+                            totalcount: totalcount,
+                            category: category,
+                            cart:cart
+                        });
                     });
                 }
 
@@ -144,31 +159,13 @@ module.exports = function(router) {
                 paramName = goods.pd_name;
                 paramPrice = goods.pd_price;
                 paramWeight = goods.pd_weight;
-                database.UserModel.findOneAndUpdate({'email' :  req.user.email, "cart.cart_id":paramId}, {$inc:{'cart.$.cart_num':paramNum}}, {new: true}, function(err, user_e) {
-                    if(user_e){
-                        console.log('카트 있음');
-                        req.session.regenerate(function (err) {
-                            req.logIn(user_e, function (error) {
-                                req.session.save(function (err) {
-                                    res.end();
-                                });
-                            });
-                        });
-                    }
-                    else{
-                        console.log('카트 없음');
-                        database.UserModel.findOneAndUpdate({'email' :  req.user.email}, {$push : {'cart':{'cart_id': paramId,
-                                    'cart_num': paramNum, 'cart_name': paramName, 'cart_price': paramPrice,
-                                    'cart_weight': paramWeight}}}, {new: true}, function(err, user_e){
-                            req.session.regenerate(function(err){
-                                req.logIn(user_e, function(error) {
-                                    req.session.save(function (err) {
-                                        res.end();
-                                    });
-                                });
-                            });
-                        });
-                    }
+                var newcart = new database.CartModel({
+                    'user_email': req.user.email, 'cart_id': paramId, 'cart_num': paramNum, 'cart_name': paramName,
+                    'cart_price': paramPrice, 'cart_weight': paramWeight
+                });
+                newcart.save(function(err){
+                   if(err) console.log(err);
+                   res.end();
                 });
             });
         }
@@ -183,35 +180,25 @@ module.exports = function(router) {
             res.write('<script type="text/javascript">alert("Please Sign In!");window.location="/login";</script>');
         }
         else {
-            database.UserModel.findOneAndUpdate({'email' :  req.user.email, "cart.cart_id":paramId}, {$pull : {'cart':{'cart_id': paramId}}}, {new: true}, function(err, user_e){
-                console.log('카트 있음');
-                if(user_e){
-                    req.session.regenerate(function(err){
-                        req.logIn(user_e, function(error) {
-                            req.session.save(function (err) {
-                                res.end();
-                            });
-                        });
-                    });
-                }
-                else{
-                    res.redirect('/');
-                }
+            database.CartModel.find({'user_email' :  req.user.email, "cart_id":paramId}).remove(function(err){
+                if(err) console.log(err);
+                console.log("카트 지워짐");
             });
         }
     });
 
     router.route('/cart').get(function(req, res) {
         console.log('/cart 패스 요청됨.');
-
+        var database = req.app.get('database');
         // 인증 안된 경우
         if (!req.user) {
             console.log('사용자 인증 안된 상태임.');
             res.redirect('/login');
         } else {
-            console.log('사용자 인증된 상태임.');
-            res.render('cart.ejs', {login_success:true, user: req.user});
+            database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                console.log('사용자 인증된 상태임.');
+                res.render('cart.ejs', {login_success:true, user: req.user, cart:cart});
+            });
         }
     });
-
 };

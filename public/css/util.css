@@ -3194,8 +3194,14 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 .m-text3 {
 	font-family: Montserrat-Regular;
 	font-size: 16px;
-	color: white;
+	color: black;
 	text-transform: uppercase;
+}
+.m-text3_1 {
+    font-family: Montserrat-Regular;
+    font-size: 18px;
+    color: black;
+    text-transform: uppercase;
 }
 
 .m-text4 {
@@ -3282,7 +3288,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 .m-text15 {
 	font-family: Montserrat-Medium;
 	font-size: 18px;
-	color: #555555;
+	color: #000000;
 	line-height: 1.5;
 }
 
@@ -3388,7 +3394,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 .l-text2 {
 	font-family: Montserrat-Bold;
 	font-size: 50px;
-	color: white;
+	color: black;
 	line-height: 1.2;
 	text-transform: uppercase;
 }
@@ -3430,7 +3436,25 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 	letter-spacing: 3px;
 	text-transform: uppercase;
 }
+.xl-text4{
+    font-family: Montserrat;
+    font-size: 80pt;text-align: center;
+}
 
+.xl-text5{
+    font-family: Montserrat-Bold;
+    font-size:30pt;
+    font-style:bold;
+    font-weight: 100;
+    position: relative;
+    text-align: center;
+}
+.xl-text6{
+    font-size: 70px; font-family: Montserrat-Bold; padding-left: 150px;
+}
+.xl-text7{font-size:50px;
+    font-family: Montserrat-Bold;
+}
 
 /*[ Color ]
 ///////////////////////////////////////////////////////////
@@ -3439,6 +3463,8 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 .color0 {color: #e65540;}
 .color1 {color: #888888;}
 .color2 {color: #333333;}
+.color3 {color: #94b9d3;}
+.color4 {color: #000000}
 
 
 /*[  ]
@@ -4115,9 +4141,11 @@ RESPONSIVE  RESPONSIVE  RESPONSIVE  RESPONSIVE   RESPONSIVE
 	}
 
 	.w-full-sm {width: 100%;}
-
+    .fs-10-sm {font-size: 10px;}
 	.fs-20-sm {font-size: 20px;}
+    .fs-20-sm2 {font-size: 20px; padding-left: 50px;}
 	.fs-35-sm {font-size: 35px;}
+    .fs-50-sm {font-size: 35px;}
 
 	.respon1 {
 		width: 100%;

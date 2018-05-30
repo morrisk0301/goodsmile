@@ -111,7 +111,6 @@
                         <li></li>
                         <li><a href="/myorder">My Order</a></li>
                         <li><a href="/profile">View Profile</a></li>
-                        <li><a href="#">My Cart</a></li>
                         <li><a href="/logout">Sign Out</a></li>
                         <% } else { %>
                         <li><a href="/login">Sign In</a></li>
@@ -127,31 +126,31 @@
                 <div class="header-wrapicon2">
                     <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
                     <% if (login_success) { %>
-                    <span class="header-icons-noti"><%=user.cart.length%></span>
+                    <span class="header-icons-noti"><%=cart.length%></span>
 
                     <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
                         <ul class="header-cart-wrapitem">
                             <%
                                 var total = 0;
-                            for(var i=0;i<user.cart.length;i++){
+                            for(var i=0;i<cart.length;i++){
                             %>
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
-                                    <img src="/getimage/<%=user.cart[i].cart_id%>/1" alt="IMG">
+                                    <img src="/getimage/<%=cart[i].cart_id%>/1" alt="IMG">
                                 </div>
 
                                 <div class="header-cart-item-txt">
-                                    <a href="/product-detail?pd_id=<%=user.cart[i].cart_id%>" class="header-cart-item-name"><%=user.cart[i].cart_name%></a>
-                                    <a style="visibility: hidden" class="header-cart-item-id"><%=user.cart[i].cart_id%></a>
+                                    <a href="/product-detail?pd_id=<%=cart[i].cart_id%>" class="header-cart-item-name"><%=cart[i].cart_name%></a>
+                                    <a style="visibility: hidden" class="header-cart-item-id"><%=cart[i].cart_id%></a>
 
                                     <span class="header-cart-item-info">
-											<%=user.cart[i].cart_num%> x $<%=user.cart[i].cart_price%>
+											<%=cart[i].cart_num%> x $<%=cart[i].cart_price%>
 										</span>
                                 </div>
                             </li>
                             <%
-                                total += user.cart[i].cart_num * user.cart[i].cart_price;
+                                total += cart[i].cart_num * cart[i].cart_price;
                             }%>
                         </ul>
 
@@ -376,32 +375,32 @@
                         <th class="column-4 p-l-70">Quantity</th>
                         <th class="column-5">Total</th>
                     </tr>
-                    <%for(var i=0;i<user.cart.length;i++){%>
+                    <%for(var i=0;i<cart.length;i++){%>
                     <tr class="table-row">
                         <td class="column-0">
-                            <input type="checkbox" class="cart-checkbox" id="cb_<%=user.cart[i].cart_id%>"/>
+                            <input type="checkbox" class="cart-checkbox" id="cb_<%=cart[i].cart_id%>"/>
                         </td>
                         <td class="column-1">
                             <div class="cart-img-product b-rad-4 o-f-hidden">
-                                <img src="/getimage/<%=user.cart[i].cart_id%>/1" alt="IMG-PRODUCT">
+                                <img src="/getimage/<%=cart[i].cart_id%>/1" alt="IMG-PRODUCT">
                             </div>
                         </td>
-                        <td class="column-2"><%=user.cart[i].cart_name%></td>
-                        <td class="column-3">$<%=user.cart[i].cart_price%></td>
+                        <td class="column-2"><%=cart[i].cart_name%></td>
+                        <td class="column-3">$<%=cart[i].cart_price%></td>
                         <td class="column-4">
                             <div class="flex-w bo5 of-hidden w-size17">
                                 <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
                                     <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
                                 </button>
 
-                                <input class="size8 m-text18 t-center num-product" type="number" id="pdnum<%=i%>" name="num-product1" value="<%=user.cart[i].cart_num%>">
+                                <input class="size8 m-text18 t-center num-product" type="number" id="pdnum<%=i%>" name="num-product1" value="<%=cart[i].cart_num%>">
 
                                 <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
                                     <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </td>
-                        <td class="column-5">$<%=user.cart[i].cart_price*user.cart[i].cart_num%></td>
+                        <td class="column-5">$<%=cart[i].cart_price*cart[i].cart_num%></td>
                     </tr>
                     <%}%>
                 </table>
@@ -613,26 +612,17 @@
 <script type="text/javascript" src="vendor/select2/select2.min.js"></script>
 <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
-    function sleep(milliseconds) {
-        var start = new Date().getTime();
-        for (var i = 0; i < 1e7; i++) {
-            if ((new Date().getTime() - start) > milliseconds){
-                break;
-            }
-        }
-    }
     $('.header-cart-wrapbtn').on('click', function(){
         <%if(login_success){
-        for(var i=0;i<user.cart.length;i++){%>
+        for(var i=0;i<cart.length;i++){%>
         $.post("/addorder", {
-            pd_id: "<%=user.cart[i].cart_id%>",
-            pd_name: "<%=user.cart[i].cart_name%>",
-            pd_num: parseInt("<%=user.cart[i].cart_num%>"),
-            pd_price: parseFloat("<%=user.cart[i].cart_price%>"),
-            pd_weight: parseFloat("<%=user.cart[i].cart_weight%>"),
+            pd_id: "<%=cart[i].cart_id%>",
+            pd_name: "<%=cart[i].cart_name%>",
+            pd_num: parseInt("<%=cart[i].cart_num%>"),
+            pd_price: parseFloat("<%=cart[i].cart_price%>"),
+            pd_weight: parseFloat("<%=cart[i].cart_weight%>"),
             isfirst: parseInt("<%=i==0?1:0%>")
         }, function(data, status){});
-        sleep(500);
         <%}
         }%>
         window.location='/order'
@@ -656,12 +646,11 @@
 
     //Button Clicked
     $('#bt_DC').on('click', function(){
-        <%for(var i=0;i<user.cart.length;i++){%>
-        if($('#cb_<%=user.cart[i].cart_id%>').is(':checked')){
-            $.get("/delcart?pd_id=<%=user.cart[i].cart_id%>", function(data, status){
+        <%for(var i=0;i<cart.length;i++){%>
+        if($('#cb_<%=cart[i].cart_id%>').is(':checked')){
+            $.get("/delcart?pd_id=<%=cart[i].cart_id%>", function(data, status){
             });
         }
-        sleep(300);
         <%}%>
         swal({
             title:"Checked Items",
@@ -673,10 +662,9 @@
         });
     });
     $('#bt_DA').click(function(event){
-        <%for(var i=0;i<user.cart.length;i++){%>
-        $.get("/delcart?pd_id=<%=user.cart[i].cart_id%>", function(data, status){
+        <%for(var i=0;i<cart.length;i++){%>
+        $.get("/delcart?pd_id=<%=cart[i].cart_id%>", function(data, status){
         });
-        sleep(500);
         <%}%>
         swal({
             title:"All Items",
@@ -692,33 +680,31 @@
     });
     $('#bt_OC').on('click', function(){
         var check = 0;
-        <%for(var i=0;i<user.cart.length;i++){%>
-        if($('#cb_<%=user.cart[i].cart_id%>').is(':checked')){
+        <%for(var i=0;i<cart.length;i++){%>
+        if($('#cb_<%=cart[i].cart_id%>').is(':checked')){
             ++check;
             $.post("/addorder", {
-                pd_id: "<%=user.cart[i].cart_id%>",
-                pd_name: "<%=user.cart[i].cart_name%>",
+                pd_id: "<%=cart[i].cart_id%>",
+                pd_name: "<%=cart[i].cart_name%>",
                 pd_num: $('#pdnum<%=i%>').val(),
-                pd_price: parseFloat("<%=user.cart[i].cart_price%>"),
-                pd_weight: parseFloat("<%=user.cart[i].cart_weight%>"),
+                pd_price: parseFloat("<%=cart[i].cart_price%>"),
+                pd_weight: parseFloat("<%=cart[i].cart_weight%>"),
                 isfirst: check==1?'1':'0'
             }, function(data, status){});
         }
-        sleep(500);
         <%}%>
         window.location='/order'
     });
     $('#bt_OA').on('click', function(){
-        <%for(var i=0;i<user.cart.length;i++){%>
+        <%for(var i=0;i<cart.length;i++){%>
         $.post("/addorder", {
-            pd_id: "<%=user.cart[i].cart_id%>",
-            pd_name: "<%=user.cart[i].cart_name%>",
+            pd_id: "<%=cart[i].cart_id%>",
+            pd_name: "<%=cart[i].cart_name%>",
             pd_num: $('#pdnum<%=i%>').val(),
-            pd_price: parseFloat("<%=user.cart[i].cart_price%>"),
-            pd_weight: parseFloat("<%=user.cart[i].cart_weight%>"),
+            pd_price: parseFloat("<%=cart[i].cart_price%>"),
+            pd_weight: parseFloat("<%=cart[i].cart_weight%>"),
             isfirst: parseInt("<%=i==0?1:0%>")
         }, function(data, status){});
-        sleep(500);
         <%}%>
         window.location='/order'
     });

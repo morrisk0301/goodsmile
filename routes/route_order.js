@@ -15,30 +15,36 @@ module.exports = function(router) {
             console.log('사용자 인증 안된 상태임.');
             res.redirect('/login');
         } else {
-            if(req.user.order.length==0) res.redirect('/');
-            else {
-                gateway.customer.create({
-                    firstName: req.user.name,
-                    email: req.user.email,
-                    phone: req.user.cellnum
-                }, function(err, results){
-                    if(err) console.log(err);
-                    gateway.clientToken.generate({customerId: results.customer.id}, function (err, response) {
-                        var token = response.clientToken;
-                        var database = req.app.get('database');
-                        database.ShippingfeeModel.find().exec(function (err, results) {
-                            console.log('사용자 인증된 상태임.');
-                            res.render('order.ejs', {
-                                login_success: true,
-                                user: req.user,
-                                shipping: results,
-                                currencyrate: currencyrate,
-                                cltoken: token
+            var database = req.app.get('database');
+            database.PreorderModel.find({'user_email':req.user.email}).exec(function(err, preorder){
+                if(preorder.length==0) res.redirect('/');
+                else {
+                    gateway.customer.create({
+                        firstName: req.user.name,
+                        email: req.user.email,
+                        phone: req.user.cellnum
+                    }, function(err, results){
+                        if(err) console.log(err);
+                        gateway.clientToken.generate({customerId: results.customer.id}, function (err, response) {
+                            var token = response.clientToken;
+                            database.ShippingfeeModel.find().exec(function (err, results) {
+                                database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                                    console.log('사용자 인증된 상태임.');
+                                    res.render('order.ejs', {
+                                        login_success: true,
+                                        user: req.user,
+                                        shipping: results,
+                                        currencyrate: currencyrate,
+                                        cltoken: token,
+                                        order : preorder,
+                                        cart: cart
+                                    });
+                                });
                             });
                         });
                     });
-                });
-            }
+                }
+            });
         }
     });
     router.route('/addorder').post(function(req, res) {
@@ -56,73 +62,32 @@ module.exports = function(router) {
         } else {
             var database = req.app.get('database');
             if(paramIsfirst=='1') {
-                database.UserModel.findOneAndUpdate({'email': req.user.email}, {$set: {'order': []}}, {new: true}, function (err, user_e) {
-                    database.UserModel.findOneAndUpdate({'email': req.user.email}, {
-                        $push: {
-                            'order': {
-                                'order_id': paramId,
-                                'order_num': paramNum, 'order_name': paramName, 'order_price': paramPrice,
-                                'order_weight': paramWeight
-                            }
-                        }
-                    }, {new: true}, function (err, user_e) {
-                        console.log('order 추가됨');
-                        req.session.regenerate(function (err) {
-                            req.logIn(user_e, function (error) {
-                                req.session.save(function (err) {
-                                    res.redirect('/order');
-                                });
-                            });
-                        });
-                    });
+                database.PreorderModel.find({'user_email': req.user.email}).remove(function(err){
+                   if(err) console.log(err);
+                   var newpreorder = new database.PreorderModel({
+                       'user_email': req.user.email, 'order_id': paramId, 'order_num': paramNum,
+                       'order_name': paramName, 'order_price': paramPrice, 'order_weight': paramWeight
+                   });
+                   newpreorder.save(function(err){
+                      if(err) console.log(err);
+                      res.end();
+                   });
                 });
             } else{
-                database.UserModel.findOneAndUpdate({'email': req.user.email}, {
-                    $push: {
-                        'order': {
-                            'order_id': paramId,
-                            'order_num': paramNum, 'order_name': paramName, 'order_price': paramPrice,
-                            'order_weight': paramWeight
-                        }
-                    }
-                }, {new: true}, function (err, user_e) {
-                    console.log('order 추가됨');
-                    req.session.regenerate(function (err) {
-                        req.logIn(user_e, function (error) {
-                            req.session.save(function (err) {
-                                res.redirect('/order');
-                            });
-                        });
-                    });
+                var newpreorder = new database.PreorderModel({
+                    'user_email': req.user.email, 'order_id': paramId, 'order_num': paramNum,
+                    'order_name': paramName, 'order_price': paramPrice, 'order_weight': paramWeight
+                });
+                newpreorder.save(function(err){
+                    if(err) console.log(err);
+                    res.end();
                 });
             }
         }
     });
 
-    router.route('/checkout').post(function(req, res){
-        console.log('/checkout 패스 요청됨.');
-        console.log(req.body);
-        var nonceFromTheClient = req.body.payment_method_nonce;
-        var price = req.body.totalprice;
-        gateway.transaction.sale({
-            amount: price,
-            paymentMethodNonce: nonceFromTheClient,
-            options: {
-                submitForSettlement: true
-            }
-        }, function (err, result) {
-            if(result){
-                console.log(result);
-                res.send(result);
-            } else {
-                res.status(500).send(error);
-            }
-        });
-
-    });
     router.route('/confirm').post(function(req, res) {
         console.log('/confirm 패스 요청됨.');
-        console.log(req.body);
         var paramTotalWeight = req.body.totalweight;
         var paramTotalPrice = req.body.totalprice;
         var paramShippingMethod = req.body.shippingmethod;
@@ -141,12 +106,11 @@ module.exports = function(router) {
                 'totalweight': paramTotalWeight, 'totalprice': paramTotalPrice, 'status': 'Checking Order',
                 'order': req.user.order, 'shippingmethod': paramShippingMethod
             });
-
             neworder.save(function(err){
                 if(err) console.log(err);
                 console.log('Order Complete!');
-                database.UserModel.findOneAndUpdate({'email': req.user.email}, {$set: {'order': []}}, {new: true}, function (err, user_e) {
-                    if(err) console.log(err);
+                database.PreorderModel.find({'user_email': req.user.email}).remove(function(err){
+                   if(err) console.log(err);
                     gateway.transaction.sale({
                         amount: price,
                         paymentMethodNonce: nonceFromTheClient,
@@ -155,13 +119,7 @@ module.exports = function(router) {
                         }
                     }, function (err, result) {
                         if(result){
-                            req.session.regenerate(function (err) {
-                                req.logIn(user_e, function (error) {
-                                    req.session.save(function (err) {
-                                        res.redirect('/complete');
-                                    });
-                                });
-                            });
+                            res.redirect('/complete');
                         } else {
                             res.status(500).send(error);
                         }
@@ -179,7 +137,10 @@ module.exports = function(router) {
             res.redirect('/login');
         } else {
             console.log('사용자 인증된 상태임.');
-            res.render('complete.ejs', {login_success:true, user: req.user});
+            var database = req.app.get('database');
+            database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                res.render('complete.ejs', {login_success:true, user: req.user, cart: cart});
+            });
         }
     });
 
@@ -198,7 +159,9 @@ module.exports = function(router) {
                 console.log('사용자 인증된 상태임.');
                 var database = req.app.get('database');
                 database.OrderModel.find().exec(function(err, results){
-                    res.render('order_view.ejs', {login_success:true, user: req.user, order:results});
+                    database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                        res.render('order_view.ejs', {login_success:true, user: req.user, order:results, cart: cart});
+                    });
                 });
             }
         }
@@ -220,8 +183,10 @@ module.exports = function(router) {
                 console.log('사용자 인증된 상태임.');
                 var database = req.app.get('database');
                 database.OrderModel.findOne({'order_id': paramOrderid}, function(err, result){
-                    if(err) console.log(err);
-                    res.render('order_edit.ejs', {login_success:true, user: req.user, order:result});
+                    database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                        if(err) console.log(err);
+                        res.render('order_edit.ejs', {login_success:true, user: req.user, order:result, cart:cart});
+                    });
                 });
             }
         }
@@ -262,8 +227,19 @@ module.exports = function(router) {
         } else{
             var database = req.app.get('database');
             database.OrderModel.find({'email':req.user.email}).exec(function(err, results){
-                res.render('myorder.ejs', {login_success:true, user: req.user, order:results});
+                database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                    res.render('myorder.ejs', {login_success:true, user: req.user, order:results, cart:cart});
+                });
             });
         }
     });
 };
+/*
+req.session.regenerate(function (err) {
+    req.logIn(user_e, function (error) {
+        req.session.save(function (err) {
+            res.redirect('/order');
+        });
+    });
+});
+*/

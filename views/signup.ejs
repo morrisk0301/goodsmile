@@ -139,21 +139,10 @@
 				<li>
 					<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
 					<ul class="sub_menu">
-						<% if (login_success) { %>
-						<% if (user.auth == 0){ %>
-						<li><a href="/register">Registration</a></li>
-						<% } %>
-						<li><a>Welcome <%= user.name %>!</a></li>
-						<li></li>
-						<li><a href="/myorder">My Order</a></li>
-						<li><a href="/profile">View Profile</a></li>
-						<li><a href="/logout">Sign Out</a></li>
-						<% } else { %>
 						<li><a href="/login">Sign In</a></li>
 						<li><a href="/signup">Sign Up</a></li>
 						<li><a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Sign In with Facebook</a></li>
 						<li><a href="/auth/twitter" class="btn btn-primary"><span class="fa fa-twitter"></span> Sign In with Twitter</a></li>
-						<% } %>
 					</ul>
 				</li>
 
@@ -161,56 +150,6 @@
 
 				<div class="header-wrapicon2">
 					<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-					<% if (login_success) { %>
-					<span class="header-icons-noti"><%=user.cart.length%></span>
-
-					<!-- Header cart noti -->
-					<div class="header-cart header-dropdown">
-						<ul class="header-cart-wrapitem">
-							<%
-								var total = 0;
-							for(var i=0;i<user.cart.length;i++){
-							%>
-							<li class="header-cart-item">
-								<div class="header-cart-item-img">
-									<img src="/getimage/<%=user.cart[i].cart_id%>/1" alt="IMG">
-								</div>
-
-								<div class="header-cart-item-txt">
-									<a href="/product-detail?pd_id=<%=user.cart[i].cart_id%>" class="header-cart-item-name"><%=user.cart[i].cart_name%></a>
-									<a style="visibility: hidden" class="header-cart-item-id"><%=user.cart[i].cart_id%></a>
-
-									<span class="header-cart-item-info">
-											<%=user.cart[i].cart_num%> x $<%=user.cart[i].cart_price%>
-										</span>
-								</div>
-							</li>
-							<%
-								total += user.cart[i].cart_num * user.cart[i].cart_price;
-							}%>
-						</ul>
-
-						<div class="header-cart-total">
-							Total: $<%=Math.round((total) * 100) / 100%>
-						</div>
-
-						<div class="header-cart-buttons">
-							<div class="header-cart-wrapbtn">
-								<!-- Button -->
-								<a href="/cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-									View Cart
-								</a>
-							</div>
-
-							<div class="header-cart-wrapbtn">
-								<!-- Button -->
-								<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-									Check Out
-								</a>
-							</div>
-						</div>
-					</div>
-					<%}%>
 				</div>
 			</div>
 		</div>
@@ -657,48 +596,6 @@
 <!--===============================================================================================-->
 <script type="text/javascript" src="vendor/select2/select2.min.js"></script>
 <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
-<script type="text/javascript">
-    function sleep(milliseconds) {
-        var start = new Date().getTime();
-        for (var i = 0; i < 1e7; i++) {
-            if ((new Date().getTime() - start) > milliseconds){
-                break;
-            }
-        }
-    }
-    $('.header-cart-wrapbtn').on('click', function(){
-		<%if(login_success){
-		for(var i=0;i<user.cart.length;i++){%>
-        $.post("/addorder", {
-            pd_id: "<%=user.cart[i].cart_id%>",
-            pd_name: "<%=user.cart[i].cart_name%>",
-            pd_num: parseInt("<%=user.cart[i].cart_num%>"),
-            pd_price: parseFloat("<%=user.cart[i].cart_price%>"),
-            pd_weight: parseFloat("<%=user.cart[i].cart_weight%>"),
-            isfirst: parseInt("<%=i==0?1:0%>")
-        }, function(data, status){});
-        sleep(500);
-		<%}
-		}%>
-        window.location='/order'
-    });
-    $('.header-cart-item-img').each(function(){
-        var idCart = $(this).parent().find('.header-cart-item-id').html();
-        var nameCart = $(this).parent().find('.header-cart-item-name').html();
-        $(this).on('click', function(){
-            $.get("/delcart?pd_id="+idCart, function(data, status){
-            });
-            swal({
-                title:nameCart,
-                text:"is removed from cart",
-                icon:"success",
-                buttons:"OK"
-            }).then(function(){
-                location.reload();
-            });
-        });
-    });
-</script>
 <script type="text/javascript">
     $(".selection-1").select2({
         minimumResultsForSearch: 20,

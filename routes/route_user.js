@@ -78,14 +78,10 @@ module.exports = function(router, passport) {
             res.redirect('/');
         } else {
             console.log('사용자 인증된 상태임.');
-            console.log('/profile 패스 요청됨.');
-            //console.dir(req.user);
-
-            if (Array.isArray(req.user)) {
-                res.render('profile.ejs', {login_success:true, user: req.user[0]._doc});
-            } else {
-                res.render('profile.ejs', {login_success:true, user: req.user});
-            }
+            var database = req.app.get('database');
+            database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                res.render('profile.ejs', {login_success:true, user: req.user, cart:cart});
+            });
         }
     });
 
@@ -119,22 +115,6 @@ module.exports = function(router, passport) {
         }
     });
 
-    //프로필수정1
-    router.route('/profile_edit').get(function(req, res) {
-        // 인증 안된 경우
-        if (!req.user) {
-            console.log('사용자 인증 안된 상태임.');
-            res.redirect('/');
-        } else {
-            console.log('사용자 인증된 상태임.');
-            console.log('/profileedit 패스 요청됨.');
-            if (Array.isArray(req.user)) {
-                res.render('profile_edit.ejs', {login_success:true, user: req.user[0]._doc});
-            } else {
-                res.render('profile_edit.ejs', {login_success:true, user: req.user});
-            }
-        }
-    });
 
     //프로필수정2
     router.route('/profile_edit2').get(function(req, res) {
@@ -146,8 +126,10 @@ module.exports = function(router, passport) {
             res.redirect('/');
         } else {
             console.log('사용자 인증된 상태임.');
-
-            res.render('profile_edit2.ejs', {login_success: true, user: req.user, country:countrylist.country});
+            var database = req.app.get('database');
+            database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                res.render('profile_edit2.ejs', {login_success: true, user: req.user, country:countrylist.country, cart:cart});
+            });
         }
     });
 	

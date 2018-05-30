@@ -25,7 +25,10 @@ module.exports = function(router) {
             }
             else{
                 console.log('사용자 인증된 상태임.');
-                res.render('administrator.ejs', {login_success:true, user: req.user});
+                var database = req.app.get('database');
+                database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                    res.render('administrator.ejs', {login_success:true, user: req.user, cart:cart});
+                });
             }
         }
     });
@@ -45,7 +48,9 @@ module.exports = function(router) {
                 console.log('사용자 인증된 상태임.');
                 var database = req.app.get('database');
                 database.ShippingfeeModel.find().exec(function (err, results) {
-                    res.render('shipping.ejs', {login_success: true, user: req.user, shipping:results});
+                    database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
+                        res.render('shipping.ejs', {login_success: true, user: req.user, shipping:results, cart:cart});
+                    });
                 });
             }
         }

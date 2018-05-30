@@ -7,7 +7,9 @@ module.exports = {
         {file:'./user_schema', collection:'users', schemaName:'UserSchema', modelName:'UserModel'},
         {file:'./goods_schema', collection:'goods', schemaName:'GoodsSchema', modelName:'GoodsModel'},
         {file:'./shippingfee_schema', collection:'shippingfee', schemaName:'ShippingfeeSchema', modelName:'ShippingfeeModel'},
-        {file:'./order_schema', collection:'order', schemaName:'OrderSchema', modelName:'OrderModel'}
+        {file:'./order_schema', collection:'order', schemaName:'OrderSchema', modelName:'OrderModel'},
+        {file:'./preorder_schema', collection:'preorder', schemaName:'PreorderSchema', modelName:'PreorderModel'},
+        {file:'./cart_schema', collection:'cart', schemaName:'CartSchema', modelName:'CartModel'}
     ],
     route_info: [
     ],

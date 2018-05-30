@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Product Register</title>
+	<title>Goodsmile</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -25,11 +25,20 @@
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
 	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/lightbox2/css/lightbox.min.css">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!--===============================================================================================-->
+	<style type="text/css">
+
+		.simplesentence{font-size: 20pt;text-align: center;}
+
+	</style>
 </head>
 <body class="animsition">
 
@@ -127,31 +136,31 @@
 				<div class="header-wrapicon2">
 					<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
 					<% if (login_success) { %>
-					<span class="header-icons-noti"><%=cart.length%></span>
+					<span class="header-icons-noti"><%=user.cart.length%></span>
 
 					<!-- Header cart noti -->
 					<div class="header-cart header-dropdown">
 						<ul class="header-cart-wrapitem">
 							<%
 								var total = 0;
-							for(var i=0;i<cart.length;i++){
-							%>
+ 								for(var i=0;i<user.cart.length;i++){
+ 							%>
 							<li class="header-cart-item">
 								<div class="header-cart-item-img">
-									<img src="/getimage/<%=cart[i].cart_id%>/1" alt="IMG">
+									<img src="/getimage/<%=user.cart[i].cart_id%>/1" alt="IMG">
 								</div>
 
 								<div class="header-cart-item-txt">
-									<a href="/product-detail?pd_id=<%=cart[i].cart_id%>" class="header-cart-item-name"><%=cart[i].cart_name%></a>
-									<a style="visibility: hidden" class="header-cart-item-id"><%=cart[i].cart_id%></a>
+									<a href="/product-detail?pd_id=<%=user.cart[i].cart_id%>" class="header-cart-item-name"><%=user.cart[i].cart_name%></a>
+                                    <a style="visibility: hidden" class="header-cart-item-id"><%=user.cart[i].cart_id%></a>
 
 									<span class="header-cart-item-info">
-											<%=cart[i].cart_num%> x $<%=cart[i].cart_price%>
+											<%=user.cart[i].cart_num%> x $<%=user.cart[i].cart_price%>
 										</span>
 								</div>
-							</li>
+                            </li>
 							<%
-								total += cart[i].cart_num * cart[i].cart_price;
+							total += user.cart[i].cart_num * user.cart[i].cart_price;
 							}%>
 						</ul>
 
@@ -175,7 +184,7 @@
 							</div>
 						</div>
 					</div>
-					<%}%>
+                    <%}%>
 				</div>
 			</div>
 		</div>
@@ -353,119 +362,185 @@
 	</div>
 </header>
 
-<!-- Title Page -->
-<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages.jpg);">
+<!-- Slide1 -->
+<section class="slide1">
+	<div class="wrap-slick1">
+		<div class="slick1">
+			<div class="item-slick1 item1-slick1" style="background-image: url(images/master-slide-02.jpg);">
+				<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
+						<span class="xl-text5 fs-20-sm " data-appear="fadeInDown">
+							FAN MADE GOODS
+						</span>
+
+					<h2 class="xl-text4 fs-50-sm " data-appear="fadeInUp">
+						goodsmile
+					</h2>
+					<br>
+					<span class="m-text3_1 fs-10-sm" data-appear="fadeInDown">
+							All the fan have a right to sell&buy the goods!
+						</span>
+					<br>
+					<div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="zoomIn">
+						<!-- Button -->
+						<a href="/product" class="flex-c-m size4 bo-rad-23 s-text2 bg-yellow hov1 trans-0-4" >
+							Shop Now
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="item-slick1 item2-slick1" style="background-image: url(images/master-slide-09.jpg);" >
+				<div class="wrap-content-slide1 sizefull flex-col-c-l p-l-15 p-r-15 p-t-150 p-b-170">
+					<span class="xl-text6 fs-20-sm2"><strong>You Are </strong></span>
+					<br>
+					<span class="xl-text6 fs-20-sm2"><strong> My Galaxy</strong></span>
+
+					<h2 class="xl-text4 fs-50-sm" data-appear="fadeInUp">
+
+					</h2>
+					<br>
+					<span class="m-text3 fs-10-sm" data-appear="fadeInDown">
+
+						</span>
+					<br>
+					<div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="zoomIn">
+						<!-- Button -->
+						<a href="/product" class="flex-c-m size4 bo-rad-23 s-text2 bg-yellow hov1 trans-0-4 m-l-160" >
+							More Info >
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-slick1 item3-slick1" style="background-image: url(images/master-slide-10.jpg);">
+				<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
+						<span class="xl-text7 color4" data-appear="fadeInDown" >
+							Register as our seller !
+						</span>
+
+					<h2 class="title" data-appear="fadeInUp">
+
+					</h2>
+					<br>
+					<span class="simpplesentence" data-appear="fadeInDown">
+
+						</span>
+					<br>
+					<div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="zoomIn">
+						<!-- Button -->
+						<a href="/about" class="flex-c-m size4 bo-rad-23 s-text2 bg-yellow hov1 trans-0-4 color4" >
+							More Info >
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
 </section>
 
-<!-- content page -->
-<section class="bgwhite p-t-66 p-b-38">
+<!-- Banner2 -->
+<section class="banner2 bg5 p-t-55 p-b-55">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 p-b-30">
-				<h3 class="m-text26 p-t-15 p-b-16">
-					Product Register
-				</h3>
-                <a id="errortext"></a><br><br>
-				<form method="post" enctype="multipart/form-data" action="/register" id="form_register">
-					<table>
-						<tr>
-							<label>(*)Product Name</label>
-							<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="pd_name" id="pd_name" placeholder="Product Name">
-							</div>
-						</tr>
-						<tr>
-							<label>(*)Price</label>
-							<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="number" step="0.01" name="pd_price" id="pd_price" placeholder="Product Price">
-							</div>
-						</tr>
-						<tr>
-							<label>(*)Weight(In Kilogram)</label>
-							<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="number" step="0.01" name="pd_weight" id="pd_weight" placeholder="Product Weight">
-							</div>
-						</tr>
-						<tr>
-							<label>Category 1</label>
-							<div class="bo4 of-hidden size19 m-b-20">
-								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_ct1" name="pd_ct1">
-									<option disabled selected value> -- select an option -- </option>
-									<%for(var i=0;i<category.length;i++){
-									%><option value="<%=category[i]%>"><%=category[i]%></option><%
-									}%>
-								</select>
-							</div>
-						</tr>
-						<tr>
-							<label>Category 2</label>
-							<div class="bo4 of-hidden size19 m-b-20">
-								<select class="sizefull s-text7 p-l-22 p-r-22" id="pd_ct2" name="pd_ct2" disabled>
-									<option disabled selected value> -- No Use -- </option>
-								</select>
-							</div>
-						</tr>
-						<tr>
-							<label>Related Products</label>
-							<fieldset>
-								<% for(var i=0;i<goods.length;i++){%>
-								<input type="checkbox" class="cart-checkbox"  name="<%=goods[i].pd_id%>">
-								<label><%=goods[i].pd_name%></label>
-								<br>
-								<%}%>
-							</fieldset>
-						</tr>
-						<tr>
-							<label>Product Detail</label>
-							<div class="bo4 of-hidden size20 m-b-20">
-								<textarea class="size20 s-text7 p-l-22 p-r-22" name="pd_detail" placeholder="Product Detail"></textarea>
-							</div>
-						</tr>
-						<tr>
-							<label>Description</label>
-							<div class="bo4 of-hidden size20 m-b-20">
-								<textarea class="size20 s-text7 p-l-22 p-r-22" name="pd_des" placeholder="Product Description"></textarea>
-							</div>
-						</tr>
-						<tr>
-							<label>Additional Information</label>
-							<div class="bo4 of-hidden size20 m-b-20">
-								<textarea class="size20 s-text7 p-l-22 p-r-22" name="pd_addin" placeholder="Additional Information"></textarea>
-							</div>
-						</tr>
-                        <tr>
-                            <label>Image (Input 4 img files)</label>
-                            <div class="bo4 of-hidden size15 m-b-20">
-                                <input class="size15 s-text7 p-l-22 p-r-22" type="file" name="pd_image" id="pd_image" accept="image/*" multiple="multiple"/>
-                            </div>
-                        </tr>
-						<tr>
-							<label>View in Products</label>
-                            <input type="checkbox" name="pd_viewPd"/>
-						</tr>
-                        <br>
-                        <tr>
-                            <label>View in Featured Products</label>
-                            <input type="checkbox" name="pd_viewFPd"/>
-                        </tr>
-                        <br>
-                        <tr>
-                            <label>New</label>
-                            <input type="checkbox" name="pd_viewNew"/>
-                        </tr>
-                        <br>
-                        <tr>
-                            <label>Sale</label>
-                            <input type="checkbox" name="pd_viewSale"/>
-                        </tr>
-					</table>
-				<br><a>(*) is required field.</a><br><br><br>
-				<input type="submit" value="Register"/>
-				</form>
+			<div class="col-sm-10 col-md-8 col-lg-6 m-l-r-auto p-t-15 p-b-15">
+				<div class="hov-img-zoom pos-relative">
+					<img src="images/banner-08-02.jpg" alt="IMG-BANNER">
+
+					<div class="ab-t-l sizefull flex-col-c-m p-l-15 p-r-15">
+							<span class="m-text9 p-t-45 fs-20-sm">
+								Artist
+							</span>
+
+						<h3 class="l-text1 fs-35-sm">
+							Wanna One
+						</h3>
+
+						<a href="#" class="s-text4 hov2 p-t-20 ">
+							View all
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-10 col-md-8 col-lg-6 m-l-r-auto p-t-15 p-b-15">
+				<div class="bgwhite hov-img-zoom pos-relative p-b-20per-ssm">
+					<img src="images/banner-08.jpg" alt="IMG-BANNER">
+
+					<div class="ab-t-l sizefull flex-col-c-b p-l-15 p-r-15 p-b-20">
+						<div class="ab-t-l sizefull flex-col-c-m p-l-15 p-r-15">
+							<span class="m-text9 p-t-45 fs-20-sm">
+								Collaboration With
+							</span>
+
+							<h3 class="l-text1 fs-35-sm">
+								K.K
+							</h3>
+
+							<a href="#" class="s-text4 hov2 p-t-20 ">
+								View all
+							</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </section>
+<!-- New Product -->
+<section class="newproduct bgwhite p-t-45 p-b-105">
+	<div class="container">
+		<div class="sec-title p-b-60">
+			<h3 class="m-text5 t-center">
+				Featured Products
+			</h3>
+		</div>
+
+		<!-- Slide2 -->
+		<div class="wrap-slick2">
+			<div class="slick2">
+				<%for(var i=itemcount-1;i>=0;i--){
+					if(goods[i].pd_viewFPd){
+				%>
+				<div class="item-slick2 p-l-15 p-r-15">
+					<!-- Block2 -->
+					<div class="block2">
+						<%if(goods[i].pd_viewNew){%>
+						<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+							<%}
+							else if(goods[i].pd_viewSale){%>
+						<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
+							<%}
+							else{%>
+						<div class="block2-img wrap-pic-w of-hidden pos-relative">
+							<%}%>
+								<img src="/getimage/<%=goods[i].pd_id%>/1" alt="IMG-PRODUCT">
+								<div class="block2-overlay trans-0-4">
+									<div class="block2-btn-addcart w-size1 trans-0-4">
+										<!-- Button -->
+										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+											Add to Cart
+										</button>
+									</div>
+								</div>
+						</div>
+
+						<div class="block2-txt p-t-20">
+							<a href="/product-detail?pd_id=<%=goods[i].pd_id%>" class="block2-name dis-block s-text3 p-b-5" id="hhh"><%=goods[i].pd_name%></a>
+                            <a style="visibility: hidden" class="block2-id dis-block s-text3 p-b-5"><%=goods[i].pd_id%></a>
+
+							<span class="block2-price m-text6 p-r-5">
+									$<%=goods[i].pd_price%>
+								</span>
+						</div>
+					</div>
+				</div>
+				<%}
+				}%>
+			</div>
+		</div>
+
+	</div>
+</section>
+
 
 
 <!-- Footer -->
@@ -475,7 +550,6 @@
 			<h4 class="s-text12 p-b-30">
 				GET IN TOUCH
 			</h4>
-
 			<div>
 				<p>Address: Sejong University 209 Neungdong-ro, Gunja-dong, Gwangjin-gu, Seoul</p>
 				<p>Tel. +82-0000-0000</p>
@@ -606,7 +680,7 @@
 		</a>
 
 		<div class="t-center s-text8 p-t-20">
-			Copyright © 2018. All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+			Copyright © 2018 All rights reserved.
 		</div>
 	</div>
 </footer>
@@ -620,9 +694,8 @@
 		</span>
 </div>
 
-<!-- Container Selection -->
+<!-- Container Selection1 -->
 <div id="dropDownSelect1"></div>
-<div id="dropDownSelect2"></div>
 
 
 
@@ -635,23 +708,47 @@
 <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 <script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+<script type="text/javascript">
+    $(".selection-1").select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $('#dropDownSelect1')
+    });
+</script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="vendor/slick/slick.min.js"></script>
+<script type="text/javascript" src="js/slick-custom.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="vendor/lightbox2/js/lightbox.min.js"></script>
+<!--===============================================================================================-->
 <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }
+        }
+    }
     $('.header-cart-wrapbtn').on('click', function(){
 		<%if(login_success){
-		for(var i=0;i<cart.length;i++){%>
+		for(var i=0;i<user.cart.length;i++){%>
         $.post("/addorder", {
-            pd_id: "<%=cart[i].cart_id%>",
-            pd_name: "<%=cart[i].cart_name%>",
-            pd_num: parseInt("<%=cart[i].cart_num%>"),
-            pd_price: parseFloat("<%=cart[i].cart_price%>"),
-            pd_weight: parseFloat("<%=cart[i].cart_weight%>"),
+            pd_id: "<%=user.cart[i].cart_id%>",
+            pd_name: "<%=user.cart[i].cart_name%>",
+            pd_num: parseInt("<%=user.cart[i].cart_num%>"),
+            pd_price: parseFloat("<%=user.cart[i].cart_price%>"),
+            pd_weight: parseFloat("<%=user.cart[i].cart_weight%>"),
             isfirst: parseInt("<%=i==0?1:0%>")
         }, function(data, status){});
+        sleep(500);
 		<%}
 		}%>
         window.location='/order'
     });
+
     $('.header-cart-item-img').each(function(){
         var idCart = $(this).parent().find('.header-cart-item-id').html();
         var nameCart = $(this).parent().find('.header-cart-item-name').html();
@@ -670,28 +767,26 @@
     });
 </script>
 <script type="text/javascript">
-    $(".selection-1").select2({
-        minimumResultsForSearch: 20,
-        dropdownParent: $('#dropDownSelect1')
-    });
-
-    $(".selection-2").select2({
-        minimumResultsForSearch: 20,
-        dropdownParent: $('#dropDownSelect2')
-    });
-</script>
-<script type="text/javascript">
-    $("#form_register").submit(function(event) {
-        if ($('#pd_image')[0].files.length > 4) {
-            alert("More than 4 Images!");
-            return false;
-        }
-        if ($('#pd_name').val().length == 0 || $('#pd_price').val().length == 0
-            || $('#pd_weight').val().length == 0){
-            $('#errortext').text('You must input all required fields.')
-            return false;
-        }
-    });
+	$('.block2-btn-addcart').each(function(){
+		var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+		var idProduct = $(this).parent().parent().parent().find('.block2-id').html();
+		$(this).on('click', function(){
+			$.get("/addcart?pd_id="+idProduct, function(data, status){
+			});
+			<%if(login_success==false){%>
+			swal("Please Sign in!");
+			<%}else{%>
+			swal({
+				title:nameProduct,
+				text:"is added to cart",
+				icon:"success",
+				buttons:"OK"
+			}).then(function(){
+				location.reload();
+			});
+			<%}%>
+		});
+	});
 </script>
 
 <!--===============================================================================================-->

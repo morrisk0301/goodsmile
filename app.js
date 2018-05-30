@@ -55,10 +55,6 @@ orderRouter(router);
 var adminRouter = require('./routes/route_admin');
 adminRouter(router);
 
-var braintreeRouter = require('./routes/route_braintree');
-braintreeRouter(router);
-
-
 app.use(function(req, res, next) {
     next(createError(404));
 });

@@ -126,31 +126,31 @@
                 <div class="header-wrapicon2">
                     <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
                     <% if (login_success) { %>
-                    <span class="header-icons-noti"><%=user.cart.length%></span>
+                    <span class="header-icons-noti"><%=cart.length%></span>
 
                     <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
                         <ul class="header-cart-wrapitem">
                             <%
                                 var total = 0;
-                            for(var i=0;i<user.cart.length;i++){
+                            for(var i=0;i<cart.length;i++){
                             %>
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
-                                    <img src="/getimage/<%=user.cart[i].cart_id%>/1" alt="IMG">
+                                    <img src="/getimage/<%=cart[i].cart_id%>/1" alt="IMG">
                                 </div>
 
                                 <div class="header-cart-item-txt">
-                                    <a href="/product-detail?pd_id=<%=user.cart[i].cart_id%>" class="header-cart-item-name"><%=user.cart[i].cart_name%></a>
-                                    <a style="visibility: hidden" class="header-cart-item-id"><%=user.cart[i].cart_id%></a>
+                                    <a href="/product-detail?pd_id=<%=cart[i].cart_id%>" class="header-cart-item-name"><%=cart[i].cart_name%></a>
+                                    <a style="visibility: hidden" class="header-cart-item-id"><%=cart[i].cart_id%></a>
 
                                     <span class="header-cart-item-info">
-											<%=user.cart[i].cart_num%> x $<%=user.cart[i].cart_price%>
+											<%=cart[i].cart_num%> x $<%=cart[i].cart_price%>
 										</span>
                                 </div>
                             </li>
                             <%
-                                total += user.cart[i].cart_num * user.cart[i].cart_price;
+                                total += cart[i].cart_num * cart[i].cart_price;
                             }%>
                         </ul>
 
@@ -352,42 +352,12 @@
     </div>
 </header>
 
-<!-- Title Page -->
-<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages.jpg);">
-    <h2 class="l-text2 t-center">
-        About
-    </h2>
-</section>
 
 <!-- content page -->
 <section class="bgwhite p-t-66 p-b-38">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 p-b-30">
-                <div class="hov-img-zoom">
-                    <img src="images/banner-14.jpg" alt="IMG-ABOUT">
-                </div>
-            </div>
-
-            <div class="col-md-8 p-b-30">
-                <h3 class="m-text26 p-t-15 p-b-16">
-                    Our story
-                </h3>
-
-                <p class="p-b-28">
-                    Phasellus egestas nisi nisi, lobortis ultricies risus semper nec. Vestibulum pharetra ac ante ut pellentesque. Curabitur fringilla dolor quis lorem accumsan, vitae molestie urna dapibus. Pellentesque porta est ac neque bibendum viverra. Vivamus lobortis magna ut interdum laoreet. Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula. Vivamus tristique vulputate ultricies. Sed vitae ultrices orci.
-                </p>
-
-                <div class="bo13 p-l-29 m-l-9 p-b-10">
-                    <p class="p-b-11">
-                        Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something. It seemed obvious to them after a while.
-                    </p>
-
-                    <span class="s-text7">
-							- Steve Job’s
-						</span>
-                </div>
-            </div>
+    <div class="container p-l-150">
+        <div class="hov-img">
+            <img src="images/banner-14.jpg" alt="IMG-ABOUT">
         </div>
     </div>
 </section>
@@ -563,26 +533,17 @@
 <script type="text/javascript" src="vendor/select2/select2.min.js"></script>
 <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
-    function sleep(milliseconds) {
-        var start = new Date().getTime();
-        for (var i = 0; i < 1e7; i++) {
-            if ((new Date().getTime() - start) > milliseconds){
-                break;
-            }
-        }
-    }
     $('.header-cart-wrapbtn').on('click', function(){
         <%if(login_success){
-        for(var i=0;i<user.cart.length;i++){%>
+        for(var i=0;i<cart.length;i++){%>
         $.post("/addorder", {
-            pd_id: "<%=user.cart[i].cart_id%>",
-            pd_name: "<%=user.cart[i].cart_name%>",
-            pd_num: parseInt("<%=user.cart[i].cart_num%>"),
-            pd_price: parseFloat("<%=user.cart[i].cart_price%>"),
-            pd_weight: parseFloat("<%=user.cart[i].cart_weight%>"),
+            pd_id: "<%=cart[i].cart_id%>",
+            pd_name: "<%=cart[i].cart_name%>",
+            pd_num: parseInt("<%=cart[i].cart_num%>"),
+            pd_price: parseFloat("<%=cart[i].cart_price%>"),
+            pd_weight: parseFloat("<%=cart[i].cart_weight%>"),
             isfirst: parseInt("<%=i==0?1:0%>")
         }, function(data, status){});
-        sleep(500);
         <%}
         }%>
         window.location='/order'
