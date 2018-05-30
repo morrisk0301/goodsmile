@@ -149,24 +149,34 @@ module.exports = function(router) {
         var paramWeight = 0;
         var database = req.app.get('database');
         if(paramNum==undefined) paramNum=1;
-
         if (!req.user) {
             console.log('사용자 인증 안된 상태임.');
             res.write('<script type="text/javascript">alert("Please Sign In!");window.location="/login";</script>');
         }
         else {
-            database.GoodsModel.findOne({'pd_id':paramId}, function(err, goods){
-                paramName = goods.pd_name;
-                paramPrice = goods.pd_price;
-                paramWeight = goods.pd_weight;
-                var newcart = new database.CartModel({
-                    'user_email': req.user.email, 'cart_id': paramId, 'cart_num': paramNum, 'cart_name': paramName,
-                    'cart_price': paramPrice, 'cart_weight': paramWeight
-                });
-                newcart.save(function(err){
-                   if(err) console.log(err);
-                   res.end();
-                });
+            database.CartModel.find({'user_email':req.user.email, 'cart_id':paramId}).exec(function(err, cart){
+               if(err) console.log(err);
+               if(cart.length>0){
+                   database.CartModel.update({'user_email':req.user.email, 'cart_id':paramId}, {$inc : {'cart_num':1}}, {new:true}, function(err){
+                       if(err) console.log(err);
+                       res.end();
+                   })
+               }
+               else{
+                   database.GoodsModel.findOne({'pd_id':paramId}, function(err, goods){
+                       paramName = goods.pd_name;
+                       paramPrice = goods.pd_price;
+                       paramWeight = goods.pd_weight;
+                       var newcart = new database.CartModel({
+                           'user_email': req.user.email, 'cart_id': paramId, 'cart_num': paramNum, 'cart_name': paramName,
+                           'cart_price': paramPrice, 'cart_weight': paramWeight
+                       });
+                       newcart.save(function(err){
+                           if(err) console.log(err);
+                           res.end();
+                       });
+                   });
+               }
             });
         }
     });
