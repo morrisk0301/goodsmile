@@ -24,20 +24,6 @@ Schema.createSchema = function(mongoose) {
         , zip: {type: String, 'default':''}
         , country: {type: String, 'default':''}
         , cellnum: {type: String, 'default':''}
-        , cart: [{
-			cart_id: {type:String, 'default':''},
-            cart_name: {type:String, 'default':''},
-            cart_num: {type:Number, 'default':1},
-            cart_price: {type:Number, 'default':0},
-            cart_weight: {type:Number, 'default':0},
-		}]
-		, order: [{
-            order_id: {type:String, 'default':''},
-            order_name: {type:String, 'default':''},
-            order_num: {type:Number, 'default':1},
-            order_price: {type:Number, 'default':0},
-            order_weight: {type:Number, 'default':0},
-		}]
 	    , created_at: {type: Date, index: {unique: false}, 'default': Date.now}
 	    , updated_at: {type: Date}
 	    , provider : {type: String, 'default':''}
