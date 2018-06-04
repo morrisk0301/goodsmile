@@ -99,30 +99,32 @@ module.exports = function(router) {
             res.redirect('/login');
         } else {
             var database = req.app.get('database');
-            var neworder = new database.OrderModel({
-                'email': req.user.email, 'name': req.user.name, 'address': req.user.address,
-                'address2': req.user.address2, 'city': req.user.city, 'state': req.user.state,
-                'zip': req.user.zip, 'country': req.user.country, 'cellnum': req.user.cellnum,
-                'totalweight': paramTotalWeight, 'totalprice': paramTotalPrice, 'status': 'Checking Order',
-                'order': req.user.order, 'shippingmethod': paramShippingMethod
-            });
-            neworder.save(function(err){
-                if(err) console.log(err);
-                console.log('Order Complete!');
-                database.PreorderModel.find({'user_email': req.user.email}).remove(function(err){
-                   if(err) console.log(err);
-                    gateway.transaction.sale({
-                        amount: price,
-                        paymentMethodNonce: nonceFromTheClient,
-                        options: {
-                            submitForSettlement: true
-                        }
-                    }, function (err, result) {
-                        if(result){
-                            res.redirect('/complete');
-                        } else {
-                            res.status(500).send(error);
-                        }
+            database.PreorderModel.find({'user_email':req.user.email}).exec(function(err, order) {
+                var neworder = new database.OrderModel({
+                    'email': req.user.email, 'name': req.user.name, 'address': req.user.address,
+                    'address2': req.user.address2, 'city': req.user.city, 'state': req.user.state,
+                    'zip': req.user.zip, 'country': req.user.country, 'cellnum': req.user.cellnum,
+                    'totalweight': paramTotalWeight, 'totalprice': paramTotalPrice, 'status': 'Checking Order',
+                    'order': order, 'shippingmethod': paramShippingMethod
+                });
+                neworder.save(function (err) {
+                    if (err) console.log(err);
+                    console.log('Order Complete!');
+                    database.PreorderModel.find({'user_email': req.user.email}).remove(function (err) {
+                        if (err) console.log(err);
+                        gateway.transaction.sale({
+                            amount: price,
+                            paymentMethodNonce: nonceFromTheClient,
+                            options: {
+                                submitForSettlement: true
+                            }
+                        }, function (err, result) {
+                            if (result) {
+                                res.redirect('/complete');
+                            } else {
+                                res.status(500).send(error);
+                            }
+                        });
                     });
                 });
             });

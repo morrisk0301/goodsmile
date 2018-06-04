@@ -144,9 +144,11 @@ module.exports = function(router, passport) {
     // 로그인 인증
     router.route('/login').post(passport.authenticate('local-login', {
         successRedirect : '/',
-        failureRedirect : '/login', 
-        failureFlash : true 
+        failureRedirect : '/login',
+        failureFlash : true
     }));
+
+
 
     // 회원가입 인증
     router.route('/signup').post(passport.authenticate('local-signup', {

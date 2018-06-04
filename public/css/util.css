@@ -2397,6 +2397,19 @@
 	transform: scale(1.1);
 }
 
+.hov-img {
+    display: block;
+    overflow: hidden;
+}
+.hov-img img{
+    width: 100%;
+    -webkit-transition: all 0.6s;
+    -o-transition: all 0.6s;
+    -moz-transition: all 0.6s;
+    transition: all 0.6s;
+}
+
+
 
 
 /*[  ]
