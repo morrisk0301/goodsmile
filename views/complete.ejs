@@ -162,7 +162,7 @@
                         </div>
 
                         <div class="header-cart-buttons">
-                            <div class="header-cart-wrapbtn">
+                            <div class="header-cart-wrapbtn-x">
                                 <!-- Button -->
                                 <a href="/cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
                                     View Cart
@@ -267,14 +267,14 @@
                         </div>
 
                         <div class="header-cart-buttons">
-                            <div class="header-cart-wrapbtn">
+                            <div class="header-cart-wrapbtn-x">
                                 <!-- Button -->
                                 <a href="/cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
                                     View Cart
                                 </a>
                             </div>
 
-                            <div class="header-cart-wrapbtn">
+                            <div class="header-cart-wrapbtn-mbile">
                                 <!-- Button -->
                                 <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
                                     Check Out
@@ -530,6 +530,21 @@
 <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
     $('.header-cart-wrapbtn').on('click', function(){
+        <%if(login_success){
+        for(var i=0;i<cart.length;i++){%>
+        $.post("/addorder", {
+            pd_id: "<%=cart[i].cart_id%>",
+            pd_name: "<%=cart[i].cart_name%>",
+            pd_num: parseInt("<%=cart[i].cart_num%>"),
+            pd_price: parseFloat("<%=cart[i].cart_price%>"),
+            pd_weight: parseFloat("<%=cart[i].cart_weight%>"),
+            isfirst: parseInt("<%=i==0?1:0%>")
+        }, function(data, status){});
+        <%}
+        }%>
+        window.location='/order'
+    });
+    $('.header-cart-wrapbtn-mbile').on('click', function(){
         <%if(login_success){
         for(var i=0;i<cart.length;i++){%>
         $.post("/addorder", {
