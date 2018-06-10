@@ -5,7 +5,7 @@ Schema.createSchema = function(mongoose) {
 	// 스키마 정의
 	var PreorderSchema = mongoose.Schema({
 		user_email: {type: String, 'default':''}
-		, order_id: {type:String, 'default':''}
+		, order_id: {type: Number, 'default':0}
         , order_name: {type:String, 'default':''}
 		, order_num: {type:Number, 'default':1}
 		, order_price: {type:Number, 'default':0}

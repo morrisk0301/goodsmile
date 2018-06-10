@@ -980,6 +980,14 @@ li.sale-noti > a {
   width: calc((100% - 10px) / 2);
 }
 
+.header-cart-wrapbtn-x {
+    width: calc((100% - 10px) / 2);
+}
+
+.header-cart-wrapbtn-mbile {
+    width: calc((100% - 10px) / 2);
+}
+
 
 
 /*[ Header Mobile ]

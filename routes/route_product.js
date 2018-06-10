@@ -127,7 +127,7 @@ module.exports = function(router) {
                     else{
                         console.log('사용자 인증된 상태임.');
                         database.CartModel.find({'user_email':req.user.email}).exec(function(err, cart){
-                            res.render('register_edit.ejs', {login_success:true, user: req.user, goods:results, allgoods:allgoods, category:category});
+                            res.render('register_edit.ejs', {login_success:true, user: req.user, goods:results, allgoods:allgoods, category:category, cart:cart});
                         });
                     }
                 }

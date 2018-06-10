@@ -5,7 +5,7 @@ Schema.createSchema = function(mongoose) {
 	// 스키마 정의
 	var CartSchema = mongoose.Schema({
 		user_email: {type: String, 'default':''}
-		, cart_id: {type:String, 'default':''}
+		, cart_id: {type:Number, 'default':0}
         , cart_name: {type:String, 'default':''}
 		, cart_num: {type:Number, 'default':1}
 		, cart_price: {type:Number, 'default':0}
