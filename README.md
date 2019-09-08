@@ -1,4 +1,4 @@
 # goodsmile
 
-## K-POP Goods Market Platform
+K-POP Goods Market Platform
 
